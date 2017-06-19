@@ -5,14 +5,14 @@
 ## Login   <romain.huet@epitech.net>
 ## 
 ## Started on  Mon Jun 19 11:37:44 2017 Romain HUET
-## Last update Mon Jun 19 13:31:51 2017 Romain HUET
+## Last update Mon Jun 19 18:16:32 2017 eliott m-barali
 ##
 
 CC		= gcc
 
 RM		= rm -f
 
-CFLAGS		= -W -Wextra -Wall
+CFLAGS		= -W -Wextra -Wall -I./include/
 
 LDFLAGS_SERV	=
 
@@ -20,7 +20,8 @@ LDFLAGS_AI	=
 
 SERVER		= zappy_server
 
-SERVER_SRCS	= srcs/server/main_serv.c
+SERVER_SRCS	= srcs/server/main_serv.c	\
+		  srcs/server/map.c
 
 SERVER_OBJS	= $(SERVER_SRCS:.c=.o)
 
