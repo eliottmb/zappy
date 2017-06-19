@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Mon Jun 19 13:29:13 2017 eliott m-barali
-** Last update Mon Jun 19 14:52:59 2017 eliott m-barali
+** Last update Mon Jun 19 17:40:33 2017 Médéric Unissart
 */
 
 #ifndef __MAP_H__
@@ -15,12 +15,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-# define LIN_RATE 23
-# define DER_RATE 20
-# define SIB_RATE 26
-# define MEN_RATE 13
-# define PHI_RATE 15
-# define THY_RATE 3
+# define LIN_RATE 0.23
+# define DER_RATE 0.20
+# define SIB_RATE 0.26
+# define MEN_RATE 0.13
+# define PHI_RATE 0.15
+# define THY_RATE 0.03
 
 typedef struct	s_map
 {

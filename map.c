@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Mon Jun 19 13:33:55 2017 eliott m-barali
-** Last update Mon Jun 19 17:13:33 2017 eliott m-barali
+** Last update Mon Jun 19 17:40:59 2017 Médéric Unissart
 */
 
 #include "map.h"
@@ -22,26 +22,33 @@ void		show_map(t_map *map)
     }
 }
 
-t_map		*fill_map(t_map *map, int nb_tiles, int nb_player_max)
+void		fill_map(t_map *map, int nb_tiles, int food)
 {
-  int		food;
   int		i;
   int		j;
-  float		to_put;
 
-  food = 60 * nb_player_max;
   i = 0;
   j = 0;
-  srand(time(NULL));
-  to_put = food * LIN_RATE / 100;
-  while (i <= food * LIN_RATE / 100)
+  while (i <= food * LIN_RATE)
     {
       j = rand() % nb_tiles;
-      map[j].lin = map[j].lin + 1;
-      i = i + 1;
+      ++map[j].lin;
+      ++i;
     }
-  to_put = food * LIN_RATE / 100;
-  return (map);
+  i = 0;
+  while (i <= food * DER_RATE)
+    {
+      j = rand() % nb_tiles;
+      ++map[j].der;
+      ++i;
+    }
+  i = 0;
+  while (i <= food * DER_RATE)
+    {
+      j = rand() % nb_tiles;
+      ++map[j].der;
+      ++i;
+    }
 }
 
 t_map		*init_map(int x_size, int y_size, int nb_player_max)
@@ -50,6 +57,7 @@ t_map		*init_map(int x_size, int y_size, int nb_player_max)
   int		i;
 
   i = 0;
+  srand(time(NULL));
   if ((map = malloc(sizeof(t_map) * x_size * y_size)) == NULL)
     return (NULL);
   while (i != x_size * y_size)
@@ -67,7 +75,7 @@ t_map		*init_map(int x_size, int y_size, int nb_player_max)
       map[i].food = 0;
       ++i;
     }
-  fill_map(map, x_size * y_size, nb_player_max);
+  fill_map(map, x_size * y_size, 60 * nb_player_max);
   return (map);
 }
 
@@ -75,7 +83,7 @@ int		main()
 {
   t_map		*map;
 
-  map = init_map(30, 30, 24);
+  map = init_map(10, 10, 8);
   show_map(map);
   return (0);
 }
