@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Mon Jun 19 13:33:55 2017 eliott m-barali
-** Last update Wed Jun 21 16:43:54 2017 Médéric Unissart
+** Last update Wed Jun 21 19:39:49 2017 eliott m-barali
 */
 
 #include "../../include/server/map.h"
@@ -18,7 +18,7 @@ void		show_map(t_map **map)
   while (i < map[0][0].x_max * map[0][0].y_max)
     {
       printf("case n°%d: x = %d, y = %d, nb_lin = %d, nb_der = %d, nb_sib = %d,"
-	     "nb_men = %d, nb_phi = %d, nb_thy = %d, nb_food = %d\n", i++,
+	     "nb_men = %d, nb_phi = %d, nb_thy = %d, nb_food = %d\n", i,
 	     map[i / map[0][0].x_max][i % map[0][0].x_max].x,
 	     map[i / map[0][0].x_max][i % map[0][0].x_max].y,
 	     map[i / map[0][0].x_max][i % map[0][0].x_max].res[1],
@@ -28,6 +28,7 @@ void		show_map(t_map **map)
 	     map[i / map[0][0].x_max][i % map[0][0].x_max].res[5],
 	     map[i / map[0][0].x_max][i % map[0][0].x_max].res[6],
 	     map[i / map[0][0].x_max][i % map[0][0].x_max].res[0]);
+      i = i + 1;
     }
 }
 
@@ -144,11 +145,11 @@ t_map		**init_map(int x_size, int y_size, int nb_player_max)
   return (map);
 }
 
-int		main()
-{
-  t_map		**map;
+/* int		main() */
+/* { */
+/*   t_map		**map; */
 
-  map = init_map(10, 10, 16);
-  show_map(map);
-  return (0);
-}
+/*   map = init_map(10, 10, 16); */
+/*   show_map(map); */
+/*   return (0); */
+/* } */

@@ -5,10 +5,11 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Mon Jun 19 19:03:40 2017 Médéric Unissart
-** Last update Wed Jun 21 17:48:46 2017 Médéric Unissart
+** Last update Wed Jun 21 19:35:28 2017 eliott m-barali
 */
 
-#include "player.h"
+//#include "player.h"
+#include "../../include/server/player.h"
 
 t_player		*init_player(char *team, int x, int y)
 {
@@ -25,6 +26,7 @@ t_player		*init_player(char *team, int x, int y)
   player->dir = rand() % 4;
   player->team = team;
   player->id = id;
+  id = id + 1;
   while (i != 7)
     player->inventory[i++] = 0;
   return (player);
