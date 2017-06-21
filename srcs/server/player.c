@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Mon Jun 19 19:03:40 2017 Médéric Unissart
-** Last update Wed Jun 21 14:41:42 2017 Médéric Unissart
+** Last update Wed Jun 21 16:42:24 2017 Médéric Unissart
 */
 
 #include "player.h"
@@ -37,3 +37,4 @@ t_egg			*new_egg(char *team, int x, int y)
   egg->y = y;
   egg->team = team;
 }
+

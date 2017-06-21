@@ -5,11 +5,13 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Mon Jun 19 18:55:07 2017 Médéric Unissart
-** Last update Wed Jun 21 14:56:36 2017 Médéric Unissart
+** Last update Wed Jun 21 16:47:26 2017 Médéric Unissart
 */
 
 #ifndef PLAYER_H_
 # define PLAYER_H_
+# include <stdlib.h>
+# include <stdbool.h>
 
 typedef struct	s_player
 {
