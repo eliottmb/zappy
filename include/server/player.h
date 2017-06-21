@@ -5,20 +5,29 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Mon Jun 19 18:55:07 2017 Médéric Unissart
-** Last update Wed Jun 21 16:47:26 2017 Médéric Unissart
+** Last update Wed Jun 21 17:45:40 2017 Médéric Unissart
 */
 
 #ifndef PLAYER_H_
 # define PLAYER_H_
 # include <stdlib.h>
 # include <stdbool.h>
+# include "map.h"
+
+typedef enum	s_dir
+  {
+    NORTH = 0,
+    EAST = 1,
+    SOUTH = 2,
+    WEST = 3
+  }		e_dir;
 
 typedef struct	s_player
 {
   int		x;
   int		y;
   int		life;
-  int		direction;
+  e_dir		dir;
   int		id;
   int		inventory[7];
   char		*team;
@@ -35,8 +44,20 @@ typedef struct	s_egg
   char		*team;
 }		t_egg;
 
+/* player.c */
+
 t_player	*init_player(char *team, int x, int y);
-int		player_is_alive(t_player *player);
 t_egg		*new_egg(char *team, int x, int y);
+
+/* player_move.c */
+
+void		player_turn_left(t_player *player);
+void		player_turn_right(t_player *player);
+void		player_forward(t_player *player, t_map **map);
+
+/* player_in.c */
+
+bool		player_take_item(t_player *player, t_map **map, int item);
+bool		player_drop_item(t_player *player, t_map **map, int item);
 
 #endif /* !PLAYER_H_ */

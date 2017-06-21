@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Mon Jun 19 19:03:40 2017 Médéric Unissart
-** Last update Wed Jun 21 16:42:24 2017 Médéric Unissart
+** Last update Wed Jun 21 17:48:46 2017 Médéric Unissart
 */
 
 #include "player.h"
@@ -17,10 +17,12 @@ t_player		*init_player(char *team, int x, int y)
   int			i;
 
   i = 0;
+  if (!(player = malloc(sizeof(player))))
+    return (NULL);
   player->x = x;
   player->y = y;
   player->life = 1260;
-  player->direction = rand() % 4;
+  player->dir = rand() % 4;
   player->team = team;
   player->id = id;
   while (i != 7)
@@ -32,9 +34,11 @@ t_egg			*new_egg(char *team, int x, int y)
 {
   t_egg			*egg;
 
+  if (!(egg = malloc(sizeof(egg))))
+    return (NULL);
   egg->countdown = 600;
   egg->x = x;
   egg->y = y;
   egg->team = team;
+  return (egg);
 }
-
