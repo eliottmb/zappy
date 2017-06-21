@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Mon Jun 19 18:55:07 2017 Médéric Unissart
-** Last update Mon Jun 19 19:22:16 2017 Médéric Unissart
+** Last update Wed Jun 21 14:56:36 2017 Médéric Unissart
 */
 
 #ifndef PLAYER_H_
@@ -20,6 +20,9 @@ typedef struct	s_player
   int		id;
   int		inventory[7];
   char		*team;
+  int		lvl;
+  bool		incantating;
+  bool		broadcasting;
 }		t_player;
 
 typedef struct	s_egg

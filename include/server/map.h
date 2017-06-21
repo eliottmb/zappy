@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Mon Jun 19 13:29:13 2017 eliott m-barali
-** Last update Mon Jun 19 18:11:44 2017 eliott m-barali
+** Last update Wed Jun 21 15:07:33 2017 Médéric Unissart
 */
 
 #ifndef __MAP_H__
@@ -28,13 +28,7 @@ typedef struct	s_map
   int		y_max;
   int		x;
   int		y;
-  int		lin;
-  int		der;
-  int		sib;
-  int		men;
-  int		phi;
-  int		thy;
-  int		food;
+  int		res[7];
   //joueur	*lolo;
 }		t_map;
 
