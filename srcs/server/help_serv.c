@@ -5,8 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:45:39 2017 Romain HUET
-** Last update Mon Jun 19 11:50:28 2017 Romain HUET
+** Last update Mon Jun 19 17:01:35 2017 Romain HUET
 */
+
+#include "server/zappy_server.h"
 
 void	help_server()
 {
