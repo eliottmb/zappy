@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Thu Jun 22 15:38:04 2017 Albatard
+** Last update Thu Jun 22 16:18:15 2017 Albatard
 */
 
 #include <sys/types.h>
@@ -175,8 +175,9 @@ int			main(int ac, char **av)
       perror("Sorry we can't connect you ");
       return (1);
     }
-  //  check_cmd(fd);
+  printf("Connected, OK\n");
   call(fd);
+  check_cmd(fd);
   if (close(fd) == -1)
     return (1);
   return (0);
