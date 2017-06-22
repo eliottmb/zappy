@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Mon Jun 19 19:03:40 2017 Médéric Unissart
-** Last update Wed Jun 21 19:35:28 2017 eliott m-barali
+** Last update Thu Jun 22 18:14:54 2017 Romain HUET
 */
 
 //#include "player.h"
@@ -36,7 +36,7 @@ t_egg			*new_egg(char *team, int x, int y)
 {
   t_egg			*egg;
 
-  if (!(egg = malloc(sizeof(egg))))
+  if (!(egg = malloc(sizeof(*egg))))
     return (NULL);
   egg->countdown = 600;
   egg->x = x;

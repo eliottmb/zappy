@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Mon Jun 19 13:29:13 2017 eliott m-barali
-** Last update Wed Jun 21 16:44:17 2017 Médéric Unissart
+** Last update Thu Jun 22 18:19:05 2017 Romain HUET
 */
 
 #ifndef __MAP_H__

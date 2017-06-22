@@ -5,7 +5,7 @@
 ## Login   <romain.huet@epitech.net>
 ## 
 ## Started on  Mon Jun 19 11:37:44 2017 Romain HUET
-## Last update Wed Jun 21 17:26:37 2017 Romain HUET
+## Last update Thu Jun 22 18:38:52 2017 Romain HUET
 ##
 
 CC		= gcc
@@ -22,7 +22,12 @@ SERVER_SRCS	= srcs/server/main_serv.c	\
 		  srcs/server/init_serv.c	\
 		  srcs/server/init_args.c	\
 		  srcs/server/check_params.c	\
-		  srcs/server/utils.c
+		  srcs/server/utils.c		\
+		  srcs/server/new_connection.c	\
+		  srcs/server/server_loop.c	\
+		  srcs/server/init_players.c	\
+		  srcs/server/show_map.c	\
+		  srcs/server/map.c
 
 SERVER_OBJS	= $(SERVER_SRCS:.c=.o)
 

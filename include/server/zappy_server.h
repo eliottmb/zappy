@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Thu Jun 22 17:06:46 2017 Romain HUET
+** Last update Thu Jun 22 18:30:44 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -94,6 +94,13 @@ typedef struct  s_player
   bool          broadcasting;
 }               t_player;
 
+t_player	*init_players(t_player *players, t_args *args);
+int		fd_setting(fd_set *readfds, t_server *server, t_args *args, t_player *players);
+int		new_connection(t_server *server, t_args *args, t_player *players);
+void		give_team(t_args *args, t_player *players, int i);
+int		server_loop(t_args *args, t_server *server, t_player *players);
+int		close_all(t_server *server, t_args *args, t_player *players);
+
 /*
 ** COMMANDS
 */
@@ -103,5 +110,28 @@ typedef struct	s_func
   char		*name;
   void		(*ptrfunc)();
 }		t_func;
+
+/*
+** MAP
+*/
+
+# define LIN_RATE 0.23
+# define DER_RATE 0.20
+# define SIB_RATE 0.26
+# define MEN_RATE 0.13
+# define PHI_RATE 0.15
+# define THY_RATE 0.03
+
+typedef struct	s_tile
+{
+  int		x_max;
+  int		y_max;
+  int		x;
+  int		y;
+  int		res[7];
+}		t_tile;
+
+t_tile	**init_map(int x_size, int y_size, int nb_player_max);
+void	show_map(t_tile **map);
 
 #endif /* !SERV_H */
