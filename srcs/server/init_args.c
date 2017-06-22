@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 20:42:04 2017 Romain HUET
-** Last update Thu Jun 22 17:06:21 2017 Romain HUET
+** Last update Thu Jun 22 17:10:30 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -29,7 +29,7 @@ void	aff_args(t_args *args)
 	}
     }
   printf("each teams has %d players\n", args->c_per_team);
-  printf("f = 1/%d\n", args->f);
+  printf("f = 1/%d seconds\n", args->f);
 }
 
 int	init_args(t_args *args)

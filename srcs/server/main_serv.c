@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Thu Jun 22 17:06:18 2017 Romain HUET
+** Last update Thu Jun 22 17:11:41 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -37,6 +37,7 @@ int	new_connection(t_server *server, t_args *args, t_player *players)
   printf("on est dans new_connexion\n");
   while (players[i].fd != -1)
     i++;
+  printf("i = %d\n", i);
   if (!first)
     {
       printf("first connection detected\n");
@@ -98,7 +99,7 @@ int	server_loop(t_args *args, t_server *server, t_player *players)
       i = 0;
       max_fd = fd_setting(&readfds, server, args, players);
       printf("avant le select\n");
-      if (select(max_fd, &readfds, NULL, NULL, NULL) == -1)
+      if (select(max_fd + 1, &readfds, NULL, NULL, NULL) == -1)
 	return (-1);
       if (FD_ISSET(server->fd, &readfds))
 	new_connection(server, args, players);
