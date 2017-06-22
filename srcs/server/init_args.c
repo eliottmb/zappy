@@ -5,10 +5,32 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 20:42:04 2017 Romain HUET
-** Last update Thu Jun 22 13:32:07 2017 Romain HUET
+** Last update Thu Jun 22 17:06:21 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
+
+void	aff_args(t_args *args)
+{
+  int	i;
+
+  i = 0;
+  printf("port = %d\n", args->port);
+  printf("map width = %d\n", args->width);
+  printf("map height = %d\n", args->height);
+  printf("there are %d teams\n", args->nb_of_teams);
+  printf("their names are :\n");
+  if (args->nb_of_teams != 0)
+    {
+      while (args->names[i])
+	{
+	  printf("%s\n", args->names[i]);
+	  i++;
+	}
+    }
+  printf("each teams has %d players\n", args->c_per_team);
+  printf("f = 1/%d\n", args->f);
+}
 
 int	init_args(t_args *args)
 {
@@ -24,6 +46,6 @@ int	init_args(t_args *args)
     return (-1);
   args->c_per_team = 8;
   args->f = 100;
-  args->max_players = args->c_per_team * args->nb_of_teams;
+  args->max_players = (args->c_per_team * args->nb_of_teams) + 1;
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Thu Jun 22 13:33:53 2017 Romain HUET
+** Last update Thu Jun 22 17:06:46 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -40,6 +40,7 @@ typedef struct	s_args
 }		t_args;
 
 int	is_num(char *s);
+void	aff_args(t_args *args);
 void	check_help(int ac, char **av);
 void	check_args(t_args *args, char **av);
 void	help_server();
@@ -62,6 +63,7 @@ typedef struct		s_server
   int			port;
   struct sockaddr_in	s_in_client;
   socklen_t		s_in_size;
+  int			graph_cli_fd;
 }			t_server;
 
 int	tablen(char **tab);
