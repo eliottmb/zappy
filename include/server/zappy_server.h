@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Wed Jun 21 19:25:56 2017 Romain HUET
+** Last update Thu Jun 22 13:33:53 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -36,6 +36,7 @@ typedef struct	s_args
   char		**names;
   int		c_per_team;
   int		f;
+  int		max_players;
 }		t_args;
 
 int	is_num(char *s);
@@ -72,6 +73,7 @@ int	listen_serv(t_server *server, t_args * args);
 ** PLAYERS
 */
 
+# define STARTING_FOOD 10
 # define INVENTORY_SIZE 7
 # define STARTING_LIFE 1260
 

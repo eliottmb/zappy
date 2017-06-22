@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 20:42:04 2017 Romain HUET
-** Last update Wed Jun 21 16:42:04 2017 Romain HUET
+** Last update Thu Jun 22 13:32:07 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -24,5 +24,6 @@ int	init_args(t_args *args)
     return (-1);
   args->c_per_team = 8;
   args->f = 100;
+  args->max_players = args->c_per_team * args->nb_of_teams;
   return (0);
 }

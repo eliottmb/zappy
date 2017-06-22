@@ -5,13 +5,11 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Wed Jun 21 19:26:38 2017 Romain HUET
+** Last update Thu Jun 22 15:31:37 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
 
-//////////  A  VIRER /////////////
-//////////////////////////////////
 void	aff_args(t_args *args)
 {
   int	i;
@@ -33,31 +31,63 @@ void	aff_args(t_args *args)
   printf("each teams has %d players\n", args->c_per_team);
   printf("reciprocal of time unit is %d\n", args->f);
 }
-//////////////////////////////
 
-int     find_max(int max_fd, t_server *server)
+int     fd_setting(fd_set *readfds, t_server *server, t_args *args, t_players *players)
 {
-  return (max_fd > server->fd ? max_fd + 1 : server->fd + 1);
-}
-
-int     fd_setting(fd_set *readfds, t_server *server)
-{
-  //int   i;
+  int   i;
   int   max_fd;
 
-  //  i = 0;
-  max_fd = 0;
+  i = 0;
+  max_fd = server->fd;
   FD_SET(server->fd, readfds);
-
+  while (i < args->max_players)
+    {
+      FD_SET(players[i].fd, readfds);
+      if (max_fd < players[i].fd)
+	max_fd = players[i].fd;
+      i++;
+    }
   return (max_fd);
 }
 
-int	new_connection()
+void	give_team(t_args *args, t_players *players, int i)
 {
+  static int	nb_p_in_team = 0;
+  static int	team_num = 0;
+
+  if (nb_p_in_team < args->c_per_team)
+    {
+      players[i].team = strdup(args->names[team_num]);
+      nb_p_in_team++;
+    }
+  else if (nb_p_in_team == args->c_per_team && team_num < args->nb_of_teams)
+    {
+      nb_p_in_team = 0;
+      team_num++;
+      new_connection(server, args);
+    }
+}
+
+int	new_connection(t_server *server, t_args *args, t_players *players)
+{
+  int	i;
+
+  i = 0;
+  while (players[i].fd == -1)
+    i++;
+  if ((players[i].fd = accept(server->fd, (struct sockaddr *)&(server->s_in_client), &(server->s_in_size))) == -1)
+    return (-1);
+  if (i < args->max_players)
+    give_team(args, players, i);
+  else
+    {
+      dprintf(players[i].fd, "Sorry, no more room for players\n");
+      players[i].fd = -1;
+    }
   return (0);
 }
 
-int	server_loop(t_args *args, t_server *server)
+int	server_loop(t_args *args, t_server *server, t_players *players)
 {
   printf("let's work !\n");
   args = args;
@@ -70,7 +100,7 @@ int	server_loop(t_args *args, t_server *server)
   while (42)
     {
       //i = 0;
-      //max_fd = fd_setting(&readfds, server);
+      //max_fd = fd_setting(&readfds, server, args, players);
       break ;
     }
   return (0);
@@ -82,11 +112,10 @@ void	init_players(t_player **players, t_args *args)
   int	max_players;
 
   i = 0;
-  max_players = args->c_per_team * args->nb_of_teams;
-  players = NULL;
-  while (!players)
-    players = malloc(sizeof(t_player) * max_players);
-  while (i < max_players)
+  *players = NULL;
+  while (!*players)
+    *players = malloc(sizeof(t_player) * args->max_players);
+  while (i < args->max_players)
     {
       players[i]->fd = -1;
       players[i]->x = rand() % args->width;
@@ -98,6 +127,7 @@ void	init_players(t_player **players, t_args *args)
       while (!players[i]->inventory)
 	players[i]->inventory =
 	  calloc(INVENTORY_SIZE, sizeof(int));
+      players[i]->inventory[0] = STARTING_FOOD;
       players[i]->team = NULL;
       players[i]->lvl = 1;
       players[i]->incantating = false;
@@ -121,7 +151,7 @@ int	main(int ac, char **av)
       printf("problem in init server\n");
       return (-1);
     }
-  else if (server_loop(&args, &server) == -1)
+  else if (server_loop(&args, &server, players) == -1)
     {
       free_args(&args);
       return (-1);
