@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Mon Jun 19 18:31:29 2017 Albatard
+** Last update Thu Jun 22 15:38:04 2017 Albatard
 */
 
 #include <sys/types.h>
@@ -17,8 +17,11 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include "client.h"
 
 //char			**my_strtowordtab(char *str, char);
+
+void			call(int fd);
 
 char                    *append(char *str1, char *str2)
 {
@@ -136,16 +139,27 @@ int	my_error(int ac, char **av)
   return 0;
 }
 
+void			add_info(client_info *info, char **av)
+{
+  info->port = atoi(av[2]);
+  info->name = malloc(sizeof(char*) + strlen(av[4]) + 1);
+  info->name = av[4];
+  info->name = malloc(sizeof(char*) + strlen(av[6]) + 1);
+  info->ip = av[6];
+}
+
 int			main(int ac, char **av)
 {
   struct protoent	*pe;
   int			fd;
   struct sockaddr_in	s_in;
   int			port;
-  int			new;
+  client_info		info;
 
   if (my_error(ac, av) == 1)
     return 1;
+  else
+    add_info(&info, av);
   port = atoi(av[2]);
   pe = getprotobyname("TCP");
   if (!pe)
@@ -155,15 +169,14 @@ int			main(int ac, char **av)
     return (1);
   s_in.sin_family = AF_INET;
   s_in.sin_port = htons(port);
-  s_in.sin_addr.s_addr = inet_addr("127.0.0.1");
+  s_in.sin_addr.s_addr = inet_addr(info.ip);
   if (connect(fd, (struct sockaddr *)&s_in, sizeof(s_in)) == -1)
     {
-      perror("Error connect ");
-      if (close(fd) == -1)
-	return (1);
+      perror("Sorry we can't connect you ");
       return (1);
     }
-  check_cmd(fd);
+  //  check_cmd(fd);
+  call(fd);
   if (close(fd) == -1)
     return (1);
   return (0);
