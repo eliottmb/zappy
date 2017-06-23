@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Wed May 31 16:35:33 2017 Romain HUET
-** Last update Thu Jun  8 19:26:52 2017 Romain HUET
+** Last update Fri Jun 23 15:25:24 2017 Romain HUET
 */
 
-#include "client.h"
+#include "server/zappy_server.h"
 
 int     is_separator(char c)
 {

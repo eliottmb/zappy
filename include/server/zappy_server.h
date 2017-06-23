@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Thu Jun 22 18:30:44 2017 Romain HUET
+** Last update Fri Jun 23 17:43:57 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -71,45 +71,6 @@ int	init_server(t_server *server, t_args *args);
 int	bind_serv(t_server *server);
 int	listen_serv(t_server *server, t_args * args);
 
-/*
-** PLAYERS
-*/
-
-# define STARTING_FOOD 10
-# define INVENTORY_SIZE 7
-# define STARTING_LIFE 1260
-
-typedef struct  s_player
-{
-  int		fd;
-  int           x;
-  int           y;
-  int           life;
-  int           direction;
-  int           id;
-  int           *inventory;
-  char          *team;
-  int           lvl;
-  bool          incantating;
-  bool          broadcasting;
-}               t_player;
-
-t_player	*init_players(t_player *players, t_args *args);
-int		fd_setting(fd_set *readfds, t_server *server, t_args *args, t_player *players);
-int		new_connection(t_server *server, t_args *args, t_player *players);
-void		give_team(t_args *args, t_player *players, int i);
-int		server_loop(t_args *args, t_server *server, t_player *players);
-int		close_all(t_server *server, t_args *args, t_player *players);
-
-/*
-** COMMANDS
-*/
-
-typedef struct	s_func
-{
-  char		*name;
-  void		(*ptrfunc)();
-}		t_func;
 
 /*
 ** MAP
@@ -133,5 +94,92 @@ typedef struct	s_tile
 
 t_tile	**init_map(int x_size, int y_size, int nb_player_max);
 void	show_map(t_tile **map);
+
+/*
+** PLAYERS
+*/
+
+# define STARTING_FOOD 10
+# define INVENTORY_SIZE 7
+# define STARTING_LIFE 1260
+
+typedef enum	s_dir
+  {
+    NORTH = 0,
+    EAST = 1,
+    SOUTH = 2,
+    WEST = 3
+  }		e_dir;
+
+typedef struct  s_player
+{
+  int		fd;
+  int           x;
+  int           y;
+  int           life;
+  e_dir		o;
+  int           n;
+  int           *i;
+  char          *team;
+  int           lvl;
+  bool          incantating;
+  bool          broadcasting;
+}               t_player;
+
+t_player	*init_players(t_player *players, t_args *args);
+int		fd_setting(fd_set *readfds, t_server *server, t_args *args, t_player *players);
+int		new_connection(t_server *server, t_args *args, t_player *players);
+void		give_team(t_args *args, t_player *players, int i);
+int		server_loop(t_args *args, t_server *server, t_player *players, t_tile **map);
+void		read_data(t_player *players, int src, t_server *server, t_tile **map);
+int		close_all(t_server *server, t_args *args, t_player *players);
+
+/*
+** COMMANDS
+*/
+
+# define NB_CMDS 12
+
+typedef struct	s_func
+{
+  char		*name;
+  void		(*ptrfunc)(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+}		t_func;
+
+/* extern t_func	*g_cmds; */
+
+int	check_cmd(char *s, t_player *player_src, t_server *server, t_tile **map);
+char	**get_cmd_args(char *s);
+int	is_separator(char c);
+int	count_words(char *s);
+char	*get_nth_word(char *s, int n);
+
+void	forward(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	right(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	left(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	look(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	inventory(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	broadcast(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	connect_nbr(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	eggfork(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	eject(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	take_object(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	set_object(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+void	start_incantation(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+
+
+/* Forward --> ok */
+/* Right -->   ok */
+/* Left -->    ok */
+/* Look -->    char *[de la mort] */
+/* Inventory --> char *[moins de la mort] */
+/* Broadcast text --> ok */
+/* Connect_nbr --> int nb de slot libres dans l'équipe du player src */
+/* Fork --> ok */
+/* Eject --> ok/ko */
+/* rien --> dead */
+/* Take object --> ok/ko */
+/* Set object  --> ok/ko */
+/* incantation --> elevation underway current level : k / ko */
 
 #endif /* !SERV_H */
