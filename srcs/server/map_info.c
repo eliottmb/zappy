@@ -5,47 +5,46 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:12:41 2017 eliott m-barali
-** Last update Thu Jun 22 18:41:33 2017 Romain HUET
+** Last update Fri Jun 23 17:33:57 2017 eliott m-barali
 */
 
 #include "server/zappy_server.h"
 
-int	map_size(int fd, t_tile **map)
+int	map_size(int fd, void **map)
 {
-  dprintf(fd, "msz %d %d\n", map[0][0].x_max, map[0][0].y_max);
+  t_tile	**tmp;
+
+  tmp = (t_tile **)map;
+  dprintf(fd, "msz %d %d\n", tmp[0][0].x_max, tmp[0][0].y_max);
   return (0);
 }
 
-int	one_tile_content(int fd, t_tile tile)
+int	one_tile_content(int fd, void *tile)
 {
-  dprintf(fd, "bct %d %d %d %d %d %d %d %d %d\n", tile.x, tile.y, tile.res[0], tile.res[1], tile.res[2], tile.res[3], tile.res[4], tile.res[5], tile.res[6]);
+  t_tile	*tmp;
+
+  tmp = (t_tile *)tile;
+  dprintf(fd, "bct %d %d %d %d %d %d %d %d %d\n", tmp->x, tmp->y, tmp->res[0], tmp->res[1], tmp->res[2], tmp->res[3], tmp->res[4], tmp->res[5], tmp->res[6]);
   return (0);
 }
 
-int	many_tile_content(int fd, t_tile **map)
+int	many_tile_content(int fd, void **map)
 {
   int	i;
   int	j;
+  t_tile	**tmp;
 
   i = 0;
-  while (i != map[0][0].y_max)
+  tmp = (t_tile **)map;
+ while (i != tmp[0][0].y_max)
     {
       j = 0;
-      while (j != map[0][0].x_max)
+      while (j != tmp[0][0].x_max)
 	{
-	  one_tile_content(fd, map[i][j]);
+	  one_tile_content(fd, &tmp[i][j]);
 	  j = j + 1;
 	}
       i = i + 1;
     }
+ return (0);
 }
-
-/* int	main() */
-/* { */
-/*   t_map	**map; */
-
-/*   map = init_map(5, 5, 1); */
-/*   map_size(1, map); */
-/*   many_tile_content(1, map); */
-/*   return (0); */
-/* } */

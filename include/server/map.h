@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Mon Jun 19 13:29:13 2017 eliott m-barali
-** Last update Thu Jun 22 18:19:05 2017 Romain HUET
+** Last update Fri Jun 23 16:20:28 2017 eliott m-barali
 */
 
 #ifndef __MAP_H__
@@ -31,7 +31,5 @@ typedef struct	s_map
   int		res[7];
 }		t_map;
 
-t_map		**init_map(int x_size, int y_size, int nb_player_max);
-void		show_map(t_map **map);
 
 #endif /* __MAP_H__ */

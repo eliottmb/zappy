@@ -5,55 +5,81 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Thu Jun 22 16:49:51 2017 eliott m-barali
-** Last update Thu Jun 22 18:31:07 2017 eliott m-barali
+** Last update Fri Jun 23 17:26:12 2017 eliott m-barali
 */
 
-int	player_expell(int fd, t_player *player)
+#include "server/zappy_server.h"
+
+int	player_expell(int fd, void *player)
 {
-  dprintf(fd, "pex #%d\n", player->id);
+  t_player	*tmp;
+  
+  tmp = (t_player *)player;
+  dprintf(fd, "pex #%d\n", tmp->id);
   return (0);
 }
 
-/* int	player_broadcast(int fd, t_player *player) */
+/* int	player_broadcast(int fd, void *player) */
 /* { */
-/*   dprintf(fd, "pbc #%d %s\n", player->id); */
+/*     t_player	*tmp;
+       
+       tmp = (t_player *)player;
+       dprintf(fd, "pbc #%d %s\n", tmp->id); */
 /*   return (0); */
 /* } */
 
-/* int	player_begin_incantation(int fd, t_player *player) */
+/* int	player_begin_incantation(int fd, void *player) */
 /* { */
-/*   dprintf(fd, "pbc #%d %s\n", player->id); */
+/*     t_player	*tmp;
+
+  tmp = (t_player *)player;
+dprintf(fd, "pbc #%d %s\n", tmp->id); */
 /*   return (0); */
 /* } */
 
-/* int	player_end_incantation(int fd, t_player *player, int r) */
+/* int	player_end_incantation(int fd, void *player, int r) */
 /* { */
-/*   dprintf(fd, "pie %d %d %d\n", player->x, player->y, r); */
+/*   d  t_player	*tmp;
+
+  tmp = (t_player *)player;
+printf(fd, "pie %d %d %d\n", tmp->x, tmp->y, r); */
 /*   return (0); */
 /* } */
 
 
-int	player_spawn_egg(int fd, t_player *player)
+int	player_spawn_egg(int fd, void *player)
 {
-  dprintf(fd, "pfk #%d\n", player->id);
+  t_player	*tmp;
+
+  tmp = (t_player *)player;
+  dprintf(fd, "pfk #%d\n", tmp->id);
   return (0);
 }
 
-int	player_take_ress(int fd, t_player *player, int i)
+int	player_take_ress(int fd, void *player, int i)
 {
-  dprintf(fd, "pgt #%d %d\n", player->id, i);
+  t_player	*tmp;
+  
+  tmp = (t_player *)player;
+  dprintf(fd, "pgt #%d %d\n", tmp->id, i);
   return (0);
 }
 
-int	player_drop_ress(int fd, t_player *player, int i)
+int	player_drop_ress(int fd, void *player, int i)
 {
-  dprintf(fd, "pdr #%d %d\n", player->id, i);
+  t_player	*tmp;
+  
+  tmp = (t_player *)player;
+  dprintf(fd, "pdr #%d %d\n", tmp->id, i);
   return (0);
 }
 
-int	player_tragically_die(int fd, t_player *player)
+int	player_tragically_die(int fd, void *player)
 {
-  dprintf(fd, "pdi #%d\n", player->id);
+  t_player	*tmp;
+  
+  tmp = (t_player *)player;
+  dprintf(fd, "pdi #%d\n", tmp->id);
   return (0);
 }
 

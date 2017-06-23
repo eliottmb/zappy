@@ -5,17 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Fri Jun 23 11:20:12 2017 eliott m-barali
-** Last update Fri Jun 23 11:29:10 2017 eliott m-barali
+** Last update Fri Jun 23 17:32:20 2017 eliott m-barali
 */
 
-int	server_time(int fd, void *args)
-{
-  t_args	*tmp;
-
-  tmp = (t_args *)args;
-  dprintf(fd, "sgt %d\n", tmp->f);
-  return (0);
-}
+#include "server/zappy_server.h"
 
 int	server_time(int fd, void *args)
 {

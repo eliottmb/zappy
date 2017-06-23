@@ -5,18 +5,19 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:47:26 2017 eliott m-barali
-** Last update Thu Jun 22 17:16:35 2017 eliott m-barali
+** Last update Fri Jun 23 17:33:58 2017 eliott m-barali
 */
 
-#include "../../include/server/zappy_server.h"
+#include "server/zappy_server.h"
+#include "server/com.h"
 
 int	team_name(int fd, void *args)
 {
   int	i;
-
+  t_args *tmp;
+  
   i = 0;
-  t_args *tmp = (t_args *)args;
-  (t_args*)args;
+  tmp = (t_args *)args;
   while (i != /*args*/tmp->nb_of_teams)
     {
       dprintf(fd, "tna %s\n", /*args*/tmp->names[i]);
@@ -25,38 +26,38 @@ int	team_name(int fd, void *args)
   return (0);
 }
 
-int	new_player_connection(int fd, t_player *player)
+int	new_player_connection(int fd, void *player)
 {
-  dprintf(fd, "pnw #%d %d %d %d %d %s\n", player->id, player->x, player->y, player->direction, player->lvl, player->team);
+  t_player	*tmp;
+
+  tmp = (t_player *)player;
+  dprintf(fd, "pnw #%d %d %d %d %d %s\n", tmp->id, tmp->x, tmp->y, tmp->direction, tmp->lvl, tmp->team);
   return (0);
 }
 
-int	player_position(int fd, t_player *player)
+int	player_position(int fd, void *player)
 {
-  dprintf(fd, "ppo #%d %d %d %d\n", player->id, player->x, player->y, player->direction);
+  t_player	*tmp;
+
+  tmp = (t_player *)player;
+  dprintf(fd, "ppo #%d %d %d %d\n", tmp->id, tmp->x, tmp->y, tmp->direction);
   return (0);
 }
 
-int	player_level(int fd, t_player *player)
+int	player_level(int fd, void *player)
 {
-  dprintf(fd, "plv #%d %d\n", player->id, player->lvl);
+  t_player	*tmp;
+
+  tmp = (t_player *)player;
+  dprintf(fd, "plv #%d %d\n", tmp->id, tmp->lvl);
   return (0);
 }
 
-int	player_build(int fd, t_player *player)
+int	player_build(int fd, void *player)
 {
-  dprintf(fd, "pin #%d %d %d %d %d %d %d %d %d %d\n", player->id,  player->x, player->y, player->inventory[0], player->inventory[1], player->inventory[2], player->inventory[3], player->inventory[4], player->inventory[5], player->inventory[6]);
-  return (0);
-}
+  t_player	*tmp;
 
-int	main(int argc, char **argv)
-{
-  t_player	*player;
-  t_args	args;
-
-  check_args(&args, argv);
-  player = init_player("lolo", 3, 8);
-  new_player_connection(1, player);
-  team_name(1, &args);
+  tmp = (t_player *)player;
+  dprintf(fd, "pin #%d %d %d %d %d %d %d %d %d %d\n", tmp->id,  tmp->x, tmp->y, tmp->inventory[0], tmp->inventory[1], tmp->inventory[2], tmp->inventory[3], tmp->inventory[4], tmp->inventory[5], tmp->inventory[6]);
   return (0);
 }
