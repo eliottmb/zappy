@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Fri Jun 23 17:43:57 2017 Romain HUET
+** Last update Fri Jun 23 18:32:09 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -22,6 +22,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <time.h>
+# include "com.h"
 
 /*
 ** ARGUMENTS
@@ -128,9 +129,10 @@ typedef struct  s_player
 
 t_player	*init_players(t_player *players, t_args *args);
 int		fd_setting(fd_set *readfds, t_server *server, t_args *args, t_player *players);
-int		new_connection(t_server *server, t_args *args, t_player *players);
+int		new_connection(t_server *server, t_args *args, t_player *players, t_tile **map);
 void		give_team(t_args *args, t_player *players, int i);
 int		server_loop(t_args *args, t_server *server, t_player *players, t_tile **map);
+void		welcome_graph_client(t_server *server, t_args *args, t_tile **map);
 void		read_data(t_player *players, int src, t_server *server, t_tile **map);
 int		close_all(t_server *server, t_args *args, t_player *players);
 
@@ -166,20 +168,5 @@ void	eject(t_player *player_src, char **cmd_args, t_server *server, t_tile **map
 void	take_object(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
 void	set_object(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
 void	start_incantation(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-
-
-/* Forward --> ok */
-/* Right -->   ok */
-/* Left -->    ok */
-/* Look -->    char *[de la mort] */
-/* Inventory --> char *[moins de la mort] */
-/* Broadcast text --> ok */
-/* Connect_nbr --> int nb de slot libres dans l'équipe du player src */
-/* Fork --> ok */
-/* Eject --> ok/ko */
-/* rien --> dead */
-/* Take object --> ok/ko */
-/* Set object  --> ok/ko */
-/* incantation --> elevation underway current level : k / ko */
 
 #endif /* !SERV_H */

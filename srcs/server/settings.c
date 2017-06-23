@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Fri Jun 23 11:20:12 2017 eliott m-barali
-** Last update Fri Jun 23 17:32:20 2017 eliott m-barali
+** Last update Fri Jun 23 18:24:43 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -39,12 +39,14 @@ int	server_message(int fd, void *str)
 
 int	server_unknown_command(int fd, void *str)
 {
+  str = str;
   dprintf(fd, "suc\n");
   return (0);
 }
 
 int	server_bad_param(int fd, void *str)
 {
+  str = str;
   dprintf(fd, "sbp\n");
   return (0);
 }

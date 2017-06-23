@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Fri Jun 23 17:42:41 2017 Romain HUET
+** Last update Fri Jun 23 18:33:40 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -101,7 +101,6 @@ int	main(int ac, char **av)
   check_args(&args, av);
   players = init_players(players, &args);
   map = init_map(args.width, args.height, args.max_players - 1);
-  show_map(map);
   if (init_server(&server, &args) == -1)
     {
       printf("problem in init server\n");

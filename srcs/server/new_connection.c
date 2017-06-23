@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:25:45 2017 Romain HUET
-** Last update Thu Jun 22 17:26:27 2017 Romain HUET
+** Last update Fri Jun 23 18:36:33 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -28,7 +28,30 @@ void    give_team(t_args *args, t_player *players, int i)
     }
 }
 
-int     new_connection(t_server *server, t_args *args, t_player *players)
+void	give_infos_to_gclient()
+{
+  read(server->graph_cli_fd, gc_ans, strlen(gc_ans));
+  printf("|%s|\n", gc_ans);
+  if (!strcmp(gc_ans, "GRAPHIC\n"))
+    {
+      map_size(server->graph_cli_fd, (void **)map);
+      server_time(server->graph_cli_fd, args);
+      many_tile_content(server->graph_cli_fd, (void **)map);
+      team_name(server->graph_cli_fd, args);
+    }  
+}
+
+void	welcome_graph_client(t_server *server, t_args *args, t_tile **map)
+{
+  char	*gc_ans;
+
+  gc_ans = calloc(16, 1);
+  if ((server->graph_cli_fd = accept(server->fd, (struct sockaddr *)&(server->s_in_client), &(server->s_in_size))) == -1)
+    printf("error with graph cli connection\n");
+  dprintf(server->graph_cli_fd, "BIENVENUE\n");
+}
+
+int     new_connection(t_server *server, t_args *args, t_player *players, t_tile **map)
 {
   int   i;
   static int    first = 0;
@@ -41,10 +64,8 @@ int     new_connection(t_server *server, t_args *args, t_player *players)
   if (!first)
     {
       printf("first connection detected\n");
-      if ((server->graph_cli_fd = accept(server->fd, (struct sockaddr *)&(server->s_in_client), &(server->s_in_size))) == -1)
-	return (-1);
+      welcome_graph_client(server, args, map);
       first++;
-      dprintf(server->graph_cli_fd, "BIENVENUE\n");
       /////CLIENT GRAPHIQUE
     }
   else
@@ -56,6 +77,7 @@ int     new_connection(t_server *server, t_args *args, t_player *players)
 	{
 	  give_team(args, players, i);
 	  dprintf(players[i].fd, "Bienvenue sur le ZAPPY !\n");
+	  new_player_connection(server->graph_cli_fd, players);
 	}
       else
 	{
