@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Thu Jun 22 16:18:15 2017 Albatard
+** Last update Fri Jun 23 15:09:13 2017 Albatard
 */
 
 #include <sys/types.h>
@@ -62,11 +62,10 @@ int                     check_cmd(int fd)
 	  buffer[a] = '\0';
 	  a--;
 	}
-      a = read(0, buffer, 255);
+      a = read(fd, buffer, 255);
       a = strlen(buffer);
       buffer[a-1] = '\0';
-      write(fd, buffer, strlen(buffer));
-      write(fd, "\n", 1);
+      printf("%s\n", buffer);
       //      tab = my_strtowordtab(buffer, ' ');
     }
   free(tmp);

@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:26:44 2017 Romain HUET
-** Last update Thu Jun 22 17:27:34 2017 Romain HUET
+** Last update Fri Jun 23 15:13:32 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -50,7 +50,7 @@ int     server_loop(t_args *args, t_server *server, t_player *players)
       while (i < args->max_players)
 	{
 	  if (players[i].fd != - 1 && FD_ISSET(players[i].fd, &readfds))
-	    printf("got message from a client\n");
+	    read_data(players, i);
 	  i++;
 	}
     }

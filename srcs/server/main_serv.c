@@ -5,10 +5,35 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Thu Jun 22 18:29:20 2017 Romain HUET
+** Last update Fri Jun 23 15:22:14 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
+
+int	check_cmd(char *s, t_player *players)
+{
+  
+  return (0);
+  return (1);
+}
+
+void	read_data(t_player *players, int src)
+{
+  char		*buf;
+  int		read_ret;
+
+  buf = NULL;
+  while (!buf)
+    buf = calloc(512, 1);
+  read_ret = read(players[src].fd, buf, strlen(buf));
+  if (read < 0)
+    printf("error on read\n");
+  else if (read > 0)
+    {
+      if (check_cmd(buf, players))
+	printf("command %s bien reçue\n", buf);
+    }
+}
 
 int	main(int ac, char **av)
 {
