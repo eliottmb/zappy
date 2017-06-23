@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Fri Jun 23 18:32:09 2017 Romain HUET
+** Last update Fri Jun 23 18:49:20 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -129,10 +129,11 @@ typedef struct  s_player
 
 t_player	*init_players(t_player *players, t_args *args);
 int		fd_setting(fd_set *readfds, t_server *server, t_args *args, t_player *players);
-int		new_connection(t_server *server, t_args *args, t_player *players, t_tile **map);
+int		new_connection(t_server *server, t_args *args, t_player *players);
 void		give_team(t_args *args, t_player *players, int i);
 int		server_loop(t_args *args, t_server *server, t_player *players, t_tile **map);
-void		welcome_graph_client(t_server *server, t_args *args, t_tile **map);
+void		welcome_graph_client(t_server *server);
+void		message_from_gclient(t_server *server, t_args *args, t_tile **map);
 void		read_data(t_player *players, int src, t_server *server, t_tile **map);
 int		close_all(t_server *server, t_args *args, t_player *players);
 

@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:26:44 2017 Romain HUET
-** Last update Fri Jun 23 18:20:01 2017 Romain HUET
+** Last update Fri Jun 23 18:49:33 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -47,7 +47,9 @@ int     server_loop(t_args *args, t_server *server, t_player *players, t_tile **
       if (select(max_fd + 1, &readfds, NULL, NULL, NULL) == -1)
 	return (-1);
       if (FD_ISSET(server->fd, &readfds))
-	new_connection(server, args, players, map);
+	new_connection(server, args, players);
+      else if (FD_ISSET(server->graph_cli_fd, &readfds))
+	message_from_gclient(server, args, map);
       while (i < args->max_players)
 	{
 	  if (players[i].fd != - 1 && FD_ISSET(players[i].fd, &readfds))
