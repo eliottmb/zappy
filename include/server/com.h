@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Fri Jun 23 15:42:17 2017 eliott m-barali
-** Last update Fri Jun 23 17:18:01 2017 eliott m-barali
+** Last update Fri Jun 23 17:55:48 2017 eliott m-barali
 */
 
 #ifndef __COM_H__
@@ -34,6 +34,9 @@ int	player_build(int fd, void *player);
 */
 
 int	player_expell(int fd, void *player);
+int	player_broadcast(int fd, void *player, char *str);
+int	player_begin_incantation(int fd, void *player, int j);
+int	player_end_incantation(int fd, void *player, int r);
 int	player_spawn_egg(int fd, void *player);
 int	player_take_ress(int fd, void *player, int i);
 int	player_drop_ress(int fd, void *player, int i);
