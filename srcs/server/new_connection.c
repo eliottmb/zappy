@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:25:45 2017 Romain HUET
-** Last update Fri Jun 23 18:48:09 2017 Romain HUET
+** Last update Mon Jun 26 15:27:06 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -36,7 +36,7 @@ void	give_infos_to_gclient(t_server *server, t_args *args, t_tile **map)
   team_name(server->graph_cli_fd, args);
 }
 
-void	message_from_gclient(t_server *server, t_args *args, t_tile **map)
+void	message_from_gclient(t_server *server, t_args *args)
 {
   char	*gc_ans;
   
@@ -44,49 +44,26 @@ void	message_from_gclient(t_server *server, t_args *args, t_tile **map)
   read(server->graph_cli_fd, gc_ans, strlen(gc_ans));
   printf("|%s|\n", gc_ans);
   if (!strcmp(gc_ans, "GRAPHIC\n"))
-    give_infos_to_gclient(server, args, map);  
+    give_infos_to_gclient(server, args, server->map);  
 }
 
-void	welcome_graph_client(t_server *server)
+int		new_connection(t_server *server, t_player *players)
 {
-  if ((server->graph_cli_fd = accept(server->fd, (struct sockaddr *)&(server->s_in_client), &(server->s_in_size))) == -1)
-    printf("error with graph cli connection\n");
-  dprintf(server->graph_cli_fd, "BIENVENUE\n");
-}
-
-int     new_connection(t_server *server, t_args *args, t_player *players)
-{
-  int   i;
-  static int    first = 0;
+  int		i;
+  int		incoming_fd;
 
   i = 0;
+  incoming_fd = 0;
   printf("on est dans new_connexion\n");
-  while (players[i].fd != -1)
-    i++;
-  printf("i = %d\n", i);
-  if (!first)
+  while (i < MAX_PLAYERS)
     {
-      printf("first connection detected\n");
-      welcome_graph_client(server);
-      first++;
-      /////CLIENT GRAPHIQUE
-    }
-  else
-    {
-      ///// CLIENTS IA
-      if ((players[i].fd = accept(server->fd, (struct sockaddr *)&(server->s_in_client), &(server->s_in_size))) == -1)
-	return (-1);
-      if (i < args->max_players)
+      if (players[i].fd != -1)
 	{
-	  give_team(args, players, i);
-	  dprintf(players[i].fd, "Bienvenue sur le ZAPPY !\n");
-	  new_player_connection(server->graph_cli_fd, players);
+	  if ((incoming_fd = accept(server->fd, (struct sockaddr *)&(server->s_in_client), &(server->s_in_size))) == -1)
+	    printf("error : accept failed\n");
+	  dprintf(incoming_fd, "WELCOME\n");
 	}
-      else
-	{
-	  dprintf(players[i].fd, "Sorry, no more room for players\n");
-	  players[i].fd = -1;
-	}
+      i++;
     }
   return (0);
 }

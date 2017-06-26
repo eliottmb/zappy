@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 17:43:17 2017 Romain HUET
-** Last update Thu Jun 22 15:39:19 2017 Romain HUET
+** Last update Mon Jun 26 13:47:49 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -20,7 +20,7 @@ int     count_teams(char **av)
   while (av[i] && strcmp(av[i], "-n"))
     i++;
   i++;
-  while (av[i][0] != '-')
+  while (av[i] && av[i][0] != '-')
     {
       i++;
       j++;
@@ -66,6 +66,11 @@ char	**get_team_names(int nb_teams, char **av, int *i)
       (*i)++;
     }
   (*i)--;
+  if (check_doublons(names))
+    {
+      printf("-n option only accepts unique team names\n");
+      exit(-1);
+    }
   return (names);
 }
 

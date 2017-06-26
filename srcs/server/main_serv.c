@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Fri Jun 23 18:33:40 2017 Romain HUET
+** Last update Mon Jun 26 15:26:48 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -46,7 +46,7 @@ char	**get_cmd_args(char *s)
   return (args);
 }
 
-int	check_cmd(char *s, t_player *player_src, t_server *server, t_tile **map)
+int	check_cmd(char *s, t_player *player_src, t_server *server)
 {
   char	*cmd;
   char	**cmd_args;
@@ -62,7 +62,9 @@ int	check_cmd(char *s, t_player *player_src, t_server *server, t_tile **map)
     {
       if (!strcmp(cmd, g_cmds[i].name))
 	{
-	  g_cmds[i].ptrfunc(player_src, cmd_args, server, map);
+	  player_src = player_src;
+	  server = server;
+	  /* g_cmds[i].ptrfunc(player_src, cmd_args, server, map); */
 	  printf("commande %s bien reçue !\nSes arguments :", cmd);
 	  for (i = 0; cmd_args[i] != NULL; i++)
 	    printf("%s\t", cmd_args[i]);
@@ -73,7 +75,7 @@ int	check_cmd(char *s, t_player *player_src, t_server *server, t_tile **map)
   return (0);
 }
 
-void	read_data(t_player *players, int src, t_server *server, t_tile **map)
+void	read_data(t_player *players, int src, t_server *server)
 {
   char		*buf;
   int		read_ret;
@@ -85,7 +87,7 @@ void	read_data(t_player *players, int src, t_server *server, t_tile **map)
   if (read_ret < 0)
     printf("error on read\n");
   else if (read_ret > 0)
-    check_cmd(buf, &players[src], server, map);
+    check_cmd(buf, &players[src], server);
 }
 
 int	main(int ac, char **av)
@@ -93,20 +95,19 @@ int	main(int ac, char **av)
   t_args	args;
   t_server	server;
   t_player	*players;
-  t_tile	**map;
 
   players = NULL;
   srand(time(NULL));
   check_help(ac, av);
   check_args(&args, av);
   players = init_players(players, &args);
-  map = init_map(args.width, args.height, args.max_players - 1);
+
   if (init_server(&server, &args) == -1)
     {
       printf("problem in init server\n");
       return (-1);
     }
-  else if (server_loop(&args, &server, players, map) == -1)
+  else if (server_loop(&args, &server, players) == -1)
     {
       free_args(&args);
       return (-1);

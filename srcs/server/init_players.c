@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:27:58 2017 Romain HUET
-** Last update Fri Jun 23 17:43:19 2017 Romain HUET
+** Last update Mon Jun 26 14:24:33 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -17,8 +17,8 @@ t_player        *init_players(t_player *players, t_args *args)
   i = 0;
   players = NULL;
   while (!players)
-    players = malloc(sizeof(t_player) * args->max_players);
-  while (i < args->max_players)
+    players = malloc(sizeof(t_player) * MAX_PLAYERS);
+  while (i < MAX_PLAYERS)
     {
       players[i].fd = -1;
       players[i].x = rand() % args->width;

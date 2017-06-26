@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 17:56:36 2017 Romain HUET
-** Last update Wed Jun 21 17:11:20 2017 Romain HUET
+** Last update Mon Jun 26 15:26:34 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -39,6 +39,8 @@ int     init_server(t_server *server, t_args *args)
       printf("problem in bind serv or listen serv\n");
       return (-1);
     }
+  server->map = init_map(args->width, args->height, MAX_PLAYERS);
+  server->f = args->f;
   return (0);
 }
 

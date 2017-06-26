@@ -5,57 +5,109 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:26:44 2017 Romain HUET
-** Last update Fri Jun 23 18:49:33 2017 Romain HUET
+** Last update Mon Jun 26 15:40:01 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
 
-int     fd_setting(fd_set *readfds, t_server *server, t_args *args, t_player *players)
+int	get_max_fd(t_server *server, t_player *players)
 {
-  int   i;
   int   max_fd;
+  int	i;
 
   i = 0;
   max_fd = server->fd;
-  FD_SET(server->fd, readfds);
-  FD_SET(server->graph_cli_fd, readfds);
-  while (i < args->max_players)
+  while (i < MAX_PLAYERS)
     {
-      FD_SET(players[i].fd, readfds);
       if (max_fd < players[i].fd)
 	max_fd = players[i].fd;
       i++;
     }
+  if (max_fd < server->graph_cli_fd)
+    max_fd = server->graph_cli_fd;
   return (max_fd);
 }
 
-int     server_loop(t_args *args, t_server *server, t_player *players, t_tile **map)
+void     fd_setting(fd_set *fd_s, t_server *server, t_player *players)
 {
-  int           i;
+  int   i;
+
+  i = 0;
+  FD_SET(server->fd, fd_s);
+  if (server->graph_cli_fd != -1)
+    FD_SET(server->graph_cli_fd, fd_s);
+  while (i < MAX_PLAYERS)
+    {
+      if (players[i].fd != -1)
+	FD_SET(players[i].fd, fd_s);
+      i++;
+    }
+}
+
+void	check_readfds(fd_set *readfds, t_server *server, t_player *players, t_args *args)
+{
+  int	i;
+
+  i = 0;
+  if (FD_ISSET(server->fd, readfds))
+    new_connection(server, players);
+  while (i < MAX_PLAYERS)
+    {
+      if (players[i].fd != - 1 && FD_ISSET(players[i].fd, readfds))
+	read_data(players, i, server);
+      i++;
+    }
+}
+
+//// A BOUGER ///
+
+void	message_to_gclient(t_server *server, t_args *args)
+{
+  server = server;
+  args = args;
+}
+
+void	write_data(t_player *players, int src, t_server *server)
+{
+  players = players;
+  src = src;
+  server = server;
+}
+
+////////
+
+void	check_writefds(fd_set *writefds, t_server *server, t_player *players, t_args *args)
+{
+  int	i;
+
+  i = 0;
+  if (FD_ISSET(server->graph_cli_fd, writefds))
+    message_to_gclient(server, args);
+  while (i < MAX_PLAYERS)
+    {
+      if (players[i].fd != -1 && FD_ISSET(players[i].fd, writefds))
+	write_data(players, i, server);
+      i++;
+    }
+}
+
+int		server_loop(t_args *args, t_server *server, t_player *players)
+{
   int           max_fd;
   fd_set        readfds;
   fd_set        writefds;
-
-  printf("On est dans server loop\n");
+  
   FD_ZERO(&readfds);
   FD_ZERO(&writefds);
   while (42)
     {
-      i = 0;
-      max_fd = fd_setting(&readfds, server, args, players);
-      printf("avant le select\n");
+      fd_setting(&readfds, server, players);
+      fd_setting(&writefds, server, players);
+      max_fd = get_max_fd(server, players);
       if (select(max_fd + 1, &readfds, NULL, NULL, NULL) == -1)
 	return (-1);
-      if (FD_ISSET(server->fd, &readfds))
-	new_connection(server, args, players);
-      else if (FD_ISSET(server->graph_cli_fd, &readfds))
-	message_from_gclient(server, args, map);
-      while (i < args->max_players)
-	{
-	  if (players[i].fd != - 1 && FD_ISSET(players[i].fd, &readfds))
-	    read_data(players, i, server, map);
-	  i++;
-	}
+      check_readfds(&readfds, server, players, args);
+      check_writefds(&writefds, server, players, args);
     }
   return (0);
 }

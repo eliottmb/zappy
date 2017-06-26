@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Fri Jun 23 18:49:20 2017 Romain HUET
+** Last update Mon Jun 26 15:39:31 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -53,27 +53,6 @@ int	check_doublons(char **names);
 void	free_args(t_args *args);
 
 /*
-** SERVER
-*/
-
-typedef struct		s_server
-{
-  struct protoent	*pe;
-  int			fd;
-  struct sockaddr_in	s_in;
-  int			port;
-  struct sockaddr_in	s_in_client;
-  socklen_t		s_in_size;
-  int			graph_cli_fd;
-}			t_server;
-
-int	tablen(char **tab);
-int	init_server(t_server *server, t_args *args);
-int	bind_serv(t_server *server);
-int	listen_serv(t_server *server, t_args * args);
-
-
-/*
 ** MAP
 */
 
@@ -95,6 +74,38 @@ typedef struct	s_tile
 
 t_tile	**init_map(int x_size, int y_size, int nb_player_max);
 void	show_map(t_tile **map);
+
+/*
+** SERVER
+*/
+
+# define MAX_PLAYERS 64
+
+
+typedef struct	s_team
+{
+  char		*name;
+  int		room_left;
+}		t_team;
+
+typedef struct		s_server
+{
+  struct protoent	*pe;
+  int			fd;
+  struct sockaddr_in	s_in;
+  int			port;
+  struct sockaddr_in	s_in_client;
+  socklen_t		s_in_size;
+  int			graph_cli_fd;
+  t_tile		**map;
+  int			f;
+  t_team		*teams;
+}			t_server;
+
+int	tablen(char **tab);
+int	init_server(t_server *server, t_args *args);
+int	bind_serv(t_server *server);
+int	listen_serv(t_server *server, t_args * args);
 
 /*
 ** PLAYERS
@@ -128,13 +139,17 @@ typedef struct  s_player
 }               t_player;
 
 t_player	*init_players(t_player *players, t_args *args);
-int		fd_setting(fd_set *readfds, t_server *server, t_args *args, t_player *players);
-int		new_connection(t_server *server, t_args *args, t_player *players);
+int		get_max_fd(t_server *server, t_player *players);
+void		fd_setting(fd_set *fd_s, t_server *server, t_player *players);
+void		check_read_fds(fd_set *readfds, t_server *server, t_player *players, t_args *args);
+void		check_write_fds(fd_set *writefds, t_server *server, t_player *players, t_args *args);
+int		new_connection(t_server *server, t_player *players);
 void		give_team(t_args *args, t_player *players, int i);
-int		server_loop(t_args *args, t_server *server, t_player *players, t_tile **map);
+int		server_loop(t_args *args, t_server *server, t_player *players);
 void		welcome_graph_client(t_server *server);
-void		message_from_gclient(t_server *server, t_args *args, t_tile **map);
-void		read_data(t_player *players, int src, t_server *server, t_tile **map);
+void		message_from_gclient(t_server *server, t_args *args);
+void		message_to_gclient(t_server *server, t_args *args);
+void		read_data(t_player *players, int src, t_server *server);
 int		close_all(t_server *server, t_args *args, t_player *players);
 
 /*
@@ -151,7 +166,7 @@ typedef struct	s_func
 
 /* extern t_func	*g_cmds; */
 
-int	check_cmd(char *s, t_player *player_src, t_server *server, t_tile **map);
+int	check_cmd(char *s, t_player *player_src, t_server *server);
 char	**get_cmd_args(char *s);
 int	is_separator(char c);
 int	count_words(char *s);

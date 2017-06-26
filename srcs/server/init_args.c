@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 20:42:04 2017 Romain HUET
-** Last update Thu Jun 22 17:10:30 2017 Romain HUET
+** Last update Mon Jun 26 14:23:53 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -39,13 +39,16 @@ int	init_args(t_args *args)
   args->height = 20;
   args->nb_of_teams = 2;
   args->names = NULL;
-  if ((args->names = malloc(sizeof(char *) * 2)) == NULL)
+  if ((args->names = malloc(sizeof(char *) * 5)) == NULL)
     return (-1);
-  if ((args->names[0] = strdup("Team_Epi")) == NULL ||
-      (args->names[1] = strdup("Team_Tek")) == NULL)
+  if ((args->names[0] = strdup("Team1")) == NULL ||
+      (args->names[1] = strdup("Team2")) == NULL ||
+      (args->names[2] = strdup("Team3")) == NULL ||
+      (args->names[3] = strdup("Team4")) == NULL)
     return (-1);
+  args->names[4] = NULL;
   args->c_per_team = 8;
   args->f = 100;
-  args->max_players = (args->c_per_team * args->nb_of_teams) + 1;
+  args->max_players = MAX_PLAYERS;
   return (0);
 }
