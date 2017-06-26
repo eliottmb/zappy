@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Fri Jun 23 15:09:13 2017 Albatard
+** Last update Mon Jun 26 18:22:02 2017 Albatard
 */
 
 #include <sys/types.h>
@@ -18,10 +18,6 @@
 #include <unistd.h>
 #include <string.h>
 #include "client.h"
-
-//char			**my_strtowordtab(char *str, char);
-
-void			call(int fd);
 
 char                    *append(char *str1, char *str2)
 {
@@ -66,7 +62,15 @@ int                     check_cmd(int fd)
       a = strlen(buffer);
       buffer[a-1] = '\0';
       printf("%s\n", buffer);
-      //      tab = my_strtowordtab(buffer, ' ');
+      if (strcmp(buffer, "WELCOME\n") == 0)
+	{
+	  if (strcmp(buffer, "GRAPHIC\n") == 0)
+	    printf("capartengraphyesgood\n");
+	  else
+	    ;//play(tab);
+	  call(fd);
+	  //cmd(tab);
+	}
     }
   free(tmp);
   free(buffer);

@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 17:34:27 2017 Albatard
-** Last update Thu Jun 22 16:23:24 2017 Albatard
+** Last update Mon Jun 26 15:40:26 2017 Albatard
 */
 
 #include <unistd.h>
@@ -14,74 +14,62 @@
 
 void	look(int fd)
 {
-  write(fd, "Look", 4);
-  write(fd, "\n", 1);
+  write(fd, "Look\n", 5);
 }
 
 void	inventory(int fd)
 {
-  write(fd, "Inventory", 9);
-  write(fd, "\n", 1);
+  write(fd, "Inventory\n", 10);
 }
 
 void	forward(int fd)
 {
-  write(fd, "Forward", 7);
-  write(fd, "\n", 1);
+  write(fd, "Forward\n", 8);
 }
 
 void	right(int fd)
 {
-  write(fd, "Right", 5);
-  write(fd, "\n", 1);
+  write(fd, "Right\n", 6);
 }
 
 void	left(int fd)
 {
-  write(fd, "Left", 5);
-  write(fd, "\n", 1);
+  write(fd, "Left\n", 5);
 }
 
 void	forkk(int fd)
 {
-  write(fd, "Fork", 4);
-  write(fd, "\n", 1);
+  write(fd, "Fork\n", 5);
 }
 
 void	eject(int fd)
 {
-  write(fd, "Eject", 5);
-  write(fd, "\n", 1);
+  write(fd, "Eject\n", 6);
 }
 
 void	take_object(int fd)
 {
-  write(fd, "Take object ", 11);
-  write(fd, "\n", 1);
+  write(fd, "Take object\n", 11);
 }
 
 void	set_object(int fd)
 {
-  write(fd, "Set object", 10);
-  write(fd, "\n", 1);
+  write(fd, "Set object\n", 11);
 }
 
 void	incantation(int fd)
 {
-  write(fd, "Incantation", 11);
-  write(fd, "\n", 1);
+  write(fd, "Incantation\n", 12);
 }
 
 void	connect_nbr(int fd)
 {
-  write(fd, "Connect_nbr", 11);
-  write(fd, "\n", 1);
+  write(fd, "Connect_nbr\n", 12);
 }
 
 void	broadcast_text(int fd)
 {
-  write(fd, "Broadcast text", 14);
-  write(fd, "\n", 1);
+  write(fd, "Broadcast text\n", 15);
 }
 
 void	call(int fd)

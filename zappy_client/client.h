@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:01:57 2017 Albatard
-** Last update Thu Jun 22 15:37:25 2017 Albatard
+** Last update Mon Jun 26 17:41:24 2017 Albatard
 */
 
 #ifndef CLIENT_H_
@@ -19,5 +19,7 @@ typedef struct	s_client
 }		client_info;
 
 void	client_fd(int fd);
+void	call(int fd);
+char	*my_strtowordtab(char *str);
 
 #endif /* !CLIENT_H_ */
