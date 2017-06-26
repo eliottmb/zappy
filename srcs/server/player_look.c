@@ -5,153 +5,47 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 19:20:35 2017 Médéric Unissart
-** Last update Fri Jun 23 18:31:43 2017 Médéric Unissart
+** Last update Mon Jun 26 17:58:44 2017 Médéric Unissart
 */
 
-#include "player.h"
+#include "zappy_server.h"
 
-int	xtable[64] = {
-  0,
-  -1,
-  0,
-  1,
-  -2,
-  -1,
-  0,
-  1,
-  2,
-  -3,
-  -2,
-  -1,
-  0,
-  1,
-  2,
-  3,
-  -4,
-  -3,
-  -2,
-  -1,
-  0,
-  1,
-  2,
-  3,
-  4,
-  -5,
-  -4,
-  -3,
-  -2,
-  -1,
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  -6,
-  -5,
-  -4,
-  -3,
-  -2,
-  -1,
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  -7,
-  -6,
-  -5,
-  -4,
-  -3,
-  -2,
-  -1,
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7
-};
+static void	fill_xytables(int *xytable)
+{
+  int		i;
+  int		o;
+  int		y;
+  int		lvl;
 
-int	ytable[64] = {
-  0,
-  -1,
-  -1,
-  -1,
-  -2,
-  -2,
-  -2,
-  -2,
-  -2,
-  -3,
-  -3,
-  -3,
-  -3,
-  -3,
-  -3,
-  -3,
-  -4,
-  -4,
-  -4,
-  -4,
-  -4,
-  -4,
-  -4,
-  -4,
-  -4,
-  -5,
-  -5,
-  -5,
-  -5,
-  -5,
-  -5,
-  -5,
-  -5,
-  -5,
-  -5,
-  -5,
-  -6,
-  -6,
-  -6,
-  -6,
-  -6,
-  -6,
-  -6,
-  -6,
-  -6,
-  -6,
-  -6,
-  -6,
-  -6,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7,
-  -7
-};
+  lvl = 0;
+  o = 0;
+  while (lvl != 8)
+    {
+      i = 0;
+      y = -lvl;
+      while (i < lvl * 2 + 1)
+	{
+	  xytable[o + 64] = -lvl;
+	  xytable[o++] = y++;
+	  ++i;
+	}
+      ++lvl;
+    }
+}
 
-static void	find_tiles_pos(t_player *player, int *pos, int tile)
+static void	find_tiles_pos(t_player *player,
+			       int *pos,
+			       int tile,
+			       t_tile **map)
 {
   int		temp;
   int		x;
   int		y;
+  int		xytable[128];
 
-  x = xtable[tile];
-  y = ytable[tile];
+  fill_xytables(xytable);
+  x = xytable[tile];
+  y = xytable[tile + 64];
   if (player->o == SOUTH)
     {
       x *= -1;
@@ -165,12 +59,13 @@ static void	find_tiles_pos(t_player *player, int *pos, int tile)
       x = y;
       y = temp;
     }
-  pos[0] = player->x;
-  pos[1] = player->y;
-  printf("x:%d y:%d o:%d\n", x, y, player->o);
+  pos[0] = player->x + x < 0 ? player->x + x + map[0][0].x_max : player->x + x;
+  pos[1] = player->y + y < 0 ? player->y + y - map[0][0].y_max : player->y + y;
+  pos[0] = pos[0] > map[0][0].x_max ? pos[0] - map[0][0].x_max : pos[0];
+  pos[1] = pos[1] > map[0][0].y_max ? pos[1] - map[0][0].y_max : pos[1];
 }
 
-static void	look_a_tile(char *look, t_map **map, int *pos, int *ilook)
+static void	look_a_tile(char *look, t_tile **map, int *pos, int *ilook)
 {
   int		i;
   char		*res[7] = {
@@ -182,6 +77,9 @@ static void	look_a_tile(char *look, t_map **map, int *pos, int *ilook)
     "phiras",
     "thystame"};
 
+  if (map[pos[1]][pos[0]].nb_player > 0)
+    *ilook += sprintf(&look[*ilook], " player %d",
+		      map[pos[1]][pos[0]].nb_player)
   i = 0;
   while (i != 7)
     {
@@ -195,7 +93,7 @@ static void	look_a_tile(char *look, t_map **map, int *pos, int *ilook)
     }
 }
 
-static void	fill_look_buffer(t_player *player, t_map **map, int tiles)
+static void	fill_look_buffer(t_player *player, t_tile **map, int tiles)
 {
   char		look[tiles * 81 + 2];
   int		pos[2];
@@ -207,17 +105,18 @@ static void	fill_look_buffer(t_player *player, t_map **map, int tiles)
   look[ilook++] = '[';
   while (find_tile < tiles)
     {
-      find_tiles_pos(player, pos, find_tile);
+      find_tiles_pos(player, pos, find_tile, map);
       look_a_tile(look, map, pos, &ilook);
       (find_tile + 1 < tiles) ? (look[ilook++] = ',') : (0);
       ++find_tile;
     }
   look[ilook++] = ']';
-  look[ilook] = '\n';
+  look[ilook++] = '\n';
+  look[ilook++] = '\0';
   printf("%s", look);
 }
 
-bool		player_look(t_player *player, t_map **map)
+bool		player_look(t_player *player, t_tile **map)
 {
   int		tiles;
   int		i;
@@ -228,20 +127,4 @@ bool		player_look(t_player *player, t_map **map)
     tiles += i++ * 2 + 1;
   fill_look_buffer(player, map, tiles);
   return (true);
-}
-
-int main()
-{
-  t_player	*player;
-  t_map		**map;
-
-  player = init_player("rouge", 8, 8);
-  map = init_map(10, 10, 12);
-  player_look(player, map);
-
-  int i = 0;
-  while (i != 10)
-    free(map[i++]);
-  free(map);
-  free(player);
 }

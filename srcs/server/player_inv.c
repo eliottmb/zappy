@@ -5,26 +5,26 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:36:06 2017 Médéric Unissart
-** Last update Wed Jun 21 19:18:08 2017 Médéric Unissart
+** Last update Fri Jun 23 19:11:27 2017 Médéric Unissart
 */
 
-#include "player.h"
+#include "zappy_server.h"
 
-bool		player_take_item(t_player *player, t_map **map, int item)
+bool		player_take_item(t_player *player, t_tile **map, int item)
 {
   if (map[player->y][player->x].res[item] < 1)
     return (false);
   map[player->y][player->x].res[item] -= 1;
-  player->inventory[item] += 1;
+  player->i[item] += 1;
   return (true);
 }
 
-bool		player_drop_item(t_player *player, t_map **map, int item)
+bool		player_drop_item(t_player *player, t_tile **map, int item)
 {
-  if (player->inventory[item] < 1)
+  if (player->i[item] < 1)
     return (false);
   map[player->y][player->x].res[item] += 1;
-  player->inventory[item] -= 1;
+  player->i[item] -= 1;
   return (true);
 }
 
@@ -35,14 +35,14 @@ char		*player_ask_inventory(t_player *player)
   int		i;
 
   i = sprintf(check, "[food %d, linemae %d, deraumere %d, sibur %d, mendiane"
-	      " %d, phiras %d, thystame %d]\n", player->inventory[0],
-	      player->inventory[1], player->inventory[2], player->inventory[3],
-	      player->inventory[4], player->inventory[5], player->inventory[6]);
+	      " %d, phiras %d, thystame %d]\n", player->i[0],
+	      player->i[1], player->i[2], player->i[3],
+	      player->i[4], player->i[5], player->i[6]);
   if (!(inv = malloc(sizeof(char) * (i + 1))))
     return (NULL);
   sprintf(inv, "[food %d, linemae %d, deraumere %d, sibur %d, mendiane %d"
-	  ", phiras %d, thystame %d]\n", player->inventory[0],
-	  player->inventory[1], player->inventory[2], player->inventory[3],
-	  player->inventory[4], player->inventory[5], player->inventory[6]);
+	  ", phiras %d, thystame %d]\n", player->i[0],
+	  player->i[1], player->i[2], player->i[3],
+	  player->i[4], player->i[5], player->i[6]);
   return (inv);
 }

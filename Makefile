@@ -5,14 +5,14 @@
 ## Login   <romain.huet@epitech.net>
 ## 
 ## Started on  Mon Jun 19 11:37:44 2017 Romain HUET
-## Last update Fri Jun 23 18:23:38 2017 Romain HUET
+## Last update Fri Jun 23 19:17:36 2017 Médéric Unissart
 ##
 
 CC		= gcc
 
 RM		= rm -f
 
-CFLAGS		= -W -Wextra -Wall -I./include/ 
+CFLAGS		= -W -Wextra -Wall -I./include -I./include/server -I./include/ai
 
 SERVER		= zappy_server
 
@@ -30,10 +30,13 @@ SERVER_SRCS	= srcs/server/main_serv.c	\
 		  srcs/server/map.c		\
 		  srcs/server/get_nth_word.c	\
 		  srcs/server/client_commands.c	\
-		  srcs/server/settings.c		\
+		  srcs/server/settings.c	\
 		  srcs/server/player_action.c	\
 		  srcs/server/player_info.c	\
-	 	  srcs/server/map_info.c
+	 	  srcs/server/map_info.c	\
+		  srcs/server/player_inv.c	\
+		  srcs/server/player_look.c	\
+		  srcs/server/player_move.c
 
 SERVER_OBJS	= $(SERVER_SRCS:.c=.o)
 
