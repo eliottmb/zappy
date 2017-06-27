@@ -253,33 +253,39 @@ void	check(t_bmp   *pic, char **buffer)
 
 void    receive(t_bmp *stru, int     fd)
 {
-  char    buffer[32];
-  int     len;
+  char    buffer[1000];
+char	buff[1]; 
+ int     len;
   char	**stock;
   int i;
   int nb;
 
   i = 0;
-
   nb = 0;
-  while(nb != 32)
+  while(nb != 1000)
     {
       buffer[nb] = '\0';
       nb++;
 
     }
   printf("KKKK\n");
-  if ((len = read(fd, buffer, 32)) > 0)
+
+while(43)
+{
+  if ((len = read(fd, buff, 1)) >= 0)
     {
-      buffer[len - 1] = '\0';
-      stock = my_strtowordtab(buffer, ' ');
-      printf("BUFFER :%s\n", buffer);
-      check(stru, stock);
+buffer[i] = buff[0];
+if(buff[0] == '\n')
+break;
+    //buffer[len - 1] = '\0';
+     
     }
   i++;
-
-
-
+}
+buffer[i] = '\0';
+stock = my_strtowordtab(buffer, ' ');
+      printf("BUFFER : %s\n", buffer);
+   check(stru, stock);
 } 
 
 int graph(int fd)
@@ -289,26 +295,36 @@ int graph(int fd)
 dprintf(fd, "GRAPHIC\n");
   pic.inf.us = NULL;
   receive(&pic, fd);
+printf("ca sort\n");
   init_sdl(&pic);
+printf("ca sort\n");
   SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
-  pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
+printf("ca sort\n");  
+pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
+printf("oki\n");
   init_gemme(&pic);
-  show_char(0,0, &pic);
-  show_rss(0,0, &pic);
+printf("oki\n");
+//  show_char(0,0, &pic);
+  //show_rss(0,0, &pic);
   SDL_WM_SetCaption("Chargement d'images en SDL", NULL);
-  splitRect(980, 980, pic.ecran, 10, 10);
+printf("oki\n"); 
+ splitRect(980, 980, pic.ecran, 10, 10);
+printf("oki\n");
   SDL_Flip(pic.ecran); 
   SDL_FreeSurface(pic.trantor);
   SDL_Flip(pic.ecran);
+printf("oki\n");
 
-dprintf(fd, "GRAPHIC\n");
+//dprintf(fd, "GRAPHIC\n");
   while(42)
     {
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 0, 0, 0));
 splitRect(980, 980, pic.ecran, 10, 10);
-      receive(&pic, fd);
+printf("salu\n");      
+
+receive(&pic, fd);
       show_char(0,0, &pic);
-      show_rss(0,0, &pic);
+     show_rss(0,0, &pic);
       SDL_Flip(pic.ecran);
     }
 
