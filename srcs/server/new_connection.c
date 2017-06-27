@@ -5,28 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:25:45 2017 Romain HUET
-** Last update Tue Jun 27 17:23:15 2017 Romain HUET
+** Last update Tue Jun 27 20:19:16 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
-
-/* void    give_team(t_args *args, t_player *players, int i) */
-/* { */
-/*   static int    nb_p_in_team = 0; */
-/*   static int    team_num = 0; */
-
-/*   if (nb_p_in_team < args->c_per_team) */
-/*     { */
-/*       players[i].team = strdup(args->names[team_num]); */
-/*       nb_p_in_team++; */
-/*     } */
-/*   else if (nb_p_in_team == args->c_per_team && team_num < args->nb_of_teams) */
-/*     { */
-/*       nb_p_in_team = 0; */
-/*       team_num++; */
-/*       give_team(args, players, i); */
-/*     } */
-/* } */
 
 void	give_infos_to_gclient(t_server *server)
 {

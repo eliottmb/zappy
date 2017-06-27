@@ -5,25 +5,23 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Tue Jun 27 19:32:09 2017 Romain HUET
+** Last update Tue Jun 27 20:21:03 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
 
-/* t_func	g_cmds[NB_CMDS] =  */
+/* t_func	g_cmds[NB_CMDS] = */
 /*   { */
 /*     {"Forward", &forward}, // */
 /*     {"Right", &right},     // */
 /*     {"Left", &left},    // */
 /*     {"Look", &player_look},   //OK */
 /*     {"Inventory", &inventory},  // */
-/*     {"Broadcast", &player_broadcast},  //OK */
 /*     {"Connect_nbr", &connect_nbr},   // */
 /*     {"Fork", &eggfork},          // */
 /*     {"Eject", &player_expell},    //OK */
-/*     {"Take", &player_take_res},  //OK */
-/*     {"Set", &player_drop_res},   //OK */
-/*     {"Incantation", &player_begin_incantation},  //OK */
+/*     {"Take", &player_take_ress},  //OK */
+/*     {"Set", &player_drop_ress},   //OK */
 /*   }; */
 
 char	**get_cmd_args(char *s)
@@ -55,14 +53,14 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
   i = 0;
   cmd = NULL;
   cmd_args = NULL;
-  if (player_src->team == NULL)
+  if (player_src->team == NULL && strcmp(s, "GRAPHIC\n"))
     {
       dprintf(player_src->fd, "ko\n");
       return (0);
     }
-  while (!cmd)
-    cmd = strdup(get_nth_word(s, 1));
-  cmd_args = get_cmd_args(s);
+  /* while (!cmd) */
+  /*   cmd = strdup(get_nth_word(s, 1)); */
+  /* cmd_args = get_cmd_args(s); */
   /* while (i < NB_CMDS) */
   /*   { */
   /*     if (!strcmp(cmd, g_cmds[i].name)) */

@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Thu Jun 22 16:49:51 2017 eliott m-barali
-** Last update Tue Jun 27 19:22:42 2017 Romain HUET
+** Last update Tue Jun 27 20:25:18 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -22,6 +22,7 @@
 /*   return (0); */
 /* } */
 
+/* //PAS DANS LE TAB */
 /* int	player_broadcast(void *player, void *server, char *str, int no) */
 /* { */
 /*   t_player	*tmp; */
@@ -34,6 +35,7 @@
 /*   return (0); */
 /* } */
 
+/* //PAS DANS LE TAB */
 /* int	player_begin_incantation(void *player, void *server, int j) */
 /* { */
 /*   int		i; */
@@ -47,10 +49,10 @@
 /*   while (tmp[i].fd != -1) */
 /*     { */
 /*       if (tmp[i].x == tmp[j].x && tmp[i].y == tmp[j].y) */
-/* 	  dprintf(fd, " #%d", tmp[i].n); */
+/* 	  dprintf(serv->graph_cli_fd, " #%d", tmp[i].n); */
 /*       i = i + 1; */
 /*     } */
-/*   dprintf(fd, "\n"); */
+/*   dprintf(serv->graph_cli_fd, "\n"); */
 /*   return (0); */
 /* } */
 
@@ -73,21 +75,25 @@
 /*   return (0); */
 /* } */
 
-/* int	player_take_ress(int fd, void *player, int i) */
+/* int	player_take_ress(void *player, void *server, int i) */
 /* { */
 /*   t_player	*tmp; */
+/*   t_server	*serv; */
   
 /*   tmp = (t_player *)player; */
-/*   dprintf(fd, "pgt #%d %d\n", tmp->n, i); */
+/*   serv = (t_server *)server; */
+/*   dprintf(serv->graph_cli_fd, "pgt #%d %d\n", tmp->n, i); */
 /*   return (0); */
 /* } */
 
-/* int	player_drop_ress(int fd, void *player, int i) */
+/* int	player_drop_ress(void *player, void *server, int i) */
 /* { */
 /*   t_player	*tmp; */
+/*   t_server	*serv; */
   
 /*   tmp = (t_player *)player; */
-/*   dprintf(fd, "pdr #%d %d\n", tmp->n, i); */
+/*   serv = (t_server *)server; */
+/*   dprintf(serv->graph_cli_fd, "pdr #%d %d\n", tmp->n, i); */
 /*   return (0); */
 /* } */
 

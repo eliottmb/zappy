@@ -5,7 +5,7 @@
 ## Login   <romain.huet@epitech.net>
 ## 
 ## Started on  Mon Jun 19 11:37:44 2017 Romain HUET
-## Last update Tue Jun 27 13:25:20 2017 Romain HUET
+## Last update Tue Jun 27 20:12:49 2017 Romain HUET
 ##
 
 CC		= gcc
@@ -37,7 +37,8 @@ SERVER_SRCS	= srcs/server/main_serv.c	\
 	 	  srcs/server/map_info.c	\
 		  srcs/server/player_inv.c	\
 		  srcs/server/player_look.c	\
-		  srcs/server/player_move.c
+		  srcs/server/player_move.c	\
+	  	  srcs/server/player_action.c
 
 SERVER_OBJS	= $(SERVER_SRCS:.c=.o)
 

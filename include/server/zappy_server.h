@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Tue Jun 27 19:21:59 2017 Romain HUET
+** Last update Tue Jun 27 20:15:41 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -167,7 +167,7 @@ int		close_all(t_server *server, t_args *args, t_player *players);
 ** COMMANDS
 */
 
-# define NB_CMDS 12
+# define NB_CMDS 10
 # define C_TIM1 1
 # define C_TIM7 7
 # define C_TIM42 42
@@ -197,14 +197,14 @@ char	*get_nth_word(char *s, int n);
 
 
 // OK
-/* int	player_expell(void *player, void *server, int no); */
-/* int	player_broadcast(void *player, void *server, char *str, int no); */
-/* int	player_begin_incantation(void *player, void *server, int j); */
-/* int	player_end_incantation(void *player, void *server, int r); */
-/* int	player_take_ress(vid *player, void *server, int i); */
-/* int	player_drop_ress(void *player, void *server, int i); */
-/* int	player_tragically_dies(void *player, void *server, int no); */
-/* int	connect_nbr(void *player, void *server, int no); */
-/* int	player_look(void *player, void *server, int no); */
+int	player_expell(void *player, void *server, int no);
+int	player_broadcast(void *player, void *server, char *str, int no);
+int	player_begin_incantation(void *player, void *server, int j);
+int	player_end_incantation(void *player, void *server, int r);
+int	player_take_ress(void *player, void *server, int i);
+int	player_drop_ress(void *player, void *server, int i);
+int	player_tragically_dies(void *player, void *server, int no);
+int	connect_nbr(void *player, void *server, int no);
+int	player_look(void *player, void *server, int no);
 
 #endif /* !SERV_H */
