@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Mon Jun 26 18:36:33 2017 Romain HUET
+** Last update Tue Jun 27 15:11:00 2017 Albatard
 */
 
 #include <sys/types.h>
@@ -64,7 +64,6 @@ int                     check_cmd(int fd)
       printf("%s\n", buffer);
       if (strcmp(buffer, "WELCOME") == 0)
 	{
-	  printf("capartengraphyesgood\n");
 	  dprintf(fd, "GRAPHIC\n");
 	  //play(tab);
 	  call(fd);
