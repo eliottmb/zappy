@@ -189,16 +189,17 @@ void    show_char(int  x, int y, t_bmp *pic)
   int     i;
   int     a; 
 
+t_list	cpy;
+cpy = pic->inf.us;
   i = x;
   a = y;
-  while(pic->inf.us)
+  while(cpy)
     {
       //if (pic->inf.us->x > x - 1 && pic->inf.us->x < x + 10)
       printf("ok\n");
-      pic->postoad.x = 197 + (pic->inf.us->x - 1) * 98 + 150;
-      pic->postoad.y = 30 + pic->inf.us->y * 98 + 33;
-
-      pic->inf.us = pic->inf.us->next;
+      pic->postoad.x = 197 + (cpy->x - 1) * 98 + 150;
+      pic->postoad.y = 30 + cpy->y * 98 + 33;
+      cpy = cpy->next;
       SDL_BlitSurface(pic->toad, NULL, pic->ecran, &pic->postoad);
     }
 
@@ -281,18 +282,16 @@ void    receive(t_bmp *stru, int     fd)
 
 } 
 
-int main(int argc, char *argv[])
+int graph(int fd)
 {
   t_bmp	pic;
 
   pic.inf.us = NULL;
-  receive(&pic, 0);
+  receive(&pic, fd);
   init_sdl(&pic);
   SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
   pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
-
   init_gemme(&pic);
-
   show_char(0,0, &pic);
   show_rss(0,0, &pic);
   SDL_WM_SetCaption("Chargement d'images en SDL", NULL);
@@ -303,7 +302,9 @@ int main(int argc, char *argv[])
 
   while(42)
     {
-      receive(&pic, 0);
+SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 0, 0, 0));
+splitRect(980, 980, pic.ecran, 10, 10);
+      receive(&pic, fd);
       show_char(0,0, &pic);
       show_rss(0,0, &pic);
       SDL_Flip(pic.ecran);
