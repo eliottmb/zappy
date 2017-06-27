@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 17:43:17 2017 Romain HUET
-** Last update Mon Jun 26 13:47:49 2017 Romain HUET
+** Last update Tue Jun 27 13:38:44 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -65,6 +65,7 @@ char	**get_team_names(int nb_teams, char **av, int *i)
       j++;
       (*i)++;
     }
+  names[j] = NULL;
   (*i)--;
   if (check_doublons(names))
     {
@@ -79,24 +80,19 @@ int     get_args(t_args *args, char **av)
   int   i;
   
   i = 0;
+  get_p(args, av);
+  get_x(args, av);
+  get_y(args, av);
+  get_c(args, av);
+  get_f(args, av);
   while (av[i])
     {
-      if (!strcmp(av[i], "-p") && is_num(av[i + 1]))
-	args->port = atoi(av[i + 1]);
-      else if (!strcmp(av[i], "-x") && is_num(av[i + 1]))
-	args->width = atoi(av[i + 1]);
-      else if (!strcmp(av[i], "-y") && is_num(av[i + 1]))
-	args->height = atoi(av[i + 1]);
-      else if (!strcmp(av[i], "-n") && av[i + 1])
+      if (!strcmp(av[i], "-n") && av[i + 1])
 	{
 	  args->nb_of_teams = count_teams(av);
 	  if ((args->names = get_team_names(args->nb_of_teams, av, &i)) == NULL)
 	    return (-1);
 	}
-      else if (!strcmp(av[i], "-c") && is_num(av[i + 1]))
-	args->c_per_team = atoi(av[i + 1]);
-      else if (!strcmp(av[i], "-f") && is_num(av[i + 1]))
-	args->f = atoi(av[i + 1]);
       i++;
     }
   args->max_players = (args->c_per_team * args->nb_of_teams) + 1;

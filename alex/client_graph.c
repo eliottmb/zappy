@@ -186,132 +186,130 @@ pic->gemmeR[n].y = 30 + y * 98 + 66;
 
 void    show_char(int  x, int y, t_bmp *pic)
 {
-int     i;
-int     a; 
+  int     i;
+  int     a; 
 
-i = x;
-a = y;
-while(pic->inf.us)
-{
-//if (pic->inf.us->x > x - 1 && pic->inf.us->x < x + 10)
-printf("ok\n");
-pic->postoad.x = 197 + (pic->inf.us->x - 1) * 98 + 150;
-pic->postoad.y = 30 + pic->inf.us->y * 98 + 33;
+  i = x;
+  a = y;
+  while(pic->inf.us)
+    {
+      //if (pic->inf.us->x > x - 1 && pic->inf.us->x < x + 10)
+      printf("ok\n");
+      pic->postoad.x = 197 + (pic->inf.us->x - 1) * 98 + 150;
+      pic->postoad.y = 30 + pic->inf.us->y * 98 + 33;
 
-pic->inf.us = pic->inf.us->next;
-SDL_BlitSurface(pic->toad, NULL, pic->ecran, &pic->postoad);
-}
+      pic->inf.us = pic->inf.us->next;
+      SDL_BlitSurface(pic->toad, NULL, pic->ecran, &pic->postoad);
+    }
 
 }
 
 void	show_rss(int  x, int y, t_bmp *pic)
 {
-int     i;
-int     a;
-int     n;
+  int     i;
+  int     a;
+  int     n;
 
-i = x;
-a = y;
-n = 0;
-while(i != 10 + x && i != 30)
-{
-        while(a != 10 + y && a != 30)
+  i = x;
+  a = y;
+  n = 0;
+  while(i != 10 + x && i != 30)
+    {
+      while(a != 10 + y && a != 30)
         {       
-                while(n != 7)
-                {
+	  while(n != 7)
+	    {
 
-if (pic->maprss[i][a].rss[n] > 0)
-{
-display_rss(i - x, a - y, n, pic);
-SDL_BlitSurface(pic->gemme[n], NULL, pic->ecran, &pic->gemmeR[n]);
-}
-                n++;
-                }
-        n = 0;
-        a++;
+	      if (pic->maprss[i][a].rss[n] > 0)
+		{
+		  display_rss(i - x, a - y, n, pic);
+		  SDL_BlitSurface(pic->gemme[n], NULL, pic->ecran, &pic->gemmeR[n]);
+		}
+	      n++;
+	    }
+	  n = 0;
+	  a++;
         }
-a = y;
-i++;
-}
+      a = y;
+      i++;
+    }
 
 }
 
 
 void	check(t_bmp   *pic, char **buffer)
 {
-if(my_strcmp(buffer[0], "msz", '\0') == 0)
-init_case(pic, buffer);
-if(my_strcmp(buffer[0], "bct", '\0') == 0)
-init_map(pic, buffer);
-if(my_strcmp(buffer[0], "ppo", '\0') == 0)
-{
-add_pos(pic, buffer);
-//printf("CCCC : %d\n", pic->inf.us->x);
-}
+  if(my_strcmp(buffer[0], "msz", '\0') == 0)
+    init_case(pic, buffer);
+  if(my_strcmp(buffer[0], "bct", '\0') == 0)
+    init_map(pic, buffer);
+  if(my_strcmp(buffer[0], "ppo", '\0') == 0)
+    {
+      add_pos(pic, buffer);
+      //printf("CCCC : %d\n", pic->inf.us->x);
+    }
 }
 
 void    receive(t_bmp *stru, int     fd)
 {
-char    buffer[32];
-int     len;
-char	**stock;
-int i;
-int nb;
+  char    buffer[32];
+  int     len;
+  char	**stock;
+  int i;
+  int nb;
 
-i = 0;
+  i = 0;
 
-nb = 0;
-while(nb != 32)
-{
-buffer[nb] = '\0';
-nb++;
+  nb = 0;
+  while(nb != 32)
+    {
+      buffer[nb] = '\0';
+      nb++;
 
-}
-printf("KKKK\n");
-if ((len = read(fd, buffer, 32)) > 0)
-{
-buffer[len - 1] = '\0';
-stock = my_strtowordtab(buffer, ' ');
-printf("BUFFER :%s\n", buffer);
-check(stru, stock);
-}
-i++;
+    }
+  printf("KKKK\n");
+  if ((len = read(fd, buffer, 32)) > 0)
+    {
+      buffer[len - 1] = '\0';
+      stock = my_strtowordtab(buffer, ' ');
+      printf("BUFFER :%s\n", buffer);
+      check(stru, stock);
+    }
+  i++;
 
 
 
 } 
 
-
-
 int main(int argc, char *argv[])
 {
-t_bmp	pic;
+  t_bmp	pic;
 
-pic.inf.us = NULL;
-receive(&pic, 0);
-init_sdl(&pic);
-SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
-pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
+  pic.inf.us = NULL;
+  receive(&pic, 0);
+  init_sdl(&pic);
+  SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
+  pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
 
-init_gemme(&pic);
+  init_gemme(&pic);
 
-show_char(0,0, &pic);
-show_rss(0,0, &pic);
-SDL_WM_SetCaption("Chargement d'images en SDL", NULL);
-splitRect(980, 980, pic.ecran, 10, 10);
-SDL_Flip(pic.ecran); 
-SDL_FreeSurface(pic.trantor);
-SDL_Flip(pic.ecran);
+  show_char(0,0, &pic);
+  show_rss(0,0, &pic);
+  SDL_WM_SetCaption("Chargement d'images en SDL", NULL);
+  splitRect(980, 980, pic.ecran, 10, 10);
+  SDL_Flip(pic.ecran); 
+  SDL_FreeSurface(pic.trantor);
+  SDL_Flip(pic.ecran);
 
-while(42)
-{
-receive(&pic, 0);
-show_char(0,0, &pic);
-show_rss(0,0, &pic);
-SDL_Flip(pic.ecran);
-}
+  while(42)
+    {
+      receive(&pic, 0);
+      show_char(0,0, &pic);
+      show_rss(0,0, &pic);
+      SDL_Flip(pic.ecran);
+    }
 
-lpause(); /* On libère la surface */
-SDL_Quit();
-return EXIT_SUCCESS;
+  lpause(); /* On libère la surface */
+  SDL_Quit();
+  return EXIT_SUCCESS;
 }

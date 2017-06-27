@@ -5,18 +5,18 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:45:39 2017 Romain HUET
-** Last update Mon Jun 19 17:01:35 2017 Romain HUET
+** Last update Tue Jun 27 13:28:07 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
 
 void	help_server()
 {
-  printf("USAGE:\t./zappy_server -p port -x width -y height -n name1 name2 ... -c clientsNb -f freq\n");
-  printf("\tport\tis the port number\n");
-  printf("\twidth\tis the width of the world\n");
-  printf("\theight\tis the height of the world\n");
-  printf("\tnameX\tis the name if the team X\n");
-  printf("\tclientsNb\tis the number of authorized clients per team\n");
-  printf("\tfreq\tis the reciprocal of time unit for execution of actions\n");
+  printf("USAGE:  ./zappy_server -p port -x width -y height -n name1 name2 ... -c clientsNb -f freq\n");
+  printf("\tport\t  is the port number\n");
+  printf("\twidth\t  is the width of the world\n");
+  printf("\theight\t  is the height of the world\n");
+  printf("\tnameX\t  is the name if the team X\n");
+  printf("\tclientsNb is the number of authorized clients per team\n");
+  printf("\tfreq\t  is the reciprocal of time unit for execution of actions\n\n");
 }

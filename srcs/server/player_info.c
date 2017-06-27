@@ -5,22 +5,22 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:47:26 2017 eliott m-barali
-** Last update Fri Jun 23 18:31:22 2017 Romain HUET
+** Last update Mon Jun 26 18:15:17 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
 #include "server/com.h"
 
-int	team_name(int fd, void *args)
+int		team_name(int fd, void *server)
 {
-  int	i;
-  t_args *tmp;
+  int		i;
+  t_server	*tmp;
   
   i = 0;
-  tmp = (t_args *)args;
-  while (i != tmp->nb_of_teams)
+  tmp = (t_server *)server;
+  while (tmp->teams[i].name != NULL)
     {
-      dprintf(fd, "tna %s\n", tmp->names[i]);
+      dprintf(fd, "tna %s\n", tmp->teams[i].name);
       i = i + 1;
     }  
   return (0);

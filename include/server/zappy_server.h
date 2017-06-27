@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Mon Jun 26 15:39:31 2017 Romain HUET
+** Last update Tue Jun 27 12:41:13 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -52,6 +52,12 @@ int	count_teams(char **av);
 int	check_doublons(char **names);
 void	free_args(t_args *args);
 
+void	get_p(t_args *args, char **av);
+void	get_x(t_args *args, char **av);
+void	get_y(t_args *args, char **av);
+void	get_c(t_args *args, char **av);
+void	get_f(t_args *args, char **av);
+
 /*
 ** MAP
 */
@@ -70,6 +76,7 @@ typedef struct	s_tile
   int		x;
   int		y;
   int		res[7];
+  int		nb_players;
 }		t_tile;
 
 t_tile	**init_map(int x_size, int y_size, int nb_player_max);
@@ -104,8 +111,9 @@ typedef struct		s_server
 
 int	tablen(char **tab);
 int	init_server(t_server *server, t_args *args);
+void	init_serv_teams(t_server *server, t_args *args);
 int	bind_serv(t_server *server);
-int	listen_serv(t_server *server, t_args * args);
+int	listen_serv(t_server *server);
 
 /*
 ** PLAYERS
@@ -136,18 +144,20 @@ typedef struct  s_player
   int           lvl;
   bool          incantating;
   bool          broadcasting;
+  char		*read_buf;
+  char		*write_buf;
 }               t_player;
 
 t_player	*init_players(t_player *players, t_args *args);
 int		get_max_fd(t_server *server, t_player *players);
-void		fd_setting(fd_set *fd_s, t_server *server, t_player *players);
-void		check_read_fds(fd_set *readfds, t_server *server, t_player *players, t_args *args);
+void		fd_setting(fd_set *fd_s, t_player *players);
+void		check_read_fds(fd_set *readfds, t_server *server, t_player *players);
 void		check_write_fds(fd_set *writefds, t_server *server, t_player *players, t_args *args);
 int		new_connection(t_server *server, t_player *players);
 void		give_team(t_args *args, t_player *players, int i);
 int		server_loop(t_args *args, t_server *server, t_player *players);
 void		welcome_graph_client(t_server *server);
-void		message_from_gclient(t_server *server, t_args *args);
+void		message_from_gclient(t_server *server);
 void		message_to_gclient(t_server *server, t_args *args);
 void		read_data(t_player *players, int src, t_server *server);
 int		close_all(t_server *server, t_args *args, t_player *players);
@@ -157,6 +167,10 @@ int		close_all(t_server *server, t_args *args, t_player *players);
 */
 
 # define NB_CMDS 12
+# define C_TIM1 1
+# define C_TIM7 7
+# define C_TIM42 42
+# define C_TIM300 300
 
 typedef struct	s_func
 {

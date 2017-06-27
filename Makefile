@@ -5,7 +5,7 @@
 ## Login   <romain.huet@epitech.net>
 ## 
 ## Started on  Mon Jun 19 11:37:44 2017 Romain HUET
-## Last update Fri Jun 23 19:17:36 2017 Médéric Unissart
+## Last update Tue Jun 27 13:25:20 2017 Romain HUET
 ##
 
 CC		= gcc
@@ -19,6 +19,7 @@ SERVER		= zappy_server
 SERVER_SRCS	= srcs/server/main_serv.c	\
 		  srcs/server/help_serv.c	\
 		  srcs/server/args_manager.c	\
+		  srcs/server/args_getters.c	\
 		  srcs/server/init_serv.c	\
 		  srcs/server/init_args.c	\
 		  srcs/server/check_params.c	\

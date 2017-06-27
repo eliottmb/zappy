@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 19:20:35 2017 Médéric Unissart
-** Last update Mon Jun 26 17:58:44 2017 Médéric Unissart
+** Last update Mon Jun 26 18:08:22 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -77,9 +77,9 @@ static void	look_a_tile(char *look, t_tile **map, int *pos, int *ilook)
     "phiras",
     "thystame"};
 
-  if (map[pos[1]][pos[0]].nb_player > 0)
+  if (map[pos[1]][pos[0]].nb_players > 0)
     *ilook += sprintf(&look[*ilook], " player %d",
-		      map[pos[1]][pos[0]].nb_player)
+		      map[pos[1]][pos[0]].nb_players);
   i = 0;
   while (i != 7)
     {

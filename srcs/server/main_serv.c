@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Mon Jun 26 15:26:48 2017 Romain HUET
+** Last update Tue Jun 27 13:32:40 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -64,7 +64,7 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
 	{
 	  player_src = player_src;
 	  server = server;
-	  /* g_cmds[i].ptrfunc(player_src, cmd_args, server, map); */
+	  /* g_cmds[i].ptrfunc(player_src, cmd_args, server); */
 	  printf("commande %s bien reçue !\nSes arguments :", cmd);
 	  for (i = 0; cmd_args[i] != NULL; i++)
 	    printf("%s\t", cmd_args[i]);
@@ -104,7 +104,7 @@ int	main(int ac, char **av)
 
   if (init_server(&server, &args) == -1)
     {
-      printf("problem in init server\n");
+      /* printf("problem in init server\n"); */
       return (-1);
     }
   else if (server_loop(&args, &server, players) == -1)

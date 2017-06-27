@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 17:56:36 2017 Romain HUET
-** Last update Mon Jun 26 15:26:34 2017 Romain HUET
+** Last update Tue Jun 27 13:42:45 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -22,6 +22,22 @@ int	tablen(char **tab)
   return (i);
 }
 
+void	init_serv_teams(t_server *server, t_args *args)
+{
+  int	i;
+
+  i = 0;
+  if ((server->teams = calloc(args->nb_of_teams, sizeof(t_team))) == NULL)
+    return ;
+  while (i < args->nb_of_teams)
+    {
+      if ((server->teams[i].name = strdup(args->names[i])) == NULL)
+	return ;
+      server->teams[i].room_left = args->c_per_team;
+      i++;
+    }
+}
+
 int     init_server(t_server *server, t_args *args)
 {
   server->s_in_size = sizeof(server->s_in_client);
@@ -34,13 +50,12 @@ int     init_server(t_server *server, t_args *args)
   server->s_in.sin_port = htons(server->port);
   server->s_in.sin_addr.s_addr = INADDR_ANY;
   if (bind_serv(server) == -1 ||
-      listen_serv(server, args) == -1)
-    {
-      printf("problem in bind serv or listen serv\n");
-      return (-1);
-    }
+      listen_serv(server) == -1)
+    return (-1);
   server->map = init_map(args->width, args->height, MAX_PLAYERS);
   server->f = args->f;
+  server->graph_cli_fd = -1;
+  init_serv_teams(server, args);
   return (0);
 }
 
@@ -49,14 +64,15 @@ int     bind_serv(t_server *server)
   if (bind(server->fd, (const struct sockaddr *)&server->s_in, sizeof(server->s_in)) == -1)
     {
       close(server->fd);
+      dprintf(2, "[ERROR] : bind : Permission denied\n");
       return (-1);
     }
   return (0);
 }
 
-int     listen_serv(t_server *server, t_args *args)
+int     listen_serv(t_server *server)
 {
-  if (listen(server->fd, (tablen(args->names) * args->c_per_team)) == -1)
+  if (listen(server->fd, MAX_PLAYERS) == -1)
     {
       close(server->fd);
       return (-1);

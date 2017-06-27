@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 20:42:04 2017 Romain HUET
-** Last update Mon Jun 26 14:23:53 2017 Romain HUET
+** Last update Mon Jun 26 18:13:09 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -37,7 +37,7 @@ int	init_args(t_args *args)
   args->port = 0;
   args->width = 20;
   args->height = 20;
-  args->nb_of_teams = 2;
+  args->nb_of_teams = 4;
   args->names = NULL;
   if ((args->names = malloc(sizeof(char *) * 5)) == NULL)
     return (-1);

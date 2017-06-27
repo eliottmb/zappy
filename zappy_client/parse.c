@@ -5,11 +5,11 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 23 15:28:08 2017 Albatard
-** Last update Mon Jun 26 18:07:33 2017 Albatard
+** Last update Mon Jun 26 18:31:19 2017 Romain HUET
 */
 
 #include <stdio.h>
-#include <Stdlib.h>
+#include <stdlib.h>
 
 void	nut3(char *str)
 {

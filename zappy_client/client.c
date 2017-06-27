@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Mon Jun 26 18:22:02 2017 Albatard
+** Last update Mon Jun 26 18:36:33 2017 Romain HUET
 */
 
 #include <sys/types.h>
@@ -62,12 +62,11 @@ int                     check_cmd(int fd)
       a = strlen(buffer);
       buffer[a-1] = '\0';
       printf("%s\n", buffer);
-      if (strcmp(buffer, "WELCOME\n") == 0)
+      if (strcmp(buffer, "WELCOME") == 0)
 	{
-	  if (strcmp(buffer, "GRAPHIC\n") == 0)
-	    printf("capartengraphyesgood\n");
-	  else
-	    ;//play(tab);
+	  printf("capartengraphyesgood\n");
+	  dprintf(fd, "GRAPHIC\n");
+	  //play(tab);
 	  call(fd);
 	  //cmd(tab);
 	}
@@ -179,7 +178,7 @@ int			main(int ac, char **av)
       return (1);
     }
   printf("Connected, OK\n");
-  call(fd);
+  /* call(fd); */
   check_cmd(fd);
   if (close(fd) == -1)
     return (1);
