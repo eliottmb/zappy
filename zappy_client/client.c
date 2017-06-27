@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Tue Jun 27 15:11:00 2017 Albatard
+** Last update Tue Jun 27 15:31:15 2017 Albatard
 */
 
 #include <sys/types.h>
@@ -19,31 +19,9 @@
 #include <string.h>
 #include "client.h"
 
-char                    *append(char *str1, char *str2)
-{
-  char                  *tmp;
-  int                   i;
-  int                   len;
-
-  if (str2)
-    {
-      tmp = malloc(sizeof(char*) + strlen(str1) + strlen(str2) + 2);
-      tmp[0] = '\0';
-      strcat(tmp, str1);
-      strcat(tmp, str2);
-      i = strlen(tmp);
-      tmp[i] = '\0';
-      if (tmp[i-1] == '\n')
-	tmp[i-1] = '\0';
-    }
-  else
-    fprintf(stderr, "You must add a Name\n");
-  return (tmp);
-}
-
 int                     check_cmd(int fd)
 {
-  char                  buffer[255];
+  char                  buffer[512];
   char                  *tmp;
   int                   a;
   int                   b;
@@ -60,9 +38,8 @@ int                     check_cmd(int fd)
 	}
       a = read(fd, buffer, 255);
       a = strlen(buffer);
-      buffer[a-1] = '\0';
-      printf("%s\n", buffer);
-      if (strcmp(buffer, "WELCOME") == 0)
+      printf("%s", buffer);
+      if (strcmp(buffer, "WELCOME\n") == 0)
 	{
 	  dprintf(fd, "GRAPHIC\n");
 	  //play(tab);
@@ -177,7 +154,6 @@ int			main(int ac, char **av)
       return (1);
     }
   printf("Connected, OK\n");
-  /* call(fd); */
   check_cmd(fd);
   if (close(fd) == -1)
     return (1);

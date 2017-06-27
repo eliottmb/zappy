@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 17:34:27 2017 Albatard
-** Last update Tue Jun 27 13:43:44 2017 Albatard
+** Last update Tue Jun 27 15:23:09 2017 Albatard
 */
 
 #include <unistd.h>
@@ -19,57 +19,57 @@ void	look(int fd)
 
 void	inventory(int fd)
 {
-  dprintf("Inventory\n");
+  dprintf(fd, "Inventory\n");
 }
 
 void	forward(int fd)
 {
-  dprintf("Forward\n");
+  dprintf(fd, "Forward\n");
 }
 
 void	right(int fd)
 {
-  dprintf("Right\n");
+  dprintf(fd, "Right\n");
 }
 
 void	left(int fd)
 {
-  dprintf("Left\n");
+  dprintf(fd, "Left\n");
 }
 
 void	forkk(int fd)
 {
-  dprintf("Fork\n");
+  dprintf(fd, "Fork\n");
 }
 
 void	eject(int fd)
 {
-  dprintf("Eject\n");
+  dprintf(fd, "Eject\n");
 }
 
 void	take_object(int fd)
 {
-  dprintf("Take object\n");
+  dprintf(fd, "Take object\n");
 }
 
 void	set_object(int fd)
 {
-  dprintf("Set object\n");
+  dprintf(fd, "Set object\n");
 }
 
 void	incantation(int fd)
 {
-  dprintf("Incantation\n");
+  dprintf(fd, "Incantation\n");
 }
 
 void	connect_nbr(int fd)
 {
-  dprintf("Connect_nbr\n");
+  dprintf(fd, "Connect_nbr\n");
 }
 
 void	broadcast_text(int fd)
 {
-  dprintf("Broadcast text\n");
+  dprintf(fd, "Broadcast text\n");
 }
 
 void	call(int fd)
