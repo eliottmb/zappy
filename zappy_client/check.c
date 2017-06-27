@@ -5,10 +5,13 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Tue Jun 27 19:47:12 2017 Romain HUET
+** Last update Tue Jun 27 20:03:26 2017 Romain HUET
 */
 
 #include "client.h"
+
+// ajouter le nom de team reçu en argument   //
+// pour le mettre a la place du Team1 en dur //
 
 void                     check_cmd(int fd)
 {
@@ -19,19 +22,21 @@ void                     check_cmd(int fd)
   a = 0;
   while (42)
     {
-      buffer = calloc(512, 1);
-      a = read(fd, buffer, 255);
+      buffer = calloc(1024, 1);
+      a = read(fd, buffer, 1024);
       printf("%s", buffer);
       if (a >= 0)
 	{
 	  if (strcmp(buffer, "WELCOME\n") == 0)
 	    {
-	      dprintf(fd, "GRAPHIC\n");
-	      if (read(fd, buffer, 255) > 0)
+	      /// on appelle le main d'ALEX pour envoyer GRAPHIC et recevoir la map
+	      //dprintf(fd, "GRAPHIC\n");
+	      if (read(fd, buffer, 1024) > 0)
 		{
 		  printf("deuxieme if\n");
 		  if (strcmp(buffer, "ko\n") == 0)
 		    {
+		      //// et si c'est ko, le prog de NICO reprend la main mode IA
 		      dprintf(fd, "Team1\n");
 		      call(fd);
 		    }
