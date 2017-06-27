@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:26:44 2017 Romain HUET
-** Last update Mon Jun 26 17:43:58 2017 Romain HUET
+** Last update Tue Jun 27 15:58:39 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -47,11 +47,8 @@ void	check_readfds(fd_set *readfds, t_server *server, t_player *players)
   int	i;
 
   i = 0;
-  printf("dans check_readfds\n");
   if (FD_ISSET(server->fd, readfds))
     new_connection(server, players);
-  else
-    printf("le fd server est pas set pour read\n");
   while (i < MAX_PLAYERS)
     {
       if (players[i].fd != - 1 && FD_ISSET(players[i].fd, readfds))
@@ -71,7 +68,6 @@ void	message_to_gclient(t_server *server, t_args *args)
 
 void	write_data(t_player *players, int src, t_server *server)
 {
-  printf("dans write_data\n");
   players = players;
   src = src;
   server = server;
@@ -84,7 +80,6 @@ void	check_writefds(fd_set *writefds, t_server *server, t_player *players, t_arg
   int	i;
 
   i = 0;
-  printf("dans check write fds\n");
   if (FD_ISSET(server->graph_cli_fd, writefds))
     message_to_gclient(server, args);
   while (i < MAX_PLAYERS)
@@ -103,14 +98,12 @@ int		server_loop(t_args *args, t_server *server, t_player *players)
     
   while (42)
     {
-      printf("boucle server\n");
       fd_setting(&readfds, players);
       fd_setting(&writefds, players);
       FD_SET(server->fd, &readfds);
       max_fd = get_max_fd(server, players);
       if (select(max_fd + 1, &readfds, NULL, NULL, NULL) == -1)
 	return (-1);
-      printf("on fait les checks\n");
       check_readfds(&readfds, server, players);
       check_writefds(&writefds, server, players, args);
     }

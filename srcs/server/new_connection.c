@@ -5,28 +5,28 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:25:45 2017 Romain HUET
-** Last update Mon Jun 26 18:12:21 2017 Romain HUET
+** Last update Tue Jun 27 17:23:15 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
 
-void    give_team(t_args *args, t_player *players, int i)
-{
-  static int    nb_p_in_team = 0;
-  static int    team_num = 0;
+/* void    give_team(t_args *args, t_player *players, int i) */
+/* { */
+/*   static int    nb_p_in_team = 0; */
+/*   static int    team_num = 0; */
 
-  if (nb_p_in_team < args->c_per_team)
-    {
-      players[i].team = strdup(args->names[team_num]);
-      nb_p_in_team++;
-    }
-  else if (nb_p_in_team == args->c_per_team && team_num < args->nb_of_teams)
-    {
-      nb_p_in_team = 0;
-      team_num++;
-      give_team(args, players, i);
-    }
-}
+/*   if (nb_p_in_team < args->c_per_team) */
+/*     { */
+/*       players[i].team = strdup(args->names[team_num]); */
+/*       nb_p_in_team++; */
+/*     } */
+/*   else if (nb_p_in_team == args->c_per_team && team_num < args->nb_of_teams) */
+/*     { */
+/*       nb_p_in_team = 0; */
+/*       team_num++; */
+/*       give_team(args, players, i); */
+/*     } */
+/* } */
 
 void	give_infos_to_gclient(t_server *server)
 {
@@ -64,19 +64,7 @@ int		new_connection(t_server *server, t_player *players)
       if ((incoming_fd = accept(server->fd, (struct sockaddr *)&s_in_client, &s_in_size)) == -1)
 	printf("error : accept failed\n");
       dprintf(incoming_fd, "WELCOME\n");
-      printf("new client connected\n");
-      
-      char	*line = calloc(256, 1);
-      int	ret = -1;
-      while (ret <= 0)
-	ret = read(incoming_fd, line, (size_t)256);
-      if (!strcmp(line, "GRAPHIC\n"))
-	{
-	  printf("client graphique détecté :) \n");
-	  server->graph_cli_fd = incoming_fd;
-	  give_infos_to_gclient(server);
-	}
-      
+      players[i].fd = incoming_fd;      
     }
   return (0);
 }

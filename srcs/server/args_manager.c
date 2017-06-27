@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 17:43:17 2017 Romain HUET
-** Last update Tue Jun 27 13:38:44 2017 Romain HUET
+** Last update Tue Jun 27 19:36:03 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -95,7 +95,7 @@ int     get_args(t_args *args, char **av)
 	}
       i++;
     }
-  args->max_players = (args->c_per_team * args->nb_of_teams) + 1;
+  args->max_players = MAX_PLAYERS;
   return (0);
 }
 

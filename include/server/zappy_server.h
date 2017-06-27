@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Tue Jun 27 12:41:13 2017 Romain HUET
+** Last update Tue Jun 27 19:21:59 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -144,8 +144,8 @@ typedef struct  s_player
   int           lvl;
   bool          incantating;
   bool          broadcasting;
-  char		*read_buf;
-  char		*write_buf;
+  /* char		*read_buf; */
+  /* char		*write_buf; */
 }               t_player;
 
 t_player	*init_players(t_player *players, t_args *args);
@@ -154,6 +154,7 @@ void		fd_setting(fd_set *fd_s, t_player *players);
 void		check_read_fds(fd_set *readfds, t_server *server, t_player *players);
 void		check_write_fds(fd_set *writefds, t_server *server, t_player *players, t_args *args);
 int		new_connection(t_server *server, t_player *players);
+void		give_infos_to_gclient(t_server *server);
 void		give_team(t_args *args, t_player *players, int i);
 int		server_loop(t_args *args, t_server *server, t_player *players);
 void		welcome_graph_client(t_server *server);
@@ -175,7 +176,7 @@ int		close_all(t_server *server, t_args *args, t_player *players);
 typedef struct	s_func
 {
   char		*name;
-  void		(*ptrfunc)(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+  int		(*ptrfunc)(void *player, void *server, int i);
 }		t_func;
 
 /* extern t_func	*g_cmds; */
@@ -186,17 +187,24 @@ int	is_separator(char c);
 int	count_words(char *s);
 char	*get_nth_word(char *s, int n);
 
-void	forward(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	right(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	left(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	look(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	inventory(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	broadcast(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	connect_nbr(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	eggfork(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	eject(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	take_object(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	set_object(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
-void	start_incantation(t_player *player_src, char **cmd_args, t_server *server, t_tile **map);
+
+//A REDEFINIR
+/* int	forward(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
+/* int	right(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
+/* int	left(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
+/* int	inventory(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
+/* int	eggfork(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
+
+
+// OK
+/* int	player_expell(void *player, void *server, int no); */
+/* int	player_broadcast(void *player, void *server, char *str, int no); */
+/* int	player_begin_incantation(void *player, void *server, int j); */
+/* int	player_end_incantation(void *player, void *server, int r); */
+/* int	player_take_ress(vid *player, void *server, int i); */
+/* int	player_drop_ress(void *player, void *server, int i); */
+/* int	player_tragically_dies(void *player, void *server, int no); */
+/* int	connect_nbr(void *player, void *server, int no); */
+/* int	player_look(void *player, void *server, int no); */
 
 #endif /* !SERV_H */

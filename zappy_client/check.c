@@ -5,36 +5,39 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Tue Jun 27 19:13:13 2017 Albatard
+** Last update Tue Jun 27 19:47:12 2017 Romain HUET
 */
 
 #include "client.h"
 
 void                     check_cmd(int fd)
 {
-  char                  buffer[512];
+  char			*buffer;
   int                   a;
   char                  **tab;
 
   a = 0;
   while (42)
     {
-      a = strlen(buffer);
-      while (a >= 0)
-	{
-	  buffer[a] = '\0';
-	  a--;
-	}
+      buffer = calloc(512, 1);
       a = read(fd, buffer, 255);
-      a = strlen(buffer);
       printf("%s", buffer);
-      if (strcmp(buffer, "WELCOME\n") == 0)
+      if (a >= 0)
 	{
-	  dprintf(fd, "GRAPHIC\n");
-	  call(fd);
+	  if (strcmp(buffer, "WELCOME\n") == 0)
+	    {
+	      dprintf(fd, "GRAPHIC\n");
+	      if (read(fd, buffer, 255) > 0)
+		{
+		  printf("deuxieme if\n");
+		  if (strcmp(buffer, "ko\n") == 0)
+		    {
+		      dprintf(fd, "Team1\n");
+		      call(fd);
+		    }
+		}
+	    }
 	}
-      else if (strcmp(buffer, "ko\n") == 0)
-	dprintf(fd, "Team1\n");
     }
   free(buffer);
 }

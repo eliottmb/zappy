@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 19:20:35 2017 Médéric Unissart
-** Last update Tue Jun 27 19:25:04 2017 Médéric Unissart
+** Last update Tue Jun 27 19:51:06 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -128,6 +128,6 @@ int		player_look(t_player *player, void *server, int undefined)
   undefined = undefined;
   while (i <= player->lvl)
     tiles += i++ * 2 + 1;
-  fill_look_buffer(player, server->map, tiles);
+  fill_look_buffer(player, serv->map, tiles);
   return (0);
 }

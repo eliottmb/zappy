@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 17:56:36 2017 Romain HUET
-** Last update Tue Jun 27 13:42:45 2017 Romain HUET
+** Last update Tue Jun 27 17:30:35 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -52,7 +52,7 @@ int     init_server(t_server *server, t_args *args)
   if (bind_serv(server) == -1 ||
       listen_serv(server) == -1)
     return (-1);
-  server->map = init_map(args->width, args->height, MAX_PLAYERS);
+  server->map = init_map(args->width, args->height, MAX_PLAYERS / 4);
   server->f = args->f;
   server->graph_cli_fd = -1;
   init_serv_teams(server, args);
