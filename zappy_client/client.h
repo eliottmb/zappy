@@ -5,11 +5,21 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:01:57 2017 Albatard
-** Last update Mon Jun 26 17:41:24 2017 Albatard
+** Last update Tue Jun 27 17:19:00 2017 Albatard
 */
 
 #ifndef CLIENT_H_
 # define CLIENT_H_
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <string.h>
 
 typedef struct	s_client
 {
@@ -18,6 +28,11 @@ typedef struct	s_client
   char	*name;
 }		client_info;
 
+void	check_cmd(int fd);
+int	check_number(char *str);
+int	usage(int ac, char **av);
+int	check_args(int ac, char **av);
+int	my_error(int ac, char **av);
 void	client_fd(int fd);
 void	call(int fd);
 char	*my_strtowordtab(char *str);
