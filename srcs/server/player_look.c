@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 19:20:35 2017 Médéric Unissart
-** Last update Mon Jun 26 18:08:22 2017 Romain HUET
+** Last update Tue Jun 27 19:25:04 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -68,6 +68,7 @@ static void	find_tiles_pos(t_player *player,
 static void	look_a_tile(char *look, t_tile **map, int *pos, int *ilook)
 {
   int		i;
+  int		o;
   char		*res[7] = {
     "food",
     "linemate",
@@ -83,12 +84,11 @@ static void	look_a_tile(char *look, t_tile **map, int *pos, int *ilook)
   i = 0;
   while (i != 7)
     {
-      if (map[pos[1]][pos[0]].res[i] > 0)
-	(*ilook == 1) ?
-	  (*ilook += sprintf
-	   (&look[*ilook], "%s %d", res[i], map[pos[1]][pos[0]].res[i])):
-	  (*ilook += sprintf
-	   (&look[*ilook], " %s %d", res[i], map[pos[1]][pos[0]].res[i]));
+      o = 0;
+      while (o++ < map[pos[1]][pos[0]].res[i])
+	*ilook += *ilook == 1 ?
+	  sprintf(&look[*ilook], "%s", res[i]) :
+	  sprintf(&look[*ilook], " %s", res[i]);
       ++i;
     }
 }
@@ -116,15 +116,18 @@ static void	fill_look_buffer(t_player *player, t_tile **map, int tiles)
   printf("%s", look);
 }
 
-bool		player_look(t_player *player, t_tile **map)
+int		player_look(t_player *player, void *server, int undefined)
 {
   int		tiles;
   int		i;
+  t_server	*serv;
 
+  serv = (t_server *)server;
   tiles = 0;
   i = 0;
+  undefined = undefined;
   while (i <= player->lvl)
     tiles += i++ * 2 + 1;
-  fill_look_buffer(player, map, tiles);
-  return (true);
+  fill_look_buffer(player, server->map, tiles);
+  return (0);
 }
