@@ -286,6 +286,7 @@ int graph(int fd)
 {
   t_bmp	pic;
 
+dprintf(fd, "GRAPHIC\n");
   pic.inf.us = NULL;
   receive(&pic, fd);
   init_sdl(&pic);
@@ -300,6 +301,7 @@ int graph(int fd)
   SDL_FreeSurface(pic.trantor);
   SDL_Flip(pic.ecran);
 
+dprintf(fd, "GRAPHIC\n");
   while(42)
     {
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 0, 0, 0));

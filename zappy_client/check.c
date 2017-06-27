@@ -29,6 +29,7 @@ void                     check_cmd(int fd)
 	{
 	  if (strcmp(buffer, "WELCOME\n") == 0)
 	    {
+graph(fd);
 	      /// on appelle le main d'ALEX pour envoyer GRAPHIC et recevoir la map
 	      //dprintf(fd, "GRAPHIC\n");
 	      if (read(fd, buffer, 1024) > 0)
