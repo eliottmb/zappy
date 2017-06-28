@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:01:57 2017 Albatard
-** Last update Wed Jun 28 16:12:48 2017 Albatard
+** Last update Wed Jun 28 16:31:33 2017 Albatard
 */
 
 #ifndef CLIENT_H_
@@ -20,7 +20,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
-#include "monitor.h"
+#include "moniteur.h"
 
 typedef struct	s_client
 {

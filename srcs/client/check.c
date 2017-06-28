@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Wed Jun 28 16:02:21 2017 Romain HUET
+** Last update Wed Jun 28 16:29:39 2017 Albatard
 */
 
 #include "../../include/client/client.h"
@@ -79,7 +79,7 @@ int     check_args(int ac, char **av)
   i = 0;
   while (av[i] != '\0')
     {
-      if (strcmp(av[i], "-p") != 0 && check_number(av[i]) == 1)
+      if (strcmp(av[i], "-p") != 0 && check_number(av[i+1]) == 1)
 	{
 	  fprintf(stderr, "Bad argument(s), -help for more information\n");
 	  return (1);
@@ -94,7 +94,7 @@ int     check_args(int ac, char **av)
 	  fprintf(stderr, "Bad argument(s), -help for more information\n");
 	  return (1);
 	}
-      i++;
+      i = i + 2;
     }
   return (0);
 }

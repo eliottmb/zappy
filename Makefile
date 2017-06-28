@@ -5,7 +5,6 @@
 ## Login   <romain.huet@epitech.net>
 ## 
 ## Started on  Mon Jun 19 11:37:44 2017 Romain HUET
-## Last update Wed Jun 28 16:01:32 2017 Romain HUET
 ##
 
 CC		= gcc
@@ -50,7 +49,6 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 AI_SRCS		= 	srcs/client/call.c			\
 			srcs/client/check.c			\
 			srcs/client/client.c			\
-			srcs/client/parse.c			\
 			srcs/client/graphic/client_graph.c	\
 			srcs/client/graphic/client_graph2.c	\
 			srcs/client/graphic/list.c		\
