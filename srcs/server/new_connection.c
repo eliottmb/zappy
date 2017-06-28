@@ -5,29 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:25:45 2017 Romain HUET
-** Last update Tue Jun 27 20:19:16 2017 Romain HUET
+** Last update Wed Jun 28 12:42:17 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
-
-void	give_infos_to_gclient(t_server *server)
-{
-  map_size(server->graph_cli_fd, (void **)server->map);
-  server_time(server->graph_cli_fd, server);
-  many_tile_content(server->graph_cli_fd, (void **)server->map);
-  team_name(server->graph_cli_fd, server);
-}
-
-void	message_from_gclient(t_server *server)
-{
-  char	*gc_ans;
-  
-  gc_ans = calloc(16, 1);
-  read(server->graph_cli_fd, gc_ans, strlen(gc_ans));
-  printf("|%s|\n", gc_ans);
-  if (!strcmp(gc_ans, "GRAPHIC\n"))
-    give_infos_to_gclient(server);  
-}
 
 int		new_connection(t_server *server, t_player *players)
 {

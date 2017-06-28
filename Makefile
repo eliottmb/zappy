@@ -5,7 +5,7 @@
 ## Login   <romain.huet@epitech.net>
 ## 
 ## Started on  Mon Jun 19 11:37:44 2017 Romain HUET
-## Last update Tue Jun 27 20:12:49 2017 Romain HUET
+## Last update Wed Jun 28 12:43:41 2017 Romain HUET
 ##
 
 CC		= gcc
@@ -30,8 +30,11 @@ SERVER_SRCS	= srcs/server/main_serv.c	\
 		  srcs/server/show_map.c	\
 		  srcs/server/map.c		\
 		  srcs/server/get_nth_word.c	\
+		  srcs/server/gclient_talking.c	\
 		  srcs/server/client_commands.c	\
 		  srcs/server/settings.c	\
+		  srcs/server/fd_settings.c	\
+		  srcs/server/check_fd_sets.c	\
 		  srcs/server/player_action.c	\
 		  srcs/server/player_info.c	\
 	 	  srcs/server/map_info.c	\

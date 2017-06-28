@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Tue Jun 27 20:15:41 2017 Romain HUET
+** Last update Wed Jun 28 12:51:00 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -151,16 +151,18 @@ typedef struct  s_player
 t_player	*init_players(t_player *players, t_args *args);
 int		get_max_fd(t_server *server, t_player *players);
 void		fd_setting(fd_set *fd_s, t_player *players);
-void		check_read_fds(fd_set *readfds, t_server *server, t_player *players);
-void		check_write_fds(fd_set *writefds, t_server *server, t_player *players, t_args *args);
+void		check_readfds(fd_set *readfds, t_server *server, t_player *players);
+void		check_writefds(fd_set *writefds, t_server *server, t_player *players);
+void		write_data(t_player *players, int src, t_server *server);
+void		read_data(t_player *players, int src, t_server *server);
 int		new_connection(t_server *server, t_player *players);
 void		give_infos_to_gclient(t_server *server);
 void		give_team(t_args *args, t_player *players, int i);
-int		server_loop(t_args *args, t_server *server, t_player *players);
+int		server_loop(t_server *server, t_player *players);
+void		set_graph_cli(t_player *players, t_server *server);
 void		welcome_graph_client(t_server *server);
 void		message_from_gclient(t_server *server);
-void		message_to_gclient(t_server *server, t_args *args);
-void		read_data(t_player *players, int src, t_server *server);
+void		message_to_gclient(t_server *server);
 int		close_all(t_server *server, t_args *args, t_player *players);
 
 /*

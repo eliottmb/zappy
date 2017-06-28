@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Tue Jun 27 20:21:03 2017 Romain HUET
+** Last update Wed Jun 28 12:50:15 2017 Romain HUET
 */
 
 #include "server/zappy_server.h"
@@ -76,20 +76,6 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
   /*     i++; */
   /*   } */
   return (0);
-}
-
-void	set_graph_cli(t_player *player, t_server *server)
-{
-  printf("on est dans set_graph_cli\n");
-  if (server->graph_cli_fd == -1)
-    {
-      printf("setting graph cli :)\n");
-      server->graph_cli_fd = player->fd;
-      player->fd = -1;
-      give_infos_to_gclient(server);
-    }
-  else
-    dprintf(player->fd, "There already is a graphical server, feel free to enter the game by typing a team name :)\n");
 }
 
 int	is_team(char *s, t_server *server)
@@ -178,7 +164,7 @@ int	main(int ac, char **av)
       /* printf("problem in init server\n"); */
       return (-1);
     }
-  else if (server_loop(&args, &server, players) == -1)
+  else if (server_loop(&server, players) == -1)
     {
       free_args(&args);
       return (-1);
