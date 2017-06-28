@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:01:57 2017 Albatard
-** Last update Tue Jun 27 17:19:00 2017 Albatard
+** Last update Tue Jun 27 20:07:13 2017 Albatard
 */
 
 #ifndef CLIENT_H_
@@ -28,7 +28,7 @@ typedef struct	s_client
   char	*name;
 }		client_info;
 
-void	check_cmd(int fd);
+void	check_cmd(int fd, client_info *info);
 int	check_number(char *str);
 int	usage(int ac, char **av);
 int	check_args(int ac, char **av);

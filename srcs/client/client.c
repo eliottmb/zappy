@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Tue Jun 27 17:17:51 2017 Albatard
+** Last update Tue Jun 27 20:05:39 2017 Albatard
 */
 
 #include "client.h"
@@ -41,7 +41,7 @@ int			sock(struct protoent *pe, struct sockaddr_in s_in, client_info *info, int 
   else
     {
       printf("Connected, OK\n");
-      check_cmd(fd);
+      check_cmd(fd, info);
     }
   return (0);
 }
