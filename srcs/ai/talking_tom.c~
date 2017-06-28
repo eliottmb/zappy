@@ -1,0 +1,16 @@
+/*
+** talking_tom.c for  in /home/m-bara_e/rendu/PSU_2016_zappy/srcs/ai
+** 
+** Made by eliott m-barali
+** Login   <m-bara_e@epitech.net>
+** 
+** Started on  Tue Jun 27 20:03:49 2017 eliott m-barali
+** Last update Wed Jun 28 02:50:27 2017 eliott m-barali
+*/
+
+void		got_thy_que(t_ai *ai)
+{
+  dprintf(ai->fd, "%s #\n", ai->team);
+}
+
+int		got_broadcast(t
