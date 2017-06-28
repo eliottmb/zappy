@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:26:44 2017 Romain HUET
-** Last update Wed Jun 28 15:48:36 2017 Romain HUET
+** Last update Wed Jun 28 17:13:31 2017 Romain HUET
 */
 
 #include "../../include/server/zappy_server.h"
@@ -20,7 +20,6 @@ void	write_data(t_player *players, int src, t_server *server)
 }
 
 ////////
-
 
 int		server_loop(t_server *server, t_player *players)
 {

@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 19:20:35 2017 Médéric Unissart
-** Last update Wed Jun 28 15:49:32 2017 Romain HUET
+** Last update Wed Jun 28 19:56:15 2017 Romain HUET
 */
 
 #include "../../include/server/zappy_server.h"
@@ -116,18 +116,19 @@ static void	fill_look_buffer(t_player *player, t_tile **map, int tiles)
   printf("%s", look);
 }
 
-/* int		player_look(t_player *player, void *server, int undefined) */
-/* { */
-/*   int		tiles; */
-/*   int		i; */
-/*   t_server	*serv; */
+void		player_look(void *player, void *server, int undefined)
+{
+  int		tiles;
+  int		i;
+  t_server	*serv;
+  t_player	*p;
 
-/*   serv = (t_server *)server; */
-/*   tiles = 0; */
-/*   i = 0; */
-/*   undefined = undefined; */
-/*   while (i <= player->lvl) */
-/*     tiles += i++ * 2 + 1; */
-/*   fill_look_buffer(player, serv->map, tiles); */
-/*   return (0); */
-/* } */
+  serv = (t_server *)server;
+  p = (t_player *)player;
+  tiles = 0;
+  i = 0;
+  undefined = undefined;
+  while (i <= p->lvl)
+    tiles += i++ * 2 + 1;
+  fill_look_buffer(p, serv->map, tiles);
+}

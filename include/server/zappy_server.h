@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Wed Jun 28 15:33:12 2017 Romain HUET
+** Last update Wed Jun 28 19:59:06 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -110,6 +110,7 @@ typedef struct		s_server
   t_tile		**map;
   int			f;
   t_team		*teams;
+  int			nb_of_teams;
 }			t_server;
 
 int	tablen(char **tab);
@@ -192,14 +193,13 @@ int	is_separator(char c);
 int	count_words(char *s);
 char	*get_nth_word(char *s, int n);
 
-
-//A REDEFINIR
-/* int	forward(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
-/* int	right(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
-/* int	left(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
-/* int	inventory(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
-/* int	eggfork(t_player *player_src, char **cmd_args, t_server *server, t_tile **map); */
-
+void	player_forward(void *player, void *server, int no);
+void	player_turn_right(void *player, void *server, int no);
+void	player_turn_left(void *player, void *server, int no);
+void    player_build(void *player, void *server, int no);
+void    player_spawn_egg(void *player, void *server, int no);
+void	connect_nbr(void *player, void *server, int no);
+void	player_look(void *player, void *server, int no);
 
 // OK
 int	player_expell(void *player, void *server, int no);
@@ -209,17 +209,13 @@ int	player_end_incantation(void *player, void *server, int r);
 int	player_take_ress(void *player, void *server, int i);
 int	player_drop_ress(void *player, void *server, int i);
 int	player_tragically_dies(void *player, void *server, int no);
-int	connect_nbr(void *player, void *server, int no);
-int	player_look(void *player, void *server, int no);
 
 int     team_name(int fd, void *args);
 int     new_player_connection(int fd, void *player);
 int     player_position(int fd, void *player);
 int     player_level(int fd, void *player);
-int     player_build(int fd, void *player);
 
-int     player_spawn_egg(int fd, void *player);
-int     player_tragically_die(int fd, void *player);
+/* int     player_tragically_die(int fd, void *player); */
 
 int     server_time(int fd, void *args);
 int     server_game_win(int fd, void *str);

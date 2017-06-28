@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Wed Jun 28 12:41:43 2017 Romain HUET
-** Last update Wed Jun 28 15:46:58 2017 Romain HUET
+** Last update Wed Jun 28 17:13:20 2017 Romain HUET
 */
 
 #include "../../include/server/zappy_server.h"
@@ -27,10 +27,14 @@ void    give_infos_to_gclient(t_server *server)
 void    message_from_gclient(t_server *server)
 {
   char  *gc_ans;
+  char	*first_word;
 
   gc_ans = calloc(16, 1);
   if (read(server->graph_cli_fd, gc_ans, strlen(gc_ans)) >= 0)
-    printf("gclient says : %s\n", gc_ans);
+    {
+      printf("gclient says : %s\n", gc_ans);
+      first_word = get_nth_word(gc_ans, 1);
+    }
 }
 
 void    set_graph_cli(t_player *player, t_server *server)

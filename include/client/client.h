@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:01:57 2017 Albatard
-** Last update Wed Jun 28 16:34:26 2017 Albatard
+** Last update Wed Jun 28 17:10:19 2017 Romain HUET
 */
 
 #ifndef CLIENT_H_
@@ -36,6 +36,5 @@ int	check_args(int ac, char **av);
 int	my_error(int ac, char **av);
 void	client_fd(int fd);
 void	call(int fd);
-//char	*my_strtowordtab(char *str);
 
 #endif /* !CLIENT_H_ */

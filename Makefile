@@ -34,7 +34,7 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 		  	srcs/server/map.c		\
 		  	srcs/server/get_nth_word.c	\
 		  	srcs/server/gclient_talking.c	\
-		  	srcs/server/client_commands.c	\
+		  	srcs/server/connect_nbr.c	\
 		  	srcs/server/settings.c		\
 		  	srcs/server/fd_settings.c	\
 		  	srcs/server/check_fd_sets.c	\

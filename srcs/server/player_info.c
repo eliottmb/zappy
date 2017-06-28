@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:47:26 2017 eliott m-barali
-** Last update Wed Jun 28 15:49:42 2017 Romain HUET
+** Last update Wed Jun 28 18:16:07 2017 Romain HUET
 */
 
 #include "../../include/server/zappy_server.h"
@@ -52,11 +52,12 @@ int	player_level(int fd, void *player)
   return (0);
 }
 
-int	player_build(int fd, void *player)
+void	player_build(void *player, void *server, int no)
 {
   t_player	*tmp;
+  t_server	*serv;
 
   tmp = (t_player *)player;
-  dprintf(fd, "pin #%d %d %d %d %d %d %d %d %d %d\n", tmp->n,  tmp->x, tmp->y, tmp->i[0], tmp->i[1], tmp->i[2], tmp->i[3], tmp->i[4], tmp->i[5], tmp->i[6]);
-  return (0);
+  serv = (t_server *)server;
+  dprintf(serv->graph_cli_fd, "pin #%d %d %d %d %d %d %d %d %d %d\n", tmp->n,  tmp->x, tmp->y, tmp->i[0], tmp->i[1], tmp->i[2], tmp->i[3], tmp->i[4], tmp->i[5], tmp->i[6]);
 }

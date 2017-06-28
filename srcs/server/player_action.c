@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Thu Jun 22 16:49:51 2017 eliott m-barali
-** Last update Wed Jun 28 15:49:25 2017 Romain HUET
+** Last update Wed Jun 28 20:00:33 2017 Romain HUET
 */
 
 #include "../../include/server/zappy_server.h"
@@ -65,15 +65,15 @@
 /*   return (0); */
 /* } */
 
-
-/* int	player_spawn_egg(int fd, void *player) */
-/* { */
-/*   t_player	*tmp; */
+void	player_spawn_egg(void *player, void *server, int no)
+{
+  t_player	*tmp;
+  t_server	*serv;
   
-/*   tmp = (t_player *)player; */
-/*   dprintf(fd, "pfk #%d\n", tmp->n); */
-/*   return (0); */
-/* } */
+  tmp = (t_player *)player;
+  serv = (t_server *)server;
+  dprintf(serv->graph_cli_fd, "pfk #%d\n", tmp->n);
+}
 
 /* int	player_take_ress(void *player, void *server, int i) */
 /* { */
