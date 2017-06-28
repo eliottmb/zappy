@@ -5,10 +5,9 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Mon Jun 19 19:03:40 2017 Médéric Unissart
-** Last update Thu Jun 22 18:14:54 2017 Romain HUET
+** Last update Wed Jun 28 15:48:54 2017 Romain HUET
 */
 
-//#include "player.h"
 #include "../../include/server/player.h"
 
 t_player		*init_player(char *team, int x, int y)

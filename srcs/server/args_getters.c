@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Tue Jun 27 13:25:29 2017 Romain HUET
-** Last update Tue Jun 27 13:39:20 2017 Romain HUET
+** Last update Wed Jun 28 15:44:55 2017 Romain HUET
 */
 
-#include "server/zappy_server.h"
+#include "../../include/server/zappy_server.h"
 
 void    get_p(t_args *args, char **av)
 {

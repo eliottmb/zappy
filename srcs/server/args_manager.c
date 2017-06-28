@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 17:43:17 2017 Romain HUET
-** Last update Tue Jun 27 19:36:03 2017 Romain HUET
+** Last update Wed Jun 28 15:45:19 2017 Romain HUET
 */
 
-#include "server/zappy_server.h"
+#include "../../include/server/zappy_server.h"
 
 int     count_teams(char **av)
 {

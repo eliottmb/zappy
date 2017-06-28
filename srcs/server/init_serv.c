@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 17:56:36 2017 Romain HUET
-** Last update Tue Jun 27 17:30:35 2017 Romain HUET
+** Last update Wed Jun 28 15:46:33 2017 Romain HUET
 */
 
-#include "server/zappy_server.h"
+#include "../../include/server/zappy_server.h"
 
 int	tablen(char **tab)
 {

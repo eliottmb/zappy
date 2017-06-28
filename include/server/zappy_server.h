@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Wed Jun 28 12:51:00 2017 Romain HUET
+** Last update Wed Jun 28 15:33:12 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -22,7 +22,6 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <time.h>
-# include "com.h"
 
 /*
 ** ARGUMENTS
@@ -81,6 +80,10 @@ typedef struct	s_tile
 
 t_tile	**init_map(int x_size, int y_size, int nb_player_max);
 void	show_map(t_tile **map);
+int     map_size(int fd, void **map);
+int     one_tile_content(int fd, void *tile);
+int     many_tile_content(int fd, void **map);
+
 
 /*
 ** SERVER
@@ -208,5 +211,20 @@ int	player_drop_ress(void *player, void *server, int i);
 int	player_tragically_dies(void *player, void *server, int no);
 int	connect_nbr(void *player, void *server, int no);
 int	player_look(void *player, void *server, int no);
+
+int     team_name(int fd, void *args);
+int     new_player_connection(int fd, void *player);
+int     player_position(int fd, void *player);
+int     player_level(int fd, void *player);
+int     player_build(int fd, void *player);
+
+int     player_spawn_egg(int fd, void *player);
+int     player_tragically_die(int fd, void *player);
+
+int     server_time(int fd, void *args);
+int     server_game_win(int fd, void *str);
+int     server_message(int fd, void *str);
+int     server_unknown_command(int fd, void *str);
+int     server_bad_param(int fd, void *str);
 
 #endif /* !SERV_H */

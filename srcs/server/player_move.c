@@ -5,10 +5,10 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:15:09 2017 Médéric Unissart
-** Last update Fri Jun 23 19:15:07 2017 Médéric Unissart
+** Last update Wed Jun 28 15:50:30 2017 Romain HUET
 */
 
-#include "zappy_server.h"
+#include "../../include/server/zappy_server.h"
 
 void		player_turn_left(t_player *player)
 {

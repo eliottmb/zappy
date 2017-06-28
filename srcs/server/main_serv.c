@@ -5,10 +5,11 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Wed Jun 28 12:50:15 2017 Romain HUET
+** Last update Wed Jun 28 15:46:17 2017 Romain HUET
 */
 
-#include "server/zappy_server.h"
+#include "../../include/server/zappy_server.h"
+
 
 /* t_func	g_cmds[NB_CMDS] = */
 /*   { */

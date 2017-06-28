@@ -5,10 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Fri Jun 23 11:20:12 2017 eliott m-barali
-** Last update Tue Jun 27 19:30:02 2017 Romain HUET
+** Last update Wed Jun 28 15:47:14 2017 Romain HUET
 */
 
-#include "server/zappy_server.h"
+#include "../../include/server/zappy_server.h"
 
 int	server_time(int fd, void *server)
 {

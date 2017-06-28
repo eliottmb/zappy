@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Fri Jun 23 17:46:38 2017 Romain HUET
-** Last update Tue Jun 27 20:22:39 2017 Romain HUET
+** Last update Wed Jun 28 15:45:56 2017 Romain HUET
 */
 
-#include "server/zappy_server.h"
+#include "../../include/server/zappy_server.h"
 
 int	forward(t_player *player_src, char **cmd_args, t_server *server, t_tile **map)
 {
