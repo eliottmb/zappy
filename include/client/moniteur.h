@@ -57,6 +57,7 @@ int		my_getnbr(char *);
 void		init_map(t_bmp *struc, char **buffer);
 int		list_del_elem_at_front(t_list *front_ptr);
 //void    show_char(int  x, int y, t_bmp *pic);
+int		graph(int);
 t_user          *create_node(int x, int y, int number);
 int		list_add_elem_at_back(t_list *front_ptr, int x, int y, int number);
 void		add_pos(t_bmp *, char **buffer);

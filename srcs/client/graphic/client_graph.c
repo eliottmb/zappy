@@ -1,8 +1,8 @@
 #include <stdlib.h>
+#include "../../../include/client/moniteur.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <SDL/SDL.h>
-#include "../../../include/client/moniteur.h"
 
 void lpause()
 {
@@ -132,6 +132,8 @@ i++;
 
 void	init_sdl(t_bmp *pic)
 {
+pic->x = 0;
+pic->y = 0;
 pic->positionFond.x = 0;
 pic->positionFond.y = 0;
 SDL_Init(SDL_INIT_VIDEO);
@@ -251,34 +253,46 @@ void	check(t_bmp   *pic, char **buffer)
     }
 }
 
+void	event(t_bmp *stru)
+{
+SDL_Event event;
+
+SDL_PollEvent(&event);
+if(event.key.keysym.sym == SDLK_UP)
+stru->y--;
+if(event.key.keysym.sym == SDLK_DOWN)
+stru->y++;
+if(event.key.keysym.sym == SDLK_RIGHT)
+stru->x++;
+if(event.key.keysym.sym == SDLK_LEFT)
+stru->x--;
+
+
+}
+
 void    receive(t_bmp *stru, int     fd)
 {
   char    buffer[1000];
 char	buff[1]; 
- int     len;
   char	**stock;
   int i;
   int nb;
 
   i = 0;
   nb = 0;
-  while(nb != 1000)
+event(stru);
+  while(nb != 100)
     {
       buffer[nb] = '\0';
       nb++;
-
     }
-  printf("KKKK\n");
-
 while(43)
 {
-  if ((len = read(fd, buff, 1)) >= 0)
+  if (read(fd, buff, 1) >= 0)
     {
 buffer[i] = buff[0];
 if(buff[0] == '\n')
 break;
-    //buffer[len - 1] = '\0';
-     
     }
   i++;
 }
@@ -299,30 +313,20 @@ dprintf(fd, "GRAPHIC\n");
   SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
 pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
   init_gemme(&pic);
-//  show_char(0,0, &pic);
-  //show_rss(0,0, &pic);
   SDL_WM_SetCaption("Chargement d'images en SDL", NULL);
-printf("oki\n"); 
  splitRect(980, 980, pic.ecran, 10, 10);
-printf("oki\n");
   SDL_Flip(pic.ecran); 
   SDL_FreeSurface(pic.trantor);
   SDL_Flip(pic.ecran);
-printf("oki\n");
-
-//dprintf(fd, "GRAPHIC\n");
   while(42)    {
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 0, 0, 0));
 splitRect(980, 980, pic.ecran, 10, 10);
-printf("salu\n");      
-
 receive(&pic, fd);
-      show_char(0,0, &pic);
-     show_rss(0,0, &pic);
+      show_char(pic.x, pic.y, &pic);
+     show_rss(pic.x,pic.y, &pic);
       SDL_Flip(pic.ecran);
     }
-
-  lpause(); /* On libère la surface */
+  //lpause(); /* On libère la surface */
   SDL_Quit();
   return EXIT_SUCCESS;
 }
