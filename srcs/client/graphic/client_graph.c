@@ -86,13 +86,13 @@ void	init_gemme(t_bmp *pic)
 int	i;
 
 i = 0;
-pic->gemme[0] = SDL_LoadBMP("pomme.bmp");
-pic->gemme[1] = SDL_LoadBMP("gemme-jaune.bmp");
-pic->gemme[2] = SDL_LoadBMP("gemme-violet.bmp");
-pic->gemme[3] = SDL_LoadBMP("gemme-rouge.bmp");
-pic->gemme[4] = SDL_LoadBMP("gemme-blanc.bmp");
-pic->gemme[5] = SDL_LoadBMP("gemme-verte.bmp");
-pic->gemme[6] = SDL_LoadBMP("gemme-bleu.bmp");
+pic->gemme[0] = SDL_LoadBMP("srcs/client/graphic/imgs/pomme.bmp");
+pic->gemme[1] = SDL_LoadBMP("srcs/client/graphic/imgs/gemme-jaune.bmp");
+pic->gemme[2] = SDL_LoadBMP("srcs/client/graphic/imgs/gemme-violet.bmp");
+pic->gemme[3] = SDL_LoadBMP("srcs/client/graphic/imgs/gemme-rouge.bmp");
+pic->gemme[4] = SDL_LoadBMP("srcs/client/graphic/imgs/gemme-blanc.bmp");
+pic->gemme[5] = SDL_LoadBMP("srcs/client/graphic/imgs/gemme-verte.bmp");
+pic->gemme[6] = SDL_LoadBMP("srcs/client/graphic/imgs/gemme-bleu.bmp");
 while (i != 7)
 {
 SDL_SetColorKey(pic->gemme[i], SDL_SRCCOLORKEY, SDL_MapRGB(pic->gemme[i]->format, 0, 0, 0));
@@ -136,10 +136,10 @@ pic->positionFond.x = 0;
 pic->positionFond.y = 0;
 SDL_Init(SDL_INIT_VIDEO);
  pic->ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
-pic->imageDeFond = SDL_LoadBMP("grass.bmp");
-pic->toad = SDL_LoadBMP("toad.bmp");
+pic->imageDeFond = SDL_LoadBMP("srcs/client/graphic/imgs/grass.bmp");
+pic->toad = SDL_LoadBMP("srcs/client/graphic/imgs/toad.bmp");
 SDL_SetColorKey(pic->toad, SDL_SRCCOLORKEY, SDL_MapRGB(pic->toad->format, 0, 0, 0));
-pic->trantor = SDL_LoadBMP("canvas.bmp");
+pic->trantor = SDL_LoadBMP("srcs/client/graphic/imgs/canvas.bmp");
 pic->postrantor.x = 1640;
  pic->postrantor.y = 0;
 SDL_BlitSurface(pic->trantor, NULL, pic->ecran, &pic->postrantor);
@@ -295,15 +295,10 @@ int graph(int fd)
 dprintf(fd, "GRAPHIC\n");
   pic.inf.us = NULL;
   receive(&pic, fd);
-printf("ca sort\n");
   init_sdl(&pic);
-printf("ca sort\n");
   SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
-printf("ca sort\n");  
 pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
-printf("oki\n");
   init_gemme(&pic);
-printf("oki\n");
 //  show_char(0,0, &pic);
   //show_rss(0,0, &pic);
   SDL_WM_SetCaption("Chargement d'images en SDL", NULL);
@@ -316,8 +311,7 @@ printf("oki\n");
 printf("oki\n");
 
 //dprintf(fd, "GRAPHIC\n");
-  while(42)
-    {
+  while(42)    {
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 0, 0, 0));
 splitRect(980, 980, pic.ecran, 10, 10);
 printf("salu\n");      
