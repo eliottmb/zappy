@@ -5,15 +5,12 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Tue Jun 27 20:03:26 2017 Romain HUET
+** Last update Wed Jun 28 15:06:40 2017 Albatard
 */
 
-#include "client.h"
+#include "../../include/client.h"
 
-// ajouter le nom de team reçu en argument   //
-// pour le mettre a la place du Team1 en dur //
-
-void                     check_cmd(int fd)
+void                     check_cmd(int fd, client_info *info)
 {
   char			*buffer;
   int                   a;
@@ -29,16 +26,14 @@ void                     check_cmd(int fd)
 	{
 	  if (strcmp(buffer, "WELCOME\n") == 0)
 	    {
-graph(fd);
-	      /// on appelle le main d'ALEX pour envoyer GRAPHIC et recevoir la map
-	      //dprintf(fd, "GRAPHIC\n");
+	      graph(fd);
 	      if (read(fd, buffer, 1024) > 0)
 		{
 		  printf("deuxieme if\n");
 		  if (strcmp(buffer, "ko\n") == 0)
 		    {
 		      //// et si c'est ko, le prog de NICO reprend la main mode IA
-		      dprintf(fd, "Team1\n");
+		      dprintf(fd, "%s\n", info->name);
 		      call(fd);
 		    }
 		}
@@ -79,20 +74,27 @@ int     usage(int ac, char **av)
 
 int     check_args(int ac, char **av)
 {
-  if (strcmp(av[1], "-p") != 0 && check_number(av[2]) == 1)
+  int	i;
+
+  i = 0;
+  while (av[i] != '\0')
     {
-      fprintf(stderr, "Bad argument(s), -help for more information\n");
-      return (1);
-    }
-  else if (strcmp(av[3], "-n") != 0)
-    {
-      fprintf(stderr, "Bad argument(s), -help for more information\n");
-      return (1);
-    }
-  else if (strcmp(av[5], "-h") != 0)
-    {
-      fprintf(stderr, "Bad argument(s), -help for more information\n");
-      return (1);
+      if (strcmp(av[i], "-p") != 0 && check_number(av[i]) == 1)
+	{
+	  fprintf(stderr, "Bad argument(s), -help for more information\n");
+	  return (1);
+	}
+      else if (strcmp(av[i], "-n") != 0)
+	{
+	  fprintf(stderr, "Bad argument(s), -help for more information\n");
+	  return (1);
+	}
+      else if (strcmp(av[i], "-h") != 0)
+	{
+	  fprintf(stderr, "Bad argument(s), -help for more information\n");
+	  return (1);
+	}
+      i++;
     }
   return (0);
 }
