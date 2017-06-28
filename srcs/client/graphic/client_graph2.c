@@ -28,24 +28,24 @@ i++;
 }
 }
 
+
 void    add_pos(t_bmp *struc, char **buffer)
 {
 t_list  cpy;
+
 cpy = struc->inf.us;
 
 while(cpy)
 {
-//if(cpy->number == buffer[1])
+if(cpy->number == atoi(buffer[1]))
 {
-
-
-
+cpy->x = atoi(buffer[2]);
+cpy->y = atoi(buffer[3]);
+}
+cpy = cpy->next;
+}
 }
 
-}
-
-
-}
 
 void    add_player(t_bmp *struc, char **buffer)
 {

@@ -51,12 +51,12 @@ int		list_del_elem(t_list *front_ptr, int fd)
   t_list	previous;
 
   previous = *front_ptr;
-  if (previous->fd == fd)
+  if (previous->number == fd)
     return list_del_elem_at_front(front_ptr);
   cpy = previous->next;
   while (cpy)
     {
-      if (cpy->fd == fd)
+      if (cpy->number == fd)
 	{
 	  if (cpy->next != NULL)
 	    {

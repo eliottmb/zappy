@@ -62,4 +62,5 @@ t_user          *create_node(int x, int y, int number);
 int		list_add_elem_at_back(t_list *front_ptr, int x, int y, int number);
 void		add_pos(t_bmp *, char **buffer);
 void	        add_player(t_bmp *, char **buffer);
+int		list_del_elem(t_list*, int);
 #endif

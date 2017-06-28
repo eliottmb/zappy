@@ -249,14 +249,15 @@ void	check(t_bmp   *pic, char **buffer)
   if(my_strcmp(buffer[0], "bct", '\0') == 0)
     init_map(pic, buffer);
 if(my_strcmp(buffer[0], "pnw", '\0') == 0)
-{
 add_player(pic, buffer);
-
-
+if(my_strcmp(buffer[0], "pdi", '\0') == 0)
+{
+list_del_elem(&pic->inf.us, atoi(buffer[1]));
+ 
 }
-  if(my_strcmp(buffer[0], "ppo", '\0') == 0)
+ if(my_strcmp(buffer[0], "ppo", '\0') == 0)
     {
-//      add_pos(pic, buffer);
+      add_pos(pic, buffer);
       //printf("CCCC : %d\n", pic->inf.us->x);
     }
 
@@ -320,6 +321,7 @@ int graph(int fd)
 {
   t_bmp	pic;
 
+printf("OK\n");
 dprintf(fd, "GRAPHIC\n");
 pic.x = 0;
 pic.y = 0;
@@ -338,7 +340,7 @@ pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 0, 0, 0));
 splitRect(980, 980, pic.ecran, 10, 10);
 receive(&pic, fd);
-printf("%d %d\n", pic.x, pic.y);     
+//printf("%d %d\n", pic.x, pic.y);     
  show_char(pic.x, pic.y, &pic);
      show_rss(pic.x,pic.y, &pic);
       SDL_Flip(pic.ecran);
