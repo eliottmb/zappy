@@ -256,7 +256,7 @@ add_player(pic, buffer);
 }
   if(my_strcmp(buffer[0], "ppo", '\0') == 0)
     {
-      add_pos(pic, buffer);
+//      add_pos(pic, buffer);
       //printf("CCCC : %d\n", pic->inf.us->x);
     }
 
