@@ -5,9 +5,8 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 20:25:45 2017 Albatard
-** Last update Mon Jun 19 20:25:53 2017 Albatard
+** Last update Wed Jun 28 16:33:51 2017 Albatard
 */
-
 
 #include <stdlib.h>
 #include <unistd.h>
