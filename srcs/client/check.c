@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Wed Jun 28 16:29:39 2017 Albatard
+** Last update Wed Jun 28 16:42:30 2017 Albatard
 */
 
 #include "../../include/client/client.h"
@@ -76,7 +76,7 @@ int     check_args(int ac, char **av)
 {
   int	i;
 
-  i = 0;
+  i = 1;
   while (av[i] != '\0')
     {
       if (strcmp(av[i], "-p") != 0 && check_number(av[i+1]) == 1)

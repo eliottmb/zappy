@@ -5,11 +5,12 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 23 15:28:08 2017 Albatard
-** Last update Wed Jun 28 16:07:19 2017 Romain HUET
+** Last update Wed Jun 28 16:39:21 2017 Albatard
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "client.h"
 
 void	nut3(char *str)
 {
