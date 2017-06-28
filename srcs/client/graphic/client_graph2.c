@@ -30,10 +30,21 @@ i++;
 
 void    add_pos(t_bmp *struc, char **buffer)
 {
-if(struc->inf.us == NULL)
-struc->inf.us = create_node(my_getnbr(buffer[2]), my_getnbr(buffer[3]), my_getnbr(buffer[1]));
-else
-list_add_elem_at_back(&struc->inf.us, my_getnbr(buffer[2]), my_getnbr(buffer[3]), my_getnbr(buffer[1]));
+t_list  cpy;
+cpy = struc->inf.us;
+
+while(cpy)
+{
+//if(cpy->number == buffer[1])
+{
+
+
+
+}
+
+}
+
+
 }
 
 void    add_player(t_bmp *struc, char **buffer)

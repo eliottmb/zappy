@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <SDL/SDL.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 
 void lpause()
 {
@@ -198,12 +200,14 @@ cpy = pic->inf.us;
   while(cpy)
     {
       //if (pic->inf.us->x > x - 1 && pic->inf.us->x < x + 10)
-      printf("ok\n");
-      pic->postoad.x = 197 + (cpy->x - 1) * 98 + 150;
-      pic->postoad.y = 30 + cpy->y * 98 + 33;
+      if (cpy->x > 0 + x - 1 && cpy->x < x + 10 && cpy->y > 0 + y - 1 && cpy->y < y + 10)
+{
+      pic->postoad.x = 197 + (cpy->x - 1 - x) * 98 + 150;
+      pic->postoad.y = 30 + (cpy->y - y) * 98 + 33;
       cpy = cpy->next;
       SDL_BlitSurface(pic->toad, NULL, pic->ecran, &pic->postoad);
-    }
+} 
+   }
 
 }
 
@@ -222,7 +226,6 @@ void	show_rss(int  x, int y, t_bmp *pic)
         {       
 	  while(n != 7)
 	    {
-
 	      if (pic->maprss[i][a].rss[n] > 0)
 		{
 		  display_rss(i - x, a - y, n, pic);
@@ -236,7 +239,6 @@ void	show_rss(int  x, int y, t_bmp *pic)
       a = y;
       i++;
     }
-
 }
 
 
@@ -246,11 +248,18 @@ void	check(t_bmp   *pic, char **buffer)
     init_case(pic, buffer);
   if(my_strcmp(buffer[0], "bct", '\0') == 0)
     init_map(pic, buffer);
+if(my_strcmp(buffer[0], "pnw", '\0') == 0)
+{
+add_player(pic, buffer);
+
+
+}
   if(my_strcmp(buffer[0], "ppo", '\0') == 0)
     {
       add_pos(pic, buffer);
       //printf("CCCC : %d\n", pic->inf.us->x);
     }
+
 }
 
 void	event(t_bmp *stru)
@@ -258,27 +267,26 @@ void	event(t_bmp *stru)
 SDL_Event event;
 
 SDL_PollEvent(&event);
-if(event.key.keysym.sym == SDLK_UP)
+if(event.key.keysym.sym == SDLK_UP && stru->y > 0)
 stru->y--;
-if(event.key.keysym.sym == SDLK_DOWN)
+if(event.key.keysym.sym == SDLK_DOWN && stru->y < 29)
 stru->y++;
-if(event.key.keysym.sym == SDLK_RIGHT)
+if(event.key.keysym.sym == SDLK_RIGHT && stru->x < 29)
 stru->x++;
-if(event.key.keysym.sym == SDLK_LEFT)
+if(event.key.keysym.sym == SDLK_LEFT && stru->x > 0)
 stru->x--;
-
-
 }
 
 void    receive(t_bmp *stru, int     fd)
 {
-  char    buffer[1000];
+  char    *buffer;
 char	buff[1]; 
   char	**stock;
   int i;
   int nb;
 
-  i = 0;
+buffer = malloc(sizeof(char) * 1000);
+  i = 1;
   nb = 0;
 event(stru);
   while(nb != 100)
@@ -286,27 +294,35 @@ event(stru);
       buffer[nb] = '\0';
       nb++;
     }
+if (recv(fd, buff, 1, MSG_DONTWAIT) >= 0)
+    {
+buffer[0] = buff[0];
 while(43)
 {
-  if (read(fd, buff, 1) >= 0)
-    {
+printf("oka\n");
+recv(fd, buff, 1, MSG_DONTWAIT);
 buffer[i] = buff[0];
 if(buff[0] == '\n')
 break;
-    }
-  i++;
-}
+i++;
+   }
+
+
 buffer[i] = '\0';
 stock = my_strtowordtab(buffer, ' ');
       printf("BUFFER : %s\n", buffer);
    check(stru, stock);
-} 
+}
+}
+ 
 
 int graph(int fd)
 {
   t_bmp	pic;
 
 dprintf(fd, "GRAPHIC\n");
+pic.x = 0;
+pic.y = 0;
   pic.inf.us = NULL;
   receive(&pic, fd);
   init_sdl(&pic);
@@ -322,7 +338,8 @@ pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 0, 0, 0));
 splitRect(980, 980, pic.ecran, 10, 10);
 receive(&pic, fd);
-      show_char(pic.x, pic.y, &pic);
+printf("%d %d\n", pic.x, pic.y);     
+ show_char(pic.x, pic.y, &pic);
      show_rss(pic.x,pic.y, &pic);
       SDL_Flip(pic.ecran);
     }

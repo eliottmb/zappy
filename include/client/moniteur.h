@@ -50,7 +50,7 @@ t_info		inf;
 }		t_bmp;
 
 
-char		*my_strtowordtab(char *, char);
+char		**my_strtowordtab(char *, char);
 void		init_case(t_bmp *, char **buffer);
 int		my_strcmp(char *, char *, char);
 int		my_getnbr(char *);
