@@ -5,10 +5,10 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Wed Jun 28 15:15:01 2017 Albatard
+** Last update Wed Jun 28 16:02:21 2017 Romain HUET
 */
 
-#include "client.h"
+#include "../../include/client/client.h"
 
 void                     check_cmd(int fd, client_info *info)
 {

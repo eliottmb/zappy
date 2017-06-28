@@ -1,8 +1,8 @@
 #include <stdlib.h>
-#include "moniteur.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <SDL/SDL.h>
+#include "../../../include/client/moniteur.h"
 
 void	init_case(t_bmp	*struc, char **buffer)
 {

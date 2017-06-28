@@ -5,12 +5,12 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Wed May 31 16:34:23 2017 Albatard
-** Last update Wed Jun  7 17:42:45 2017 Albatard
+** Last update Wed Jun 28 16:04:45 2017 Romain HUET
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "moniteur.h"
+#include "../../../include/client/moniteur.h"
 
 t_user		*create_node(int x, int y, int number)
 {

@@ -5,10 +5,10 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 17:34:27 2017 Albatard
-** Last update Wed Jun 28 15:15:28 2017 Albatard
+** Last update Wed Jun 28 16:01:56 2017 Romain HUET
 */
 
-#include "client.h"
+#include "../../include/client/client.h"
 
 void	look(int fd)
 {
