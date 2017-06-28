@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Wed Jun 28 16:02:47 2017 Romain HUET
+** Last update Wed Jun 28 16:44:13 2017 Albatard
 */
 
 #include "../../include/client/client.h"
@@ -54,9 +54,9 @@ int			main(int ac, char **av)
   int			port;
   client_info		info;
 
-  if (my_error(ac, av) == 1)
+  /*  if (my_error(ac, av) == 1)
     return 1;
-  else
+    else*/
     add_info(&info, av);
   if (sock(pe, s_in, &info, fd, av[2]) == 1)
     return 1;
