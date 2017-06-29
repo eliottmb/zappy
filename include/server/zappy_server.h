@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Thu Jun 29 17:21:41 2017 Romain HUET
+** Last update Thu Jun 29 19:12:40 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -149,6 +149,7 @@ typedef struct  s_player
   int           lvl;
   bool          incantating;
   bool          broadcasting;
+  
   /* char		*read_buf; */
   /* char		*write_buf; */
 }               t_player;
@@ -194,10 +195,13 @@ int	is_separator(char c);
 int	count_words(char *s);
 char	*get_nth_word(char *s, int n);
 
+int	is_team(char *s, t_server *server);
+void	affect_team(char *buf, t_player *player, t_server *server);
+
 void	player_forward(void *player, void *server, int no);
 void	player_turn_right(void *player, void *server, int no);
 void	player_turn_left(void *player, void *server, int no);
-void    player_build(void *player, void *server, int no);
+void	player_inventory(void *player, void *server, int no);
 void    player_spawn_egg(void *player, void *server, int no);
 void	connect_nbr(void *player, void *server, int no);
 void	player_look(void *player, void *server, int no);
@@ -215,7 +219,7 @@ int     team_name(int fd, void *args);
 int     new_player_connection(int fd, void *player);
 int     player_position(int fd, void *player);
 int     player_level(int fd, void *player);
-
+void    player_build(void *player, void *server);
 int     server_time(int fd, void *args);
 int     server_game_win(int fd, void *str);
 int     server_message(int fd, void *str);

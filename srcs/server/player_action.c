@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Thu Jun 22 16:49:51 2017 eliott m-barali
-** Last update Thu Jun 29 17:17:19 2017 Romain HUET
+** Last update Thu Jun 29 19:13:49 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -16,6 +16,7 @@ void	player_expell(void *player, void *server, int no)
   t_server	*serv;
 
   no = no;
+  printf("On est dans player expell\n");
   tmp = (t_player *)player;
   serv = (t_server *)server;
   dprintf(serv->graph_cli_fd, "pex #%d\n", tmp->n);
@@ -66,6 +67,7 @@ void	player_spawn_egg(void *player, void *server, int no)
   tmp = (t_player *)player;
   serv = (t_server *)server;
   no = no;
+  printf("On est dans player spawn_egg\n");
   dprintf(serv->graph_cli_fd, "pfk #%d\n", tmp->n);
 }
 
@@ -76,6 +78,7 @@ void	player_take_ress(void *player, void *server, int id)
   
   tmp = (t_player *)player;
   serv = (t_server *)server;
+  printf("On est dans player take res\n");
   if (serv->map[tmp->x][tmp->y].res[id] > 0)
     {
       tmp->i[id]++;
@@ -87,6 +90,8 @@ void	player_take_ress(void *player, void *server, int id)
       /* msg_timer(tmp->fd, serv->f, 7, buff); // */
       
       dprintf(serv->graph_cli_fd, "pgt #%d %d\n", tmp->n, id);
+      player_build(tmp, serv);
+      one_tile_content(serv->graph_cli_fd, &serv->map[tmp->x][tmp->y]);
       dprintf(tmp->fd, "ok\n");
     }
   else
@@ -103,11 +108,14 @@ void	player_drop_ress(void *player, void *server, int id)
   
   tmp = (t_player *)player;
   serv = (t_server *)server;
+  printf("On est dans player set res\n");
   if (tmp->i[id] > 0)
     {
       tmp->i[id]--;
       serv->map[tmp->x][tmp->y].res[id]++;
       dprintf(serv->graph_cli_fd, "pdr #%d %d\n", tmp->n, id);
+      player_build(tmp, serv);
+      one_tile_content(serv->graph_cli_fd, &serv->map[tmp->x][tmp->y]);
       dprintf(tmp->fd, "ok\n");
     }
   else
