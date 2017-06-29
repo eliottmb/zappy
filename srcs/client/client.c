@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Thu Jun 29 17:15:52 2017 Albatard
+** Last update Thu Jun 29 17:46:05 2017 Albatard
 */
 
 #include "client.h"
@@ -16,7 +16,7 @@ void			add_info(client_info *info, char **av)
 
   i = 1;
   info->name = strdup("Team1");
-  info->ip = strdup("127.0.0.1");
+  info->ip = strdup("0");
   while (av[i])
     {
       if (strcmp(av[i], "-p") == 0)

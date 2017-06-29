@@ -54,8 +54,8 @@ AI_SRCS		= 	srcs/client/call.c			\
 			srcs/client/graphic/list.c		\
 			srcs/client/graphic/my_getnbr.c		\
 			srcs/client/graphic/my_strcmp.c		\
-			srcs/client/graphic/my_strtowordtab.c
-
+			srcs/client/graphic/my_strtowordtab.c	\
+			srcs/client/graphic/rect.c		
 SERVER_OBJS	= $(SERVER_SRCS:.c=.o)
 
 AI_OBJS		= $(AI_SRCS:.c=.o)

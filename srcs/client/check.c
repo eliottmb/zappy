@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Thu Jun 29 17:16:41 2017 Albatard
+** Last update Thu Jun 29 18:13:40 2017 Albatard
 */
 
 #include "client.h"
@@ -25,8 +25,9 @@ void                     check_cmd(int fd, client_info *info)
 	{
 	  if (strcmp(buffer, "WELCOME\n") == 0)
 	    {
-	      if (graph(fd) == -1)
+	      if (graph(fd) == 1)
 		{
+		  printf("IA\n");
 		  dprintf(fd, "%s\n", info->name);
 		  call(fd);
 		}
