@@ -311,7 +311,7 @@ i++;
 buffer[i] = '\0';
 stock = my_strtowordtab(buffer, ' ');
       printf("BUFFER : %s\n", buffer);
-if ((my_strcmp(stock[i], "ko", '\0')) == 0)
+if ((my_strcmp(stock[0], "ko", '\0')) == 0)
 return(-1);
    check(stru, stock);
 return(0);

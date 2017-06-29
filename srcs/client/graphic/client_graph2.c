@@ -6,10 +6,10 @@
 
 /*t_func  g_cmds[NB_CMDS] =
  {
-    {"Forward", &player_forward},
-    {"Right", &player_turn_right},
-    {"Left", &player_turn_left},
-    {"Look", &player_look},
+    {"msz", &init_case},
+    {"bct", &init_map},
+    {"pnw", &add_player},
+    {"pdi", &list_del},
     {"Inventory", &player_build},
     {"Connect_nbr", &connect_nbr},
     {"Fork", &player_spawn_egg},
