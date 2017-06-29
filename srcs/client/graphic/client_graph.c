@@ -281,13 +281,13 @@ stru->x--;
 
 int    receive(t_bmp *stru, int     fd)
 {
-  char    *buffer;
+  char    buffer[100];
 char	buff[1]; 
   char	**stock;
   int i;
   int nb;
 
-buffer = malloc(sizeof(char) * 1000);
+//buffer = malloc(sizeof(char) * 1000);
   i = 1;
   nb = 0;
 event(stru);
@@ -299,7 +299,7 @@ event(stru);
 if (recv(fd, buff, 1, MSG_DONTWAIT) >= 0)
     {
 buffer[0] = buff[0];
-while(43)
+while(i != 100)
 {
 printf("oka\n");
 recv(fd, buff, 1, MSG_DONTWAIT);
@@ -311,8 +311,8 @@ i++;
 buffer[i] = '\0';
 stock = my_strtowordtab(buffer, ' ');
       printf("BUFFER : %s\n", buffer);
-if ((my_strcmp(stock[0], "ko", '\0')) == 0)
-return(-1);
+if ((my_strcmp(buffer, "ko", '\0')) == 0)
+return(1);
    check(stru, stock);
 return(0);
 }
@@ -330,7 +330,7 @@ dprintf(fd, "GRAPHIC\n");
 pic.x = 0;
 pic.y = 0;
   pic.inf.us = NULL;
-if(receive(&pic, fd) == -1)
+if(receive(&pic, fd) == 1)
 return(-1);
   init_sdl(&pic);
   SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);

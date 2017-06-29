@@ -4,20 +4,14 @@
 #include <SDL/SDL.h>
 #include "../../../include/client/moniteur.h"
 
-/*t_func  g_cmds[NB_CMDS] =
+t_func  g_cmd[4] =
  {
     {"msz", &init_case},
     {"bct", &init_map},
     {"pnw", &add_player},
-    {"pdi", &list_del},
-    {"Inventory", &player_build},
-    {"Connect_nbr", &connect_nbr},
-    {"Fork", &player_spawn_egg},
-    {"Eject", &player_expell},
-    {"Take", &player_take_ress},
-    {"Set", &player_drop_ress},
-  };
-*/
+//    {"pdi", &list_del_elem},
+ };
+
 
 void	init_case(t_bmp	*struc, char **buffer)
 {

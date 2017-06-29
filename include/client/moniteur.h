@@ -49,6 +49,11 @@ t_maprss        maprss[30][30];
 t_info		inf;
 }		t_bmp;
 
+typedef struct  s_func
+{
+  char          *name;
+  void          (*ptrfunc)(t_bmp *, char **buffer);
+}               t_func;
 
 char		**my_strtowordtab(char *, char);
 void		init_case(t_bmp *, char **buffer);
