@@ -5,11 +5,11 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:46:38 2017 eliott m-barali
-** Last update Wed Jun 28 19:48:56 2017 eliott m-barali
+** Last update Thu Jun 29 18:02:38 2017 eliott m-barali
 */
 
-#include "../../include/ai/zappy_ai.h"
-#include "../../include/ai/incant_macro.h"
+#include "zappy_ai.h"
+#include "incant_macro.h"
 
 const int	one[] = {0, 1, 0, 0, 0, 0, 0, 1};
 const int	two[] = {0, 1, 1, 1, 0, 0, 0, 2};
@@ -26,12 +26,12 @@ int		*init_tab()
   if ((t = malloc(sizeof(int) * 7)) == NULL)
     return (NULL);
   t[0] = 10;
-  t[1] = 3;
-  t[2] = 5;
+  t[1] = 1;
+  t[2] = 1;
   t[3] = 1;
-  t[4] = 7;
-  t[5] = 2;
-  t[6] = 1;
+  t[4] = 0;
+  t[5] = 0;
+  t[6] = 0;
   return (t);
 }
 

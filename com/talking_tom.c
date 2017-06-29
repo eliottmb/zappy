@@ -5,11 +5,13 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Tue Jun 27 20:03:49 2017 eliott m-barali
-** Last update Wed Jun 28 19:48:56 2017 eliott m-barali
+** Last update Thu Jun 29 17:21:00 2017 eliott m-barali
 */
 
-#include "../../include/ai/zappy_ai.h"
-#include "../../include/ai/incant_macro.h"
+#include "zappy_ai.h"
+#include "incant_macro.h"
+
+char    *get_nth_word(char *s, int n);
 
 void		got_thy(t_ai *ai)
 {
@@ -35,7 +37,7 @@ int		got_broadcast(t_ai *ai, char *str)
   else if (strcpy(get_nth_word(str, 2), "-") != 0)
     receive_ask_player(str, ai);
   else if (strcpy(get_nth_word(str, 2), "_") != 0)
-    receive_answer_level(str, ai);
+    receive_answer_lvl(str, ai);
   else if (strcpy(get_nth_word(str, 2), "*") != 0)
     receive_omw(str, ai);
   else

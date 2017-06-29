@@ -5,8 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Tue Jun 27 19:29:01 2017 eliott m-barali
-** Last update Wed Jun 28 19:48:57 2017 eliott m-barali
+** Last update Thu Jun 29 17:14:38 2017 eliott m-barali
 */
+
+#include "zappy_ai.h"
 
 void		ask_lvl(t_ai *ai)
 {
@@ -31,5 +33,5 @@ void		answer_lvl(t_ai *ai)
 
 void		o_m_w(t_ai *ai)
 {
-    dprintf(ai->fd, "%s * %d %d %d %d %d %d %d\n", ai->team, ress[0], ress[1], ress[2], ress[3], ress[4], ress[5], ress[6]);
+  dprintf(ai->fd, "%s * %d %d %d %d %d %d %d\n", ai->team, ai->i[0], ai->i[1], ai->i[2], ai->i[3], ai->i[4], ai->i[5], ai->i[6]);
 }

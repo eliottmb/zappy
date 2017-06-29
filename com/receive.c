@@ -5,8 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:36:07 2017 eliott m-barali
-** Last update Wed Jun 28 19:48:58 2017 eliott m-barali
+** Last update Thu Jun 29 16:57:41 2017 eliott m-barali
 */
+
+#include "zappy_ai.h"
 
 int		receive_got_thy(t_ai *ai)
 {
