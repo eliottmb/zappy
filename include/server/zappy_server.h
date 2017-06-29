@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Thu Jun 29 11:57:16 2017 Romain HUET
+** Last update Thu Jun 29 16:35:55 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -22,6 +22,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <time.h>
+# include <signal.h>
 
 /*
 ** ARGUMENTS
@@ -220,5 +221,16 @@ int     server_game_win(int fd, void *str);
 int     server_message(int fd, void *str);
 int     server_unknown_command(int fd, void *str);
 int     server_bad_param(int fd, void *str);
+
+/*
+** SIGNAUX
+*/
+
+typedef struct	s_serv_msg
+{
+  int		player_fd;
+  char		*msg;
+}		t_serv_msg;
+
 
 #endif /* !SERV_H */

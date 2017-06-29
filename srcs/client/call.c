@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 17:34:27 2017 Albatard
-** Last update Wed Jun 28 16:01:56 2017 Romain HUET
+** Last update Thu Jun 29 16:31:05 2017 Romain HUET
 */
 
 #include "../../include/client/client.h"
@@ -47,12 +47,12 @@ void	eject(int fd)
 
 void	take_object(int fd)
 {
-  dprintf(fd, "Take object\n");
+  dprintf(fd, "Take 0\n");
 }
 
 void	set_object(int fd)
 {
-  dprintf(fd, "Set object\n");
+  dprintf(fd, "Set 0\n");
 }
 
 void	incantation(int fd)

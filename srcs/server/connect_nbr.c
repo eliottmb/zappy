@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Fri Jun 23 17:46:38 2017 Romain HUET
-** Last update Wed Jun 28 19:45:09 2017 Romain HUET
+** Last update Thu Jun 29 16:49:44 2017 Romain HUET
 */
 
 #include "../../include/server/zappy_server.h"
@@ -17,6 +17,7 @@ void	connect_nbr(void *player, void *server, int no)
   int		i;
 
   i = 0;
+  no = no;
   p = (t_player *)player;
   serv = (t_server *)server;
   while (i < serv->nb_of_teams && strcmp(serv->teams[i].name, p->team))

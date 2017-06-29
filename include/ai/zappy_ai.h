@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:40 2017 Romain HUET
-** Last update Wed Jun 28 15:15:18 2017 eliott m-barali
+** Last update Thu Jun 29 15:19:00 2017 Romain HUET
 */
 
 #ifndef AI_H
@@ -20,11 +20,12 @@ typedef struct	s_ai
   int		x_max;
   int		y_max;
   int		*i;	// inventaire
+  int		**cdv;  // champs de vision, penser à le realloc selon le niveau de l'ia !
   char		*team;
   int		lvl;
   bool		incantating;
   bool		broadcasting;
   bool		got_thy;
-};		t_ai;
+}		t_ai;
 
 #endif /* !AI_H */

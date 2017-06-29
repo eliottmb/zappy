@@ -11,9 +11,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS_SERV	= -W -Wextra -Wall -I./include/server/
-
-CFLAGS_AI	= -W -Wextra -Wall -I./include/client/ `sdl-config --libs --clfags`
+CFLAGS	=	 -W -Wextra -Wall -I./include/client/ -I./include/server/
 
 SERVER		= zappy_server
 
@@ -44,6 +42,7 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 		  	srcs/server/get_nth_word.c	\
 		  	srcs/server/gclient_talking.c	\
 		  	srcs/server/connect_nbr.c	\
+			srcs/server/sighandling.c
 
 
 
@@ -64,10 +63,10 @@ AI_OBJS		= $(AI_SRCS:.c=.o)
 all: server ai
 
 server: $(SERVER_OBJS)
-	$(CC) $(CFLAGS_SERV) -o $(SERVER) $(SERVER_OBJS)
+	$(CC) -o $(SERVER) $(SERVER_OBJS) -lrt
 
 ai: $(AI_OBJS)
-	$(CC) $(CFLAGS_AI) -o $(AI) $(AI_OBJS)
+	$(CC) -o $(AI) $(AI_OBJS) `sdl-config --libs --clfags`
 
 clean:
 	$(RM) $(AI_OBJS) $(SERVER_OBJS) srcs/ai/*~ srcs/server/*~ include/ai/*~ include/server/*~ *~

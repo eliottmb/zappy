@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Thu Jun 29 11:57:57 2017 Romain HUET
+** Last update Thu Jun 29 16:55:26 2017 Romain HUET
 */
 
 #include "../../include/server/zappy_server.h"
@@ -58,8 +58,7 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
       dprintf(player_src->fd, "ko\n");
       return (0);
     }
-  while (!cmd)
-    cmd = strdup(get_nth_word(s, 1));
+  cmd = strdup(get_nth_word(s, 1));
   cmd_args = get_cmd_args(s);
   while (i < NB_CMDS)
     {
@@ -67,7 +66,7 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
   	{
   	  player_src = player_src;
   	  server = server;
-  	  /* g_cmds[i].ptrfunc(server, player_src, 0); */
+  	  g_cmds[i].ptrfunc(server, player_src, 0);
   	  printf("commande %s bien reçue !\nSes arguments :", cmd);
   	  for (i = 0; cmd_args[i] != NULL; i++)
   	    printf("%s\t", cmd_args[i]);
@@ -90,12 +89,16 @@ int	is_team(char *s, t_server *server)
       i++;
     }
   i = 0;
-  while (server->teams[i].name)
+  while (i < server->nb_of_teams)
     {
       if (!strcmp(buf, server->teams[i].name))
-	return (1);
+	{
+	  printf("NOM d'EQUIPE DETECTE : %s\n", buf);
+	  return (1);
+	}
       i++;
     }
+  printf("PAS DE NOM D'EQUIPE DETECTE\nbuf = %s\n", buf);
   return (0);
 }
 
@@ -109,6 +112,7 @@ void	affect_team(char *buf, t_player *player, t_server *server)
   if (i)
     buf[i - 1] = '\0';
   i = 0;
+  printf("on est dans affect team\n");
   while (server->teams[i].name)
     {
       if (!strcmp(buf, server->teams[i].name) && server->teams[i].room_left >= 1
@@ -132,15 +136,18 @@ void	read_data(t_player *players, int src, t_server *server)
   char		*buf;
   int		read_ret;
 
-  buf = NULL;
-  while (!buf)
-    buf = calloc(512, 1);
+  if ((buf = calloc(512, 1)) == NULL)
+    {
+      dprintf(players[src].fd, "ko\n");
+      return ;
+    }
   read_ret = read(players[src].fd, buf, 512);
   if (read_ret < 0)
     {
       printf("error on read\n");
       exit(-1);
     }
+  printf("dans read date : %s\n", buf);
   check_cmd(buf, &players[src], server);
   if (strcmp(buf, "GRAPHIC\n") == 0 && server->graph_cli_fd == -1 && players[src].team == NULL)
     set_graph_cli(&players[src], server);
