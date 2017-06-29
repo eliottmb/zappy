@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Wed Jun 28 19:42:17 2017 Albatard
+** Last update Thu Jun 29 14:57:46 2017 Albatard
 */
 
 #include "../../include/client/client.h"
@@ -26,15 +26,10 @@ void                     check_cmd(int fd, client_info *info)
 	{
 	  if (strcmp(buffer, "WELCOME\n") == 0)
 	    {
-	      graph(fd);
-	      if (read(fd, buffer, 1024) > 0)
+	      if (graph(fd) == -1)
 		{
-		  if (strcmp(buffer, "ko\n") == 0)
-		    {
-		      //// et si c'est ko, le prog de NICO reprend la main mode IA
-		      dprintf(fd, "%s\n", info->name);
-		      call(fd);
-		    }
+		  dprintf(fd, "%s\n", info->name);
+		  call(fd);
 		}
 	    }
 	}

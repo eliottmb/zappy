@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:01:57 2017 Albatard
-** Last update Wed Jun 28 17:10:19 2017 Romain HUET
+** Last update Thu Jun 29 15:31:37 2017 Albatard
 */
 
 #ifndef CLIENT_H_
@@ -21,6 +21,12 @@
 #include <unistd.h>
 #include <string.h>
 #include "moniteur.h"
+
+typedef struct	s_ptr
+{
+  char		*ndr;
+  int		i;
+}		t_ptr;
 
 typedef struct	s_client
 {

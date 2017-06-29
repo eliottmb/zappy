@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 23 15:28:08 2017 Albatard
-** Last update Wed Jun 28 16:39:21 2017 Albatard
+** Last update Thu Jun 29 15:33:25 2017 Albatard
 */
 
 #include <stdio.h>
@@ -32,14 +32,38 @@ void	nut2(char *str)
     nut3(str);  
 }
 
-void	nut(char *str)
+void	parse(char *str, t_ai *joueur)//struct joueur, dedans mettre un tableau de case visibles
 {
-  if (strcmp(str, "food") == 0)
-    ;
-  else if (strcmp(str, "thystame") == 0)
-    ;
-  else
-    nut2(str);  
+  t_ptr	index[7];
+  int	i;
+  int	j;
+
+  j = 0;
+  while (jouer.cdv[j])
+    {
+      i = 0;
+      while (index[i])
+	{
+	  if (strcmp(index[i].ndr, str) == 0)
+	    joueur.cdv[j][i]++;
+	  i++;
+	}
+      j++;
+    }
+}
+
+t_ptr	*fill(t_ptr *index)
+{
+  index[0]->ndr = stdup("Food");
+  index[0]->i = 0;
+  index[1]->ndr = strdup("Linemate");
+  index[1]->i = 0;
+  index[2]->ndr = strdup("Deraumere");
+  index[2]->i = 0;
+  index[3]->ndr = strdup("Sibur");
+  index[3]->i = 0;
+  index[3]->ndr = strdup("Sibur");
+  index[3]->i = 0;
 }
 
 void	parse_look(char *str)
