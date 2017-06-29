@@ -5,13 +5,16 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:40 2017 Romain HUET
-** Last update Wed Jun 28 19:48:55 2017 eliott m-barali
+** Last update Thu Jun 29 17:39:27 2017 eliott m-barali
 */
 
 #ifndef AI_H
 # define AI_H
 
-#include "../server/zappy_server.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "../include/server/zappy_server.h"
 
 /*
 ** STRUCT

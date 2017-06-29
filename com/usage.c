@@ -5,8 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:41:39 2017 eliott m-barali
-** Last update Wed Jun 28 19:48:57 2017 eliott m-barali
+** Last update Thu Jun 29 17:17:05 2017 eliott m-barali
 */
+
+#include "zappy_ai.h"
 
 void		show_ress(int *t)
 {
