@@ -4,13 +4,6 @@
 #include <SDL/SDL.h>
 #include "../../../include/client/moniteur.h"
 
-t_func  g_cmd[4] =
- {
-    {"msz", &init_case},
-    {"bct", &init_map},
-    {"pnw", &add_player},
-//    {"pdi", &list_del_elem},
- };
 
 
 void	init_case(t_bmp	*struc, char **buffer)

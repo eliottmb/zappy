@@ -7,6 +7,14 @@
 #include <string.h>
 #include <sys/socket.h>
 
+t_func  g_cmd[3] =
+ {
+    {"msz", &init_case},
+    {"bct", &init_map},
+    {"pnw", &add_player},
+//    {"pdi", &list_del_elem},
+ };
+
 void lpause()
 {
     int continuer = 1;
@@ -245,23 +253,38 @@ void	show_rss(int  x, int y, t_bmp *pic)
 
 void	check(t_bmp   *pic, char **buffer)
 {
-  if(my_strcmp(buffer[0], "msz", '\0') == 0)
+int	i;
+
+i = 0;
+while(i != 3)
+{
+ 
+if (my_strcmp(buffer[0], g_cmd[i].name, '\0') == 0)
+{
+g_cmd[i].ptrfunc(pic, buffer);
+}
+i++;
+}
+
+ /*if(my_strcmp(buffer[0], "msz", '\0') == 0)
     init_case(pic, buffer);
   if(my_strcmp(buffer[0], "bct", '\0') == 0)
     init_map(pic, buffer);
 if(my_strcmp(buffer[0], "pnw", '\0') == 0)
 add_player(pic, buffer);
+*/
+
 if(my_strcmp(buffer[0], "pdi", '\0') == 0)
+
 {
 list_del_elem(&pic->inf.us, atoi(buffer[1]));
  
 }
- if(my_strcmp(buffer[0], "ppo", '\0') == 0)
-    {
-      add_pos(pic, buffer);
+// if(my_strcmp(buffer[0], "ppo", '\0') == 0)
+    //{
+  //    add_pos(pic, buffer);
       //printf("CCCC : %d\n", pic->inf.us->x);
-    }
-
+    //}
 }
 
 void	event(t_bmp *stru)
@@ -310,7 +333,7 @@ i++;
    }
 buffer[i] = '\0';
 stock = my_strtowordtab(buffer, ' ');
-      printf("BUFFER : %s\n", buffer);
+      printf("BUFFER : %sAAAaA\n", buffer);
 if ((my_strcmp(buffer, "ko", '\0')) == 0)
 return(1);
    check(stru, stock);
@@ -331,7 +354,7 @@ pic.x = 0;
 pic.y = 0;
   pic.inf.us = NULL;
 if(receive(&pic, fd) == 1)
-return(-1);
+return(1);
   init_sdl(&pic);
   SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
 pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
