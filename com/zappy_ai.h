@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:40 2017 Romain HUET
-** Last update Thu Jun 29 17:39:27 2017 eliott m-barali
+** Last update Thu Jun 29 18:36:28 2017 eliott m-barali
 */
 
 #ifndef AI_H
@@ -48,18 +48,15 @@ void	help_client();
 ** TALK_TO_ME.C
 */
 
-void		ask_lvl(t_ai *ai);
 void		ask_ress(t_ai *ai, int *ress);
 void		ask_more_players(t_ai *ai, int i);
-void		answer_lvl(t_ai *ai);
 void		o_m_w(t_ai *ai);
+void		got_thy(t_ai *ai);
 
 /*
 ** TALKING_TOM.C
 */
 
-void		got_thy(t_ai *ai);
-int		receive_omw(char *str, t_ai *ai);
 int		got_broadcast(t_ai *ai, char *str);
 
 /*
@@ -67,10 +64,9 @@ int		got_broadcast(t_ai *ai, char *str);
 */
 
 int		receive_got_thy(t_ai *ai);
-int		receive_ask_level(t_ai *ai);
 int		receive_ask_ress(char *str, t_ai *ai);
 int		receive_ask_player(char *str, t_ai *ai);
-int		receive_answer_lvl(char *str, t_ai *ai);
+int		receive_omw(char *str, t_ai *ai);
 
 /*
 ** USAGE.C
