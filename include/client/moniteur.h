@@ -68,4 +68,6 @@ int		list_add_elem_at_back(t_list *front_ptr, int x, int y, int number);
 void		add_pos(t_bmp *, char **buffer);
 void	        add_player(t_bmp *, char **buffer);
 int		list_del_elem(t_list*, int);
+void drawEmptyRect2(SDL_Surface * surf,int posX, int posY, int width, int length);
+void     fullRect(int a, int i, SDL_Surface *ecran, int tx, int ty);
 #endif

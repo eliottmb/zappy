@@ -32,37 +32,34 @@ void lpause()
 
 void drawEmptyRect(SDL_Surface * surf,int posX, int posY, int width, int length)
 {
-	SDL_Rect ligneHaut;
-	ligneHaut.x = posX-1;
-	ligneHaut.y = posY-1;
-	ligneHaut.w = length;
-	ligneHaut.h = 1;
- 
-	SDL_FillRect(surf, &ligneHaut, SDL_MapRGB(surf->format, 255, 255, 0));
- 
-	SDL_Rect ligneDroite;
-	ligneDroite.x = posX+length-1;
-	ligneDroite.y = posY-1;
-	ligneDroite.w = 1;
-	ligneDroite.h = width;
- 
-	SDL_FillRect(surf, &ligneDroite, SDL_MapRGB(surf->format, 255, 255, 0));
- 
-	SDL_Rect ligneGauche;
-	ligneGauche.x = posX-1;
-	ligneGauche.y = posY-1;
-	ligneGauche.w = 1;
-	ligneGauche.h = width;
- 
-	SDL_FillRect(surf, &ligneGauche, SDL_MapRGB(surf->format, 255, 255, 0));
- 
-	SDL_Rect ligneBas;
-	ligneBas.x = posX-1;
-	ligneBas.y = posY+width-1;
-	ligneBas.w = length;
-	ligneBas.h = 1;
- 
-	SDL_FillRect(surf, &ligneBas, SDL_MapRGB(surf->format, 255, 255, 0));
+SDL_Rect ligneHaut;
+SDL_Rect ligneDroite;
+SDL_Rect ligneGauche;
+SDL_Rect ligneBas;
+
+ligneHaut.x = posX-1;
+ligneHaut.y = posY-1;
+ligneHaut.w = length;
+ligneHaut.h = 1; 
+SDL_FillRect(surf, &ligneHaut, SDL_MapRGB(surf->format, 255, 255, 0));
+
+ligneDroite.x = posX+length-1;
+ligneDroite.y = posY-1;
+ligneDroite.w = 1;
+ligneDroite.h = width;
+SDL_FillRect(surf, &ligneDroite, SDL_MapRGB(surf->format, 255, 255, 0));
+
+ligneGauche.x = posX-1;
+ligneGauche.y = posY-1;
+ligneGauche.w = 1;
+ligneGauche.h = width;
+SDL_FillRect(surf, &ligneGauche, SDL_MapRGB(surf->format, 255, 255, 0));
+
+ligneBas.x = posX-1;
+ligneBas.y = posY+width-1;
+ligneBas.w = length;
+ligneBas.h = 1;
+ SDL_FillRect(surf, &ligneBas, SDL_MapRGB(surf->format, 255, 255, 0));
 }
 
 void     splitRect(int a, int i, SDL_Surface *ecran, int tx, int ty)
@@ -325,7 +322,7 @@ buffer[0] = buff[0];
 while(i != 100)
 {
 printf("oka\n");
-recv(fd, buff, 1, MSG_DONTWAIT);
+if (recv(fd, buff, 1, MSG_DONTWAIT) >= 0)
 buffer[i] = buff[0];
 if(buff[0] == '\n')
 break;
@@ -334,9 +331,13 @@ i++;
 buffer[i] = '\0';
 stock = my_strtowordtab(buffer, ' ');
       printf("BUFFER : %sAAAaA\n", buffer);
-if ((my_strcmp(buffer, "ko", '\0')) == 0)
+printf("BUFFER : %sAAAaA\n", stock[0]);
+if (my_strcmp(stock[0], "ko", '\0') == 0)
+{
+printf("ça retourne\n");
 return(1);
-   check(stru, stock);
+} 
+  check(stru, stock);
 return(0);
 }
 }
@@ -346,6 +347,7 @@ int graph(int fd)
 {
 int	i;
 t_bmp	pic;
+SDL_Surface	*s;
 
 i = 0;
 printf("OK\n");
@@ -353,9 +355,13 @@ dprintf(fd, "GRAPHIC\n");
 pic.x = 0;
 pic.y = 0;
   pic.inf.us = NULL;
+
 if(receive(&pic, fd) == 1)
+{
+printf("ca passe pas\n");
 return(1);
-  init_sdl(&pic);
+} 
+ init_sdl(&pic);
   SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
 pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
   init_gemme(&pic);
@@ -364,10 +370,18 @@ pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
   SDL_Flip(pic.ecran); 
   SDL_FreeSurface(pic.trantor); 
  SDL_Flip(pic.ecran);
-  while(42)    {
-SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 0, 0, 0));
+  while(42)   {
+SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 240, 166, 166));
+//SDL_FillRect((s = SDL_CreateRGBSurface(197, 980, 980, 32, 0, 0, 0, 0)), NULL, SDL_MapRGB(s->format, 0, 0, 0));
+//splitRect(980, 980, pic.ecran, 10, 10);
+fullRect(980, 980, pic.ecran, 10, 10);
 splitRect(980, 980, pic.ecran, 10, 10);
-receive(&pic, fd);
+if(receive(&pic, fd) == 1)
+{
+SDL_Quit();
+return(1);
+printf("oki\n");
+}
 //printf("%d %d\n", pic.x, pic.y);     
  show_char(pic.x, pic.y, &pic);
      show_rss(pic.x,pic.y, &pic);
