@@ -5,10 +5,10 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Thu Jun 29 17:09:09 2017 Romain HUET
+** Last update Thu Jun 29 17:15:52 2017 Albatard
 */
 
-#include "../../include/client/client.h"
+#include "client.h"
 
 void			add_info(client_info *info, char **av)
 {
