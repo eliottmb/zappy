@@ -42,7 +42,8 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 		  	srcs/server/get_nth_word.c	\
 		  	srcs/server/gclient_talking.c	\
 		  	srcs/server/connect_nbr.c	\
-			srcs/server/sighandling.c
+			srcs/server/sighandling.c	\
+			srcs/server/broadcast.c
 
 
 
@@ -56,6 +57,7 @@ AI_SRCS		= 	srcs/client/call.c			\
 			srcs/client/graphic/my_strcmp.c		\
 			srcs/client/graphic/my_strtowordtab.c	\
 			srcs/client/graphic/rect.c		
+
 SERVER_OBJS	= $(SERVER_SRCS:.c=.o)
 
 AI_OBJS		= $(AI_SRCS:.c=.o)
