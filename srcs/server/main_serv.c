@@ -5,23 +5,23 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Wed Jun 28 19:57:39 2017 Romain HUET
+** Last update Thu Jun 29 11:57:57 2017 Romain HUET
 */
 
 #include "../../include/server/zappy_server.h"
 
 t_func	g_cmds[NB_CMDS] =
   {
-    {"Forward", &player_forward}, //OK
-    {"Right", &player_turn_right},     //OK
-    {"Left", &player_turn_left},    //OK
-    {"Look", &player_look},   //OK
-    {"Inventory", &player_build},  //OK
-    {"Connect_nbr", &connect_nbr},   //
-    /* {"Fork", &player_spawn_egg},          //OK */
-    /* {"Eject", &player_expell},    //OK */
-    /* {"Take", &player_take_ress},  //OK */
-    /* {"Set", &player_drop_ress},   //OK */
+    {"Forward", &player_forward},
+    {"Right", &player_turn_right},
+    {"Left", &player_turn_left},
+    {"Look", &player_look},
+    {"Inventory", &player_build},
+    {"Connect_nbr", &connect_nbr},
+    {"Fork", &player_spawn_egg},
+    {"Eject", &player_expell},
+    {"Take", &player_take_ress},
+    {"Set", &player_drop_ress},
   };
 
 char	**get_cmd_args(char *s)

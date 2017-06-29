@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Wed Jun 28 19:59:06 2017 Romain HUET
+** Last update Thu Jun 29 11:57:16 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -182,7 +182,7 @@ int		close_all(t_server *server, t_args *args, t_player *players);
 typedef struct	s_func
 {
   char		*name;
-  int		(*ptrfunc)(void *player, void *server, int i);
+  void		(*ptrfunc)(void *player, void *server, int i);
 }		t_func;
 
 /* extern t_func	*g_cmds; */
@@ -200,22 +200,20 @@ void    player_build(void *player, void *server, int no);
 void    player_spawn_egg(void *player, void *server, int no);
 void	connect_nbr(void *player, void *server, int no);
 void	player_look(void *player, void *server, int no);
+void	player_expell(void *player, void *server, int no);
+void	player_take_ress(void *player, void *server, int i);
+void	player_drop_ress(void *player, void *server, int i);
 
 // OK
-int	player_expell(void *player, void *server, int no);
+
 int	player_broadcast(void *player, void *server, char *str, int no);
 int	player_begin_incantation(void *player, void *server, int j);
 int	player_end_incantation(void *player, void *server, int r);
-int	player_take_ress(void *player, void *server, int i);
-int	player_drop_ress(void *player, void *server, int i);
 int	player_tragically_dies(void *player, void *server, int no);
-
 int     team_name(int fd, void *args);
 int     new_player_connection(int fd, void *player);
 int     player_position(int fd, void *player);
 int     player_level(int fd, void *player);
-
-/* int     player_tragically_die(int fd, void *player); */
 
 int     server_time(int fd, void *args);
 int     server_game_win(int fd, void *str);

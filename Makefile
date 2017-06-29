@@ -21,30 +21,31 @@ AI		= zappy_ai
 
 SERVER_SRCS	=	srcs/server/main_serv.c		\
 			srcs/server/help_serv.c		\
+		  	srcs/server/check_params.c	\
+		  	srcs/server/init_args.c		\
 		  	srcs/server/args_manager.c	\
 		  	srcs/server/args_getters.c	\
 		  	srcs/server/init_serv.c		\
-		  	srcs/server/init_args.c		\
-		  	srcs/server/check_params.c	\
-		  	srcs/server/utils.c		\
-		  	srcs/server/new_connection.c	\
-		  	srcs/server/server_loop.c	\
 		  	srcs/server/init_players.c	\
-		  	srcs/server/show_map.c		\
 		  	srcs/server/map.c		\
-		  	srcs/server/get_nth_word.c	\
-		  	srcs/server/gclient_talking.c	\
-		  	srcs/server/connect_nbr.c	\
-		  	srcs/server/settings.c		\
-		  	srcs/server/fd_settings.c	\
-		  	srcs/server/check_fd_sets.c	\
+	 	  	srcs/server/map_info.c		\
+		  	srcs/server/show_map.c		\
 		  	srcs/server/player_action.c	\
 		  	srcs/server/player_info.c	\
-	 	  	srcs/server/map_info.c		\
 		  	srcs/server/player_inv.c	\
 		  	srcs/server/player_look.c	\
 		  	srcs/server/player_move.c	\
-	  	  	srcs/server/player_action.c
+		  	srcs/server/utils.c		\
+		  	srcs/server/new_connection.c	\
+		  	srcs/server/settings.c		\
+		  	srcs/server/fd_settings.c	\
+		  	srcs/server/check_fd_sets.c	\
+		  	srcs/server/server_loop.c	\
+		  	srcs/server/get_nth_word.c	\
+		  	srcs/server/gclient_talking.c	\
+		  	srcs/server/connect_nbr.c	\
+
+
 
 AI_SRCS		= 	srcs/client/call.c			\
 			srcs/client/check.c			\
