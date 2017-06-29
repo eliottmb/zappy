@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Thu Jun 29 14:57:46 2017 Albatard
+** Last update Thu Jun 29 17:03:50 2017 Romain HUET
 */
 
 #include "../../include/client/client.h"
@@ -14,7 +14,6 @@ void                     check_cmd(int fd, client_info *info)
 {
   char			*buffer;
   int                   a;
-  char                  **tab;
 
   a = 0;
   while (42)
@@ -61,7 +60,7 @@ int     usage(int ac, char **av)
   return 0;
 }
 
-int     check_args(int ac, char **av)
+int     check_args(char **av)
 {
   int	i;
   int	ok;
@@ -84,12 +83,10 @@ int     check_args(int ac, char **av)
 	  return (1);
 	}
     }
-  if (ok == 0)
-    {
-      fprintf(stderr, "Bad argument(s), -help for more information\n");
-      return (1);
-    }
-  return (0);
+  if (ok != 0)
+    return (0);
+  fprintf(stderr, "Bad argument(s), -help for more information\n");
+  return (1);
 }
 
 int     my_error(int ac, char **av)
@@ -105,7 +102,7 @@ int     my_error(int ac, char **av)
 	  fprintf(stderr, "Bad number of arguments, -help for more information\n");
 	  return 1;
 	}
-      else if (check_args(ac, av) == 1)
+      else if (check_args(av) == 1)
 	return 1;
     }
   return 0;

@@ -5,12 +5,12 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:02:14 2017 Albatard
-** Last update Wed Jun 28 19:43:07 2017 Albatard
+** Last update Thu Jun 29 17:09:09 2017 Romain HUET
 */
 
 #include "../../include/client/client.h"
 
-void			add_info(client_info *info, char **av, int ac)
+void			add_info(client_info *info, char **av)
 {
   int			i;
 
@@ -62,13 +62,14 @@ int			main(int ac, char **av)
   struct protoent	*pe;
   int			fd;
   struct sockaddr_in	s_in;
-  int			port;
   client_info		info;
 
+  pe = NULL;
+  fd = 0;
   if (my_error(ac, av) == 1)
     return 1;
   else
-    add_info(&info, av, ac);
+    add_info(&info, av);
   if (sock(pe, s_in, &info, fd) == 1)
     return 1;
   if (close(fd) == -1)
