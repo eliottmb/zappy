@@ -5,10 +5,10 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 19:20:35 2017 Médéric Unissart
-** Last update Wed Jun 28 19:56:15 2017 Romain HUET
+** Last update Thu Jun 29 17:18:35 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 static void	fill_xytables(int *xytable)
 {

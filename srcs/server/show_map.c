@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 18:37:39 2017 Romain HUET
-** Last update Wed Jun 28 15:49:19 2017 Romain HUET
+** Last update Thu Jun 29 17:22:35 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 void            show_map(t_tile **map)
 {

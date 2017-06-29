@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:25:45 2017 Romain HUET
-** Last update Wed Jun 28 15:47:34 2017 Romain HUET
+** Last update Thu Jun 29 17:17:08 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 int		new_connection(t_server *server, t_player *players)
 {

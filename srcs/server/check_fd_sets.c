@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Wed Jun 28 12:40:32 2017 Romain HUET
-** Last update Wed Jun 28 15:45:29 2017 Romain HUET
+** Last update Thu Jun 29 17:14:05 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 void	check_writefds(fd_set *writefds, t_server *server, t_player *players)
 {

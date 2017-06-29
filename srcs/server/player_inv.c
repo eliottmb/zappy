@@ -5,10 +5,10 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:36:06 2017 Médéric Unissart
-** Last update Wed Jun 28 15:49:50 2017 Romain HUET
+** Last update Thu Jun 29 17:18:26 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 bool		player_take_item(t_player *player, t_tile **map, int item)
 {

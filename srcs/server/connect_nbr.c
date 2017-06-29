@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Fri Jun 23 17:46:38 2017 Romain HUET
-** Last update Thu Jun 29 16:49:44 2017 Romain HUET
+** Last update Thu Jun 29 17:14:25 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 void	connect_nbr(void *player, void *server, int no)
 {

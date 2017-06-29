@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 20:10:31 2017 Romain HUET
-** Last update Wed Jun 28 15:47:21 2017 Romain HUET
+** Last update Thu Jun 29 17:22:44 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 int	is_num(char *s)
 {

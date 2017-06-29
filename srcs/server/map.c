@@ -5,10 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Mon Jun 19 13:33:55 2017 eliott m-barali
-** Last update Wed Jun 28 15:48:44 2017 Romain HUET
+** Last update Thu Jun 29 17:16:48 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 static void	fill_map_lindersib(t_tile **map, int nb_tiles, int food)
 {

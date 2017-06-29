@@ -5,10 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:12:41 2017 eliott m-barali
-** Last update Wed Jun 28 15:50:18 2017 Romain HUET
+** Last update Thu Jun 29 17:16:56 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 int	map_size(int fd, void **map)
 {

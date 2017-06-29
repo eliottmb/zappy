@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:19:12 2017 Romain HUET
-** Last update Wed Jun 28 15:45:44 2017 Romain HUET
+** Last update Thu Jun 29 17:14:14 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 void	check_help(int ac, char **av)
 {

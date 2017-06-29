@@ -5,10 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:27:58 2017 Romain HUET
-** Last update Thu Jun 29 16:02:14 2017 Romain HUET
+** Last update Thu Jun 29 17:15:33 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 t_player        *init_players(t_player *players, t_args *args)
 {

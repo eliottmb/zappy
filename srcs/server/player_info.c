@@ -5,10 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:47:26 2017 eliott m-barali
-** Last update Thu Jun 29 16:48:11 2017 Romain HUET
+** Last update Thu Jun 29 17:18:18 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 int		team_name(int fd, void *server)
 {

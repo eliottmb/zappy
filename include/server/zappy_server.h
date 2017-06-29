@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Thu Jun 29 16:35:55 2017 Romain HUET
+** Last update Thu Jun 29 17:21:41 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -207,7 +207,7 @@ void	player_drop_ress(void *player, void *server, int i);
 
 // OK
 
-int	player_broadcast(void *player, void *server, char *str, int no);
+int	player_broadcast(t_player *player, t_server *server, char *str, int no);
 int	player_begin_incantation(void *player, void *server, int j);
 int	player_end_incantation(void *player, void *server, int r);
 int	player_tragically_dies(void *player, void *server, int no);
@@ -232,5 +232,11 @@ typedef struct	s_serv_msg
   char		*msg;
 }		t_serv_msg;
 
+void	sigusr_handling(int signum, siginfo_t *info, void *context);
+bool	init_sigact();
+bool	msg_timer(int player_fd,
+				  int frequence,
+				  int cmd_cycle,
+				  char *msg);
 
 #endif /* !SERV_H */

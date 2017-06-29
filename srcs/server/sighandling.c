@@ -5,10 +5,10 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 28 17:10:24 2017 Médéric Unissart
-** Last update Thu Jun 29 16:02:41 2017 Romain HUET
+** Last update Thu Jun 29 17:22:00 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 void		sigusr_handling(int signum, siginfo_t *info, void *context)
 {

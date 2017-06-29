@@ -5,31 +5,11 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Mon Jun 19 19:03:40 2017 Médéric Unissart
-** Last update Wed Jun 28 15:48:54 2017 Romain HUET
+** Last update Thu Jun 29 17:18:05 2017 Romain HUET
 */
 
-#include "../../include/server/player.h"
-
-t_player		*init_player(char *team, int x, int y)
-{
-  t_player		*player;
-  static int		id = 0;
-  int			i;
-
-  i = 0;
-  if (!(player = malloc(sizeof(player))))
-    return (NULL);
-  player->x = x;
-  player->y = y;
-  player->life = 1260;
-  player->dir = rand() % 4;
-  player->team = team;
-  player->id = id;
-  id = id + 1;
-  while (i != 7)
-    player->inventory[i++] = 0;
-  return (player);
-}
+#include "player.h"
+#include "zappy_server.h"
 
 t_egg			*new_egg(char *team, int x, int y)
 {

@@ -5,10 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Thu Jun 22 16:49:51 2017 eliott m-barali
-** Last update Thu Jun 29 16:47:56 2017 Romain HUET
+** Last update Thu Jun 29 17:17:19 2017 Romain HUET
 */
 
-#include "../../include/server/zappy_server.h"
+#include "zappy_server.h"
 
 void	player_expell(void *player, void *server, int no)
 {
