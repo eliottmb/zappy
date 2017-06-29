@@ -4,6 +4,21 @@
 #include <SDL/SDL.h>
 #include "../../../include/client/moniteur.h"
 
+/*t_func  g_cmds[NB_CMDS] =
+ {
+    {"Forward", &player_forward},
+    {"Right", &player_turn_right},
+    {"Left", &player_turn_left},
+    {"Look", &player_look},
+    {"Inventory", &player_build},
+    {"Connect_nbr", &connect_nbr},
+    {"Fork", &player_spawn_egg},
+    {"Eject", &player_expell},
+    {"Take", &player_take_ress},
+    {"Set", &player_drop_ress},
+  };
+*/
+
 void	init_case(t_bmp	*struc, char **buffer)
 {
 struc->inf.X = my_getnbr(buffer[1]);
@@ -45,7 +60,6 @@ cpy->y = atoi(buffer[3]);
 cpy = cpy->next;
 }
 }
-
 
 void    add_player(t_bmp *struc, char **buffer)
 {

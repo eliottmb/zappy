@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <SDL/SDL.h>
 #include <sys/types.h>
+#include <string.h>
 #include <sys/socket.h>
 
 void lpause()
@@ -278,7 +279,7 @@ if(event.key.keysym.sym == SDLK_LEFT && stru->x > 0)
 stru->x--;
 }
 
-void    receive(t_bmp *stru, int     fd)
+int    receive(t_bmp *stru, int     fd)
 {
   char    *buffer;
 char	buff[1]; 
@@ -307,26 +308,30 @@ if(buff[0] == '\n')
 break;
 i++;
    }
-
-
 buffer[i] = '\0';
 stock = my_strtowordtab(buffer, ' ');
       printf("BUFFER : %s\n", buffer);
+if ((my_strcmp(stock[i], "ko", '\0')) == 0)
+return(-1);
    check(stru, stock);
+return(0);
 }
 }
  
 
 int graph(int fd)
 {
-  t_bmp	pic;
+int	i;
+t_bmp	pic;
 
+i = 0;
 printf("OK\n");
 dprintf(fd, "GRAPHIC\n");
 pic.x = 0;
 pic.y = 0;
   pic.inf.us = NULL;
-  receive(&pic, fd);
+if(receive(&pic, fd) == -1)
+return(-1);
   init_sdl(&pic);
   SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
 pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
@@ -334,8 +339,8 @@ pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
   SDL_WM_SetCaption("Chargement d'images en SDL", NULL);
  splitRect(980, 980, pic.ecran, 10, 10);
   SDL_Flip(pic.ecran); 
-  SDL_FreeSurface(pic.trantor);
-  SDL_Flip(pic.ecran);
+  SDL_FreeSurface(pic.trantor); 
+ SDL_Flip(pic.ecran);
   while(42)    {
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 0, 0, 0));
 splitRect(980, 980, pic.ecran, 10, 10);
