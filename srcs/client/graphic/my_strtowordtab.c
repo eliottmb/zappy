@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue May 30 16:59:11 2017 Albatard
-** Last update Wed May 31 17:52:52 2017 Albatard
+** Last update Fri Jun 30 18:03:11 2017 Médéric Unissart
 */
 
 #include <stdlib.h>
@@ -55,6 +55,7 @@ int     my_count(char *str, int strcount, char sep)
       if (str[strcount] == '\0')
 	return (count);
     }
+  return (count);
 }
 
 char    **my_strtowordtab2(char *str, char **temp, char sep)
@@ -86,14 +87,11 @@ char    **my_strtowordtab2(char *str, char **temp, char sep)
 char    **my_strtowordtab(char *str, char sep)
 {
   char  **temp;
-  int	count;
 
-  count = 0;
   if (str == NULL)
     return (NULL);
   else
     {
-      count = my_strword(str, sep);
       if ((temp = malloc(sizeof(char*) * (my_strword(str, sep) + 1))) == NULL)
 	return (NULL);
       temp = my_strtowordtab2(str, temp, sep);
