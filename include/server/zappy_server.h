@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Fri Jun 30 17:35:58 2017 Romain HUET
+** Last update Fri Jun 30 19:27:45 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -190,6 +190,7 @@ typedef struct	s_func
 
 /* extern t_func	*g_cmds; */
 
+char	**cut_cmd(char *s);
 int	check_cmd(char *s, t_player *player_src, t_server *server);
 char	**get_cmd_args(char *s);
 int	is_separator(char c);

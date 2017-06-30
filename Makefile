@@ -44,8 +44,8 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 		  	srcs/server/connect_nbr.c	\
 			srcs/server/sighandling.c	\
 			srcs/server/broadcast.c		\
-			srcs/server/team_manager.c
-
+			srcs/server/team_manager.c	\
+			srcs/server/cut_cmd.c
 
 
 AI_SRCS		= 	srcs/client/call.c			\

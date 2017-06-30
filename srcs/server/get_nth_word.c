@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Wed May 31 16:35:33 2017 Romain HUET
-** Last update Thu Jun 29 17:15:01 2017 Romain HUET
+** Last update Fri Jun 30 18:54:32 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -49,6 +49,8 @@ char    *get_nth_word(char *s, int n)
   i = 0;
   j = 0;
   nb_sep = 0;
+  if (!s)
+    return (NULL);
   while (s[i] && nb_sep < n - 1)
     {
       if (is_separator(s[i]))

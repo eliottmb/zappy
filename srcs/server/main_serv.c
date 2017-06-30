@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Fri Jun 30 17:57:39 2017 Romain HUET
+** Last update Fri Jun 30 19:56:30 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -26,9 +26,11 @@ t_func	g_cmds[NB_CMDS] =
 
 int     res_to_int(char *ress)
 {
-  char	*res[7];
   int	i;
+  char	*res[7];
 
+  printf("ress dans restoint = %s\n", ress);
+  i = 0;
   res[0] = "food";
   res[1] = "linemate";
   res[2] = "deraumere";
@@ -36,7 +38,6 @@ int     res_to_int(char *ress)
   res[4] = "mendiane";
   res[5] = "phiras";
   res[6] = "thystame";
-  i = 0;
   while (i < 7)
     {
       if (!strcmp(ress, res[i]))
@@ -49,24 +50,32 @@ int     res_to_int(char *ress)
 int	check_cmd(char *s, t_player *player_src, t_server *server)
 {
   char	*cmd;
+  char	**cmds;
   int	i;
   int	id;
   char	*res;
+  int	ok;
 
   i = 0;
   id = 0;
+  ok = 0;
   cmd = NULL;
   printf("dans check cmd : s = %s\n", s);
   if ((player_src->team == NULL && strcmp(s, "GRAPHIC\n")) ||
       (!strcmp(s, "GRAPHIC\n") && server->graph_cli_fd != -1
        && !is_team(s, server)))
     {
+      printf("on renvoie ko\n");
       dprintf(player_src->fd, "ko\n");
       return (0);
     }
-  if (!strcmp(get_nth_word(s, 1), "Take") ||
-      !strcmp(get_nth_word(s, 1), "Set"))
+
+  printf("%d mots dans la commande\n", count_words(s));
+  
+  if ((!strcmp(get_nth_word(s, 1), "Take") ||
+       !strcmp(get_nth_word(s, 1), "Set")) && count_words(s) == 2)
     {
+      printf("piege 1\n");
       res = strdup(get_nth_word(s, 2));
       if ((id = res_to_int(res)) == -1)
 	{
@@ -74,15 +83,54 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
 	  return (0);
 	}
     }
-  cmd = strdup(get_nth_word(s, 1));
-  while (i < NB_CMDS)
+  
+  if ((cmds = cut_cmd(s)) == NULL)
     {
-      if (!strcmp(cmd, g_cmds[i].name))
+      printf("cut_cmd renvoie NULL\n");
+      cmd = strdup(get_nth_word(s, 1));
+      while (i < NB_CMDS)
 	{
-	  g_cmds[i].ptrfunc(player_src, server, id);
-	  return (1);
+	  if (!strcmp(cmd, g_cmds[i].name))
+	    {
+	      g_cmds[i].ptrfunc(player_src, server, id);
+	      return (1);
+	    }
+	  i++;
 	}
-      i++;
+    }
+  else
+    {
+      int	j = 0;
+      printf("cut_cmd a pas renvoyé NULL :)\n");
+      while (cmds[j])
+	{
+	  i = 0;
+	  printf("cmds[j] = %s\n", cmds[j]);
+	  if (!strcmp(get_nth_word(cmds[j], 1), "Take") ||
+	      !strcmp(get_nth_word(cmds[j], 1), "Set"))
+	    {
+	      res = strdup(get_nth_word(cmds[j], 2));
+	      printf("cmd TAKE or SET detected, id = %d\n", id);
+	      if ((id = res_to_int(res)) == -1)
+		{
+		  dprintf(player_src->fd, "ko\n");
+		  return (0);
+		}
+	    }
+	  while (i < NB_CMDS)
+	    {
+	      printf("on boucle sur le tableau de sous commandes\n");
+	      if (!strcmp(cmds[j], g_cmds[i].name))
+		{
+		  g_cmds[i].ptrfunc(player_src, server, id);
+		  ok = 1;
+		}
+	      i++;
+	    }
+	  j++;
+	}
+      if (ok)
+	return (1);
     }
   return (0);
 }
