@@ -5,19 +5,20 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:46:38 2017 eliott m-barali
-** Last update Fri Jun 30 19:48:41 2017 eliott m-barali
+** Last update Fri Jun 30 20:21:43 2017 eliott m-barali
 */
 
 #include "zappy_ai.h"
 #include "incant_macro.h"
 
-const int	one[] = {0, 1, 0, 0, 0, 0, 0, 1};
-const int	two[] = {0, 1, 1, 1, 0, 0, 0, 2};
-const int	three[] = {0, 2, 0, 1, 0, 2, 0, 2};
-const int	four[] = {0, 1, 1, 2, 0, 1, 0, 4};
-const int	five[] = {0, 1, 2, 1, 3, 0, 0, 4};
-const int	six[] = {0, 1, 2, 3, 0, 1, 0, 6};
-const int	seven[] = {0, 2, 2, 2, 2, 2, 1, 1};
+const int	ONE[] = {0, 1, 0, 0, 0, 0, 0, 1};
+const int	TWO[] = {0, 1, 1, 1, 0, 0, 0, 2};
+const int	THREE[] = {0, 2, 0, 1, 0, 2, 0, 2};
+const int	FOUR[] = {0, 1, 1, 2, 0, 1, 0, 4};
+const int	FIVE[] = {0, 1, 2, 1, 3, 0, 0, 4};
+const int	SIX[] = {0, 1, 2, 3, 0, 1, 0, 6};
+const int	SEVEN[] = {0, 2, 2, 2, 2, 2, 1, 1};
+const int	RESS_NEED[] = {0, 2, 2, 3, 3, 2, 1};
 
 int		*init_tab()
 {

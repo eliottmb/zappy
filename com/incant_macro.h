@@ -5,19 +5,20 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Tue Jun 27 20:09:33 2017 eliott m-barali
-** Last update Wed Jun 28 15:15:18 2017 eliott m-barali
+** Last update Fri Jun 30 20:22:06 2017 eliott m-barali
 */
 
 #ifndef __INCANT_MACRO_H__
  #define __INCANT_MACRO_H__
 
-extern const int	one[8];
-extern const int	two[8];
-extern const int	three[8];
-extern const int	four[8];
-extern const int	five[8];
-extern const int	six[8];
-extern const int	seven[8];
+extern const int	ONE[8];
+extern const int	TWO[8];
+extern const int	THREE[8];
+extern const int	FOUR[8];
+extern const int	FIVE[8];
+extern const int	SIX[8];
+extern const int	SEVEN[8];
+extern const int	RESS_NEED[7];
 
 #endif /* __INCANT_MACRO_H__ */
 
