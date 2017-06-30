@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 #include "../../../include/client/moniteur.h"
 
 
@@ -14,6 +15,23 @@ printf("%d %d\n", struc->inf.X, struc->inf.Y);
 }
 
 
+void	init_music(t_bmp *struc)
+{
+if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) //Initialisation de l'API Mixer
+
+   {
+
+      printf("%s", Mix_GetError());
+
+   }
+
+   Mix_Music *musique; //Création du pointeur de type Mix_Music
+
+   musique = Mix_LoadMUS("srcs/client/graphic/imgs/zelda.mp3"); //Chargement de la musique
+
+   Mix_PlayMusic(musique, -1); //Jouer infiniment la musique
+
+}
 void    init_map(t_bmp *struc, char **buffer)
 {
 int	x;

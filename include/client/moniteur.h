@@ -62,6 +62,7 @@ int		my_strcmp(char *, char *, char);
 int		my_getnbr(char *);
 void		init_map(t_bmp *struc, char **buffer);
 int		list_del_elem_at_front(t_list *front_ptr);
+void    init_music(t_bmp *struc);
 //void    show_char(int  x, int y, t_bmp *pic);
 int		graph(int);
 t_user          *create_node(int x, int y, int number, char *team);

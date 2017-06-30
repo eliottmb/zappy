@@ -330,7 +330,6 @@ return(0);
 }
 }
  
-
 int graph(int fd)
 {
 t_bmp	pic;
@@ -347,7 +346,8 @@ printf("ca passe pas\n");
 return(1);
 } 
  init_sdl(&pic);
-  SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
+init_music(&pic); 
+ SDL_BlitSurface(pic.imageDeFond, NULL, pic.ecran, &pic.positionFond);
 pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
   init_gemme(&pic);
   SDL_WM_SetCaption("Chargement d'images en SDL", NULL);
