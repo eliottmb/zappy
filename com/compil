@@ -1,2 +1,2 @@
-gcc incant_macro.h init.c main_ai.c receive.c talking_tom.c talk_to_me_jeffrey.c usage.c zappy_ai.h get_nth_word.c
+gcc incant_macro.h init.c main_ai.c receive.c talk.c usage.c zappy_ai.h get_nth_word.c
 

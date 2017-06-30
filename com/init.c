@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:46:38 2017 eliott m-barali
-** Last update Thu Jun 29 18:02:38 2017 eliott m-barali
+** Last update Fri Jun 30 19:48:41 2017 eliott m-barali
 */
 
 #include "zappy_ai.h"
@@ -42,6 +42,7 @@ int		init_ai(t_ai *ai, int x, int y, char *t)
   ai->lvl = 1;
   ai->y_max = y;
   ai->got_thy = 0;
+  ai->num_player = 0;
   if ((ai->team = strdup(t)) == NULL)
     return (-1);
   ai->incantating = 0;

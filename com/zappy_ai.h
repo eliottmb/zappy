@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:40 2017 Romain HUET
-** Last update Thu Jun 29 18:36:28 2017 eliott m-barali
+** Last update Fri Jun 30 19:48:05 2017 eliott m-barali
 */
 
 #ifndef AI_H
@@ -26,6 +26,7 @@ typedef struct	s_ai
   int		x_max;
   int		y_max;
   int		*i;	// inventaire
+  int		num_player;
   char		*team;
   int		lvl;
   int		f;
@@ -45,28 +46,23 @@ typedef struct	s_ai
 void	help_client();
 
 /*
-** TALK_TO_ME.C
+** TALK.C
 */
 
 void		ask_ress(t_ai *ai, int *ress);
-void		ask_more_players(t_ai *ai, int i);
-void		o_m_w(t_ai *ai);
-void		got_thy(t_ai *ai);
-
-/*
-** TALKING_TOM.C
-*/
-
+void		ask_more_players(t_ai *ai, char *str);
+void		my_ress(t_ai *ai, int *ress);
+void		send_sharp(t_ai *ai);
 int		got_broadcast(t_ai *ai, char *str);
 
 /*
 ** RECEIVE.C
 */
 
-int		receive_got_thy(t_ai *ai);
+int		receive_sharp(t_ai *ai);
 int		receive_ask_ress(char *str, t_ai *ai);
 int		receive_ask_player(char *str, t_ai *ai);
-int		receive_omw(char *str, t_ai *ai);
+int		receive_my_ress(char *str, t_ai *ai);
 
 /*
 ** USAGE.C
