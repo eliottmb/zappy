@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 19:20:35 2017 Médéric Unissart
-** Last update Thu Jun 29 19:14:41 2017 Médéric Unissart
+** Last update Fri Jun 30 16:30:14 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -69,18 +69,19 @@ static void	look_a_tile(char *look, t_tile **map, int *pos, int *ilook)
 {
   int		i;
   int		o;
-  char		*res[7] = {
-    "food",
-    "linemate",
-    "deraumere",
-    "sibur",
-    "mendiane",
-    "phiras",
-    "thystame"};
+  char		*res[7];
 
-  if (map[pos[1]][pos[0]].nb_players > 0)
-    *ilook += sprintf(&look[*ilook], " player %d",
-		      map[pos[1]][pos[0]].nb_players);
+  res[0] = "food";
+  res[1] = "linemate";
+  res[2] = "deraumere";
+  res[3] = "sibur";
+  res[4] = "mendiane";
+  res[5] = "phiras";
+  res[6] = "thystame";
+  i = 0;
+  while (i++ < map[pos[1]][pos[0]].nb_players)
+    *ilook += *ilook == 1 ? sprintf(&look[*ilook], "player"):
+      sprintf(&look[*ilook], " player");
   i = 0;
   while (i != 7)
     {
