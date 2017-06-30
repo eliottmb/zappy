@@ -69,7 +69,7 @@ server: $(SERVER_OBJS)
 	$(CC) -o $(SERVER) $(SERVER_OBJS) -lrt
 
 ai: $(AI_OBJS)
-	$(CC) -o $(AI) $(AI_OBJS) `sdl-config --libs --clfags`
+	$(CC) -o $(AI) $(AI_OBJS) `sdl-config --libs --clfags` -lSDL_ttf
 
 clean:
 	$(RM) $(AI_OBJS) $(SERVER_OBJS) srcs/ai/*~ srcs/server/*~ include/ai/*~ include/server/*~ *~
