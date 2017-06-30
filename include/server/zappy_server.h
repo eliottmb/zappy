@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Fri Jun 30 17:00:33 2017 Romain HUET
+** Last update Fri Jun 30 17:35:58 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -235,6 +235,7 @@ typedef struct	s_serv_msg
 {
   int		player_fd;
   char		*msg;
+  t_server	*serv;
 }		t_serv_msg;
 
 void	sigusr_handling(int signum, siginfo_t *info, void *context);

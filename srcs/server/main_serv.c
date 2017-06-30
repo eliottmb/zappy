@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Fri Jun 30 17:02:32 2017 Romain HUET
+** Last update Fri Jun 30 17:57:39 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -24,11 +24,34 @@ t_func	g_cmds[NB_CMDS] =
     {"Set", &player_drop_ress},
   };
 
+int     res_to_int(char *ress)
+{
+  char	*res[7];
+  int	i;
+
+  res[0] = "food";
+  res[1] = "linemate";
+  res[2] = "deraumere";
+  res[3] = "sibur";
+  res[4] = "mendiane";
+  res[5] = "phiras";
+  res[6] = "thystame";
+  i = 0;
+  while (i < 7)
+    {
+      if (!strcmp(ress, res[i]))
+	return (i);
+      i++;
+    }
+  return (-1);
+}
+
 int	check_cmd(char *s, t_player *player_src, t_server *server)
 {
   char	*cmd;
   int	i;
   int	id;
+  char	*res;
 
   i = 0;
   id = 0;
@@ -43,7 +66,14 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
     }
   if (!strcmp(get_nth_word(s, 1), "Take") ||
       !strcmp(get_nth_word(s, 1), "Set"))
-    id = atoi(get_nth_word(s, 2));
+    {
+      res = strdup(get_nth_word(s, 2));
+      if ((id = res_to_int(res)) == -1)
+	{
+	  dprintf(player_src->fd, "ko\n");
+	  return (0);
+	}
+    }
   cmd = strdup(get_nth_word(s, 1));
   while (i < NB_CMDS)
     {
@@ -102,6 +132,8 @@ int	main(int ac, char **av)
 
   players = NULL;
   srand(time(NULL));
+  if (init_sigact() == false)
+    return (-1);
   check_help(ac, av);
   check_args(&args, av);
   players = init_players(players, &args);
@@ -110,7 +142,8 @@ int	main(int ac, char **av)
       printf("[ERROR] : init_server : failed\n");
       return (-1);
     }
-  else if (server_loop(&server, players) == -1)
+  
+  if (server_loop(&server, players) == -1)
     {
       free_args(&args);
       return (-1);

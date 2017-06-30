@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:15:09 2017 Médéric Unissart
-** Last update Fri Jun 30 16:49:16 2017 Romain HUET
+** Last update Fri Jun 30 17:59:12 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -64,5 +64,6 @@ void		player_forward(void *player, void *server, int no)
   (p->y > serv->map[0][0].y_max - 1) ? (p->y = 0) : (0);
   serv->map[p->y][p->x].nb_players++;
   player_position(serv->graph_cli_fd, player);
-  dprintf(p->fd, "ok\n");
+  msg_timer(player->fd, (t_server *)server, )
+  /* dprintf(p->fd, "ok\n"); */
 }
