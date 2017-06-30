@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 17:34:27 2017 Albatard
-** Last update Thu Jun 29 19:01:22 2017 Romain HUET
+** Last update Fri Jun 30 19:48:33 2017 Albatard
 */
 
 #include "client.h"
@@ -65,9 +65,16 @@ void	connect_nbr(int fd)
   dprintf(fd, "Connect_nbr\n");
 }
 
-void	broadcast_text(int fd)
+void	broadcast_text(int fd, char *str)
 {
-  dprintf(fd, "Broadcast text\n");
+  dprintf(fd, "Broadcast %s\n", str);
+}
+
+void	turn_around(int fd)
+{
+  left(fd);
+  left(fd);
+  forward(fd);
 }
 
 void	call(int fd)
@@ -83,5 +90,5 @@ void	call(int fd)
   set_object(fd);
   incantation(fd);
   connect_nbr(fd);
-  broadcast_text(fd);
+  broadcast_text(fd, "OKOK");
 }

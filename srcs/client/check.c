@@ -5,10 +5,22 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Tue Jun 27 17:03:28 2017 Albatard
-** Last update Thu Jun 29 18:13:40 2017 Albatard
+** Last update Fri Jun 30 19:47:05 2017 Albatard
 */
 
 #include "client.h"
+
+int			read_cmd(char *str, int fd)
+{
+  char			buffer[1024];
+
+  if (read(fd, buffer, 1024) > 0)
+    {
+      if (strcmp(buffer, str) == 0)
+	return 1;
+    }
+  return 0;
+}
 
 void                     check_cmd(int fd, client_info *info)
 {
@@ -21,7 +33,7 @@ void                     check_cmd(int fd, client_info *info)
       buffer = calloc(1024, 1);
       a = read(fd, buffer, 1024);
       printf("%s", buffer);
-      if (a >= 0)
+      if (a > 0)
 	{
 	  if (strcmp(buffer, "WELCOME\n") == 0)
 	    {
@@ -29,10 +41,13 @@ void                     check_cmd(int fd, client_info *info)
 		{
 		  printf("IA\n");
 		  dprintf(fd, "%s\n", info->name);
+		  //	  begin(fd, info);
 		  call(fd);
 		}
 	    }
 	}
+      else
+	break;
     }
   free(buffer);
 }
