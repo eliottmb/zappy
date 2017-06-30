@@ -12,24 +12,25 @@
 #include <stdlib.h>
 #include "../../../include/client/moniteur.h"
 
-t_user		*create_node(int x, int y, int number)
+t_user		*create_node(int x, int y, int number, char *team)
 {
   t_user	*user = malloc(sizeof(t_user));
   
 user->x = x;
 user->y = y;
 user->number = number;
+user->name = strdup(team);
   user->name = NULL;  
   user->next = NULL;
   return (user);
 }
 
-int		list_add_elem_at_back(t_list *front_ptr, int x, int y, int number)
+int		list_add_elem_at_back(t_list *front_ptr, char **buffer)
 {
   t_user	*new_user;
   t_list	list;
 
-  new_user = create_node(x, y, number);
+  new_user = create_node(my_getnbr(buffer[2]), my_getnbr(buffer[3]), my_getnbr(buffer[1]), buffer[4]);
   list = *front_ptr;
   if (!new_user)
     return (1);
@@ -58,6 +59,7 @@ int		list_del_elem(t_list *front_ptr, int fd)
     {
       if (cpy->number == fd)
 	{
+free(cpy->name);
 	  if (cpy->next != NULL)
 	    {
 	      previous->next = cpy->next;

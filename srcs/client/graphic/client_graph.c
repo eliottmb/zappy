@@ -7,13 +7,14 @@
 #include <string.h>
 #include <sys/socket.h>
 
-t_func  g_cmd[3] =
+t_func  g_cmd[5] =
  {
     {"msz", &init_case},
     {"bct", &init_map},
     {"pnw", &add_player},
-//    {"pdi", &list_del_elem},
- };
+    {"ppo", &add_pos},
+    {"pin",	&add_rss_to_player},
+};
 
 void lpause()
 {
@@ -196,13 +197,8 @@ pic->gemmeR[n].y = 30 + y * 98 + 66;
 
 void    show_char(int  x, int y, t_bmp *pic)
 {
-  int     i;
-  int     a; 
-
 t_list	cpy;
 cpy = pic->inf.us;
-  i = x;
-  a = y;
   while(cpy)
     {
       //if (pic->inf.us->x > x - 1 && pic->inf.us->x < x + 10)
@@ -253,7 +249,7 @@ void	check(t_bmp   *pic, char **buffer)
 int	i;
 
 i = 0;
-while(i != 3)
+while(i != 5)
 {
  
 if (my_strcmp(buffer[0], g_cmd[i].name, '\0') == 0)
@@ -262,26 +258,11 @@ g_cmd[i].ptrfunc(pic, buffer);
 }
 i++;
 }
-
- /*if(my_strcmp(buffer[0], "msz", '\0') == 0)
-    init_case(pic, buffer);
-  if(my_strcmp(buffer[0], "bct", '\0') == 0)
-    init_map(pic, buffer);
-if(my_strcmp(buffer[0], "pnw", '\0') == 0)
-add_player(pic, buffer);
-*/
-
 if(my_strcmp(buffer[0], "pdi", '\0') == 0)
-
 {
 list_del_elem(&pic->inf.us, atoi(buffer[1]));
  
 }
-// if(my_strcmp(buffer[0], "ppo", '\0') == 0)
-    //{
-  //    add_pos(pic, buffer);
-      //printf("CCCC : %d\n", pic->inf.us->x);
-    //}
 }
 
 void	event(t_bmp *stru)
@@ -291,9 +272,9 @@ SDL_Event event;
 SDL_PollEvent(&event);
 if(event.key.keysym.sym == SDLK_UP && stru->y > 0)
 stru->y--;
-if(event.key.keysym.sym == SDLK_DOWN && stru->y < 29)
+if(event.key.keysym.sym == SDLK_DOWN && stru->y < stru->inf.Y)
 stru->y++;
-if(event.key.keysym.sym == SDLK_RIGHT && stru->x < 29)
+if(event.key.keysym.sym == SDLK_RIGHT && stru->x < stru->inf.X)
 stru->x++;
 if(event.key.keysym.sym == SDLK_LEFT && stru->x > 0)
 stru->x--;
@@ -316,12 +297,17 @@ event(stru);
       buffer[nb] = '\0';
       nb++;
     }
-if (recv(fd, buff, 1, MSG_DONTWAIT) >= 0)
+
+if ((nb = recv(fd, buff, 1, MSG_DONTWAIT)) >= 0)
     {
+if (nb == 0)
+{
+exit(0);
+}
+
 buffer[0] = buff[0];
 while(i != 100)
 {
-printf("oka\n");
 if (recv(fd, buff, 1, MSG_DONTWAIT) >= 0)
 buffer[i] = buff[0];
 if(buff[0] == '\n')
@@ -329,15 +315,14 @@ break;
 i++;
    }
 buffer[i] = '\0';
+printf("BUFFER : %s\n", buffer);
 stock = my_strtowordtab(buffer, ' ');
-      printf("BUFFER : %sAAAaA\n", buffer);
-printf("BUFFER : %sAAAaA\n", stock[0]);
 if (my_strcmp(stock[0], "ko", '\0') == 0)
 {
 printf("ça retourne\n");
 return(1);
 } 
-  check(stru, stock);
+check(stru, stock);
 return(0);
 }
 }
@@ -345,11 +330,8 @@ return(0);
 
 int graph(int fd)
 {
-int	i;
 t_bmp	pic;
-SDL_Surface	*s;
 
-i = 0;
 printf("OK\n");
 dprintf(fd, "GRAPHIC\n");
 pic.x = 0;
@@ -372,8 +354,6 @@ pic.ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
  SDL_Flip(pic.ecran);
   while(42)   {
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 240, 166, 166));
-//SDL_FillRect((s = SDL_CreateRGBSurface(197, 980, 980, 32, 0, 0, 0, 0)), NULL, SDL_MapRGB(s->format, 0, 0, 0));
-//splitRect(980, 980, pic.ecran, 10, 10);
 fullRect(980, 980, pic.ecran, 10, 10);
 splitRect(980, 980, pic.ecran, 10, 10);
 if(receive(&pic, fd) == 1)
@@ -382,12 +362,10 @@ SDL_Quit();
 return(1);
 printf("oki\n");
 }
-//printf("%d %d\n", pic.x, pic.y);     
  show_char(pic.x, pic.y, &pic);
      show_rss(pic.x,pic.y, &pic);
       SDL_Flip(pic.ecran);
     }
-  //lpause(); /* On libère la surface */
-  SDL_Quit();
+   SDL_Quit();
   return EXIT_SUCCESS;
 }

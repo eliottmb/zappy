@@ -18,6 +18,7 @@ int		number;
 int		level;
 int		fd;
 char		*name;
+int		rss[7];
 struct s_user	*next;
 }		t_user;
 
@@ -63,11 +64,12 @@ void		init_map(t_bmp *struc, char **buffer);
 int		list_del_elem_at_front(t_list *front_ptr);
 //void    show_char(int  x, int y, t_bmp *pic);
 int		graph(int);
-t_user          *create_node(int x, int y, int number);
-int		list_add_elem_at_back(t_list *front_ptr, int x, int y, int number);
+t_user          *create_node(int x, int y, int number, char *team);
+int		list_add_elem_at_back(t_list *front_ptr, char**);
 void		add_pos(t_bmp *, char **buffer);
 void	        add_player(t_bmp *, char **buffer);
 int		list_del_elem(t_list*, int);
+void    add_rss_to_player(t_bmp *struc, char **buffer);
 void drawEmptyRect2(SDL_Surface * surf,int posX, int posY, int width, int length);
 void     fullRect(int a, int i, SDL_Surface *ecran, int tx, int ty);
 #endif
