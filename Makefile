@@ -43,7 +43,8 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 		  	srcs/server/gclient_talking.c	\
 		  	srcs/server/connect_nbr.c	\
 			srcs/server/sighandling.c	\
-			srcs/server/broadcast.c
+			srcs/server/broadcast.c		\
+			srcs/server/team_manager.c
 
 
 
