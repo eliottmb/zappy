@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Fri Jun 30 16:43:06 2017 Romain HUET
+** Last update Fri Jun 30 17:00:33 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -155,7 +155,7 @@ typedef struct  s_player
 }               t_player;
 
 t_player	*init_players(t_player *players, t_args *args);
-void		dc_player(t_player *player);
+void		dc_player(t_player *player, t_server *server);
 int		get_max_fd(t_server *server, t_player *players);
 void		fd_setting(fd_set *fd_s, t_player *players);
 void		check_readfds(fd_set *readfds, t_server *server, t_player *players);
@@ -240,8 +240,8 @@ typedef struct	s_serv_msg
 void	sigusr_handling(int signum, siginfo_t *info, void *context);
 bool	init_sigact();
 bool	msg_timer(int player_fd,
-				  int frequence,
-				  int cmd_cycle,
-				  char *msg);
+		  int frequence,
+		  int cmd_cycle,
+		  char *msg);
 
 #endif /* !SERV_H */

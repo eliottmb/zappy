@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Fri Jun 30 16:48:53 2017 Romain HUET
+** Last update Fri Jun 30 17:02:32 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -35,7 +35,8 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
   cmd = NULL;
   printf("dans check cmd : s = %s\n", s);
   if ((player_src->team == NULL && strcmp(s, "GRAPHIC\n")) ||
-      (!strcmp(s, "GRAPHIC\n") && server->graph_cli_fd != -1))
+      (!strcmp(s, "GRAPHIC\n") && server->graph_cli_fd != -1
+       && !is_team(s, server)))
     {
       dprintf(player_src->fd, "ko\n");
       return (0);
@@ -56,11 +57,11 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
   return (0);
 }
 
-void	dc_player(t_player *player)
+void	dc_player(t_player *player, t_server *server)
 {
   player->fd = -1;
-  free(player->i);
-  free(player->team);
+  server->map[player->y][player->x].nb_players--;
+  dprintf(server->graph_cli_fd, "pdi %d\n", player->n);
 }
 
 void	read_data(t_player *players, int src, t_server *server)
@@ -77,7 +78,7 @@ void	read_data(t_player *players, int src, t_server *server)
   if (read_ret <= 0)
     {
       free(buf);
-      dc_player(&players[src]);
+      dc_player(&players[src], server);
       return ;
     }
   printf("dans read data : %s\n", buf);

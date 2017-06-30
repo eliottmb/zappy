@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 19:20:35 2017 Médéric Unissart
-** Last update Fri Jun 30 16:30:14 2017 Médéric Unissart
+** Last update Fri Jun 30 17:04:43 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -114,7 +114,7 @@ static void	fill_look_buffer(t_player *player, t_tile **map, int tiles)
   look[ilook++] = ']';
   look[ilook++] = '\n';
   look[ilook++] = '\0';
-  printf("%s", look);
+  dprintf(player->fd, "%s", look);
 }
 
 void		player_look(void *player, void *server, int undefined)
