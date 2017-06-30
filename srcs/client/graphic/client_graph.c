@@ -143,6 +143,8 @@ void	init_sdl(t_bmp *pic)
 {
 pic->x = 0;
 pic->y = 0;
+pic->inf.X = 0;
+pic->inf.Y = 0;
 pic->positionFond.x = 0;
 pic->positionFond.y = 0;
 SDL_Init(SDL_INIT_VIDEO);
@@ -222,9 +224,9 @@ void	show_rss(int  x, int y, t_bmp *pic)
   i = x;
   a = y;
   n = 0;
-  while(i != 10 + x && i != 30)
+  while(i < 10 + x && i < 30)
     {
-      while(a != 10 + y && a != 30)
+      while(a < 10 + y && a < 30)
         {       
 	  while(n != 7)
 	    {
@@ -272,12 +274,13 @@ SDL_Event event;
 SDL_PollEvent(&event);
 if(event.key.keysym.sym == SDLK_UP && stru->y > 0)
 stru->y--;
-if(event.key.keysym.sym == SDLK_DOWN && stru->y < stru->inf.Y)
+if(event.key.keysym.sym == SDLK_DOWN && stru->y < stru->inf.Y - 10)
 stru->y++;
-if(event.key.keysym.sym == SDLK_RIGHT && stru->x < stru->inf.X)
+if(event.key.keysym.sym == SDLK_RIGHT && stru->x < stru->inf.X - 10)
 stru->x++;
 if(event.key.keysym.sym == SDLK_LEFT && stru->x > 0)
 stru->x--;
+printf("%d %d, %d %d \n", stru->inf.X, stru->inf.Y,stru->x, stru->y);
 }
 
 int    receive(t_bmp *stru, int     fd)

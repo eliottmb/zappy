@@ -19,6 +19,13 @@ t_user		*create_node(int x, int y, int number, char *team)
 user->x = x;
 user->y = y;
 user->number = number;
+user->rss[0] = 0;
+user->rss[1] = 0;
+user->rss[2] = 0;
+user->rss[3] = 0;
+user->rss[4] = 0;
+user->rss[5] = 0;
+user->rss[6] = 0;
 user->name = strdup(team);
   user->name = NULL;  
   user->next = NULL;
