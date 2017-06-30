@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Thu Jun 29 19:35:13 2017 Romain HUET
+** Last update Fri Jun 30 16:48:53 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -56,6 +56,13 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
   return (0);
 }
 
+void	dc_player(t_player *player)
+{
+  player->fd = -1;
+  free(player->i);
+  free(player->team);
+}
+
 void	read_data(t_player *players, int src, t_server *server)
 {
   char		*buf;
@@ -67,10 +74,11 @@ void	read_data(t_player *players, int src, t_server *server)
       return ;
     }
   read_ret = read(players[src].fd, buf, 512);
-  if (read_ret < 0)
+  if (read_ret <= 0)
     {
-      printf("error on read\n");
-      exit(-1);
+      free(buf);
+      dc_player(&players[src]);
+      return ;
     }
   printf("dans read data : %s\n", buf);
   if (strcmp(buf, "GRAPHIC\n") == 0 && server->graph_cli_fd == -1 && players[src].team == NULL)

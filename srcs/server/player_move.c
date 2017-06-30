@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:15:09 2017 Médéric Unissart
-** Last update Thu Jun 29 19:02:28 2017 Romain HUET
+** Last update Fri Jun 30 16:49:16 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -53,6 +53,7 @@ void		player_forward(void *player, void *server, int no)
   p = (t_player *)player;
   serv = (t_server *)server;
   printf("on est dans forward\n");
+  serv->map[p->y][p->x].nb_players--;
   if (p->o == NORTH || p->o == SOUTH)
     (p->o == NORTH) ? (p->y -= 1) : (p->y += 1);
   else
@@ -61,6 +62,7 @@ void		player_forward(void *player, void *server, int no)
   (p->x > serv->map[0][0].x_max - 1) ? (p->x = 0) : (0);
   (p->y < 0) ? (p->y = serv->map[0][0].y_max - 1) : (0);
   (p->y > serv->map[0][0].y_max - 1) ? (p->y = 0) : (0);
+  serv->map[p->y][p->x].nb_players++;
   player_position(serv->graph_cli_fd, player);
   dprintf(p->fd, "ok\n");
 }

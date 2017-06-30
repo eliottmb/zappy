@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Mon Jun 19 13:33:55 2017 eliott m-barali
-** Last update Thu Jun 29 17:16:48 2017 Romain HUET
+** Last update Fri Jun 30 16:44:28 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -97,6 +97,7 @@ static void	init_map_by_line(t_tile **map, int x_size, int y_size, int y)
       map[y][x].x = x;
       map[y][x].y = y;
       map[y][x].x_max = x_size;
+      map[y][x].nb_players = 0;
       map[y][x++].y_max = y_size;
     }
 }

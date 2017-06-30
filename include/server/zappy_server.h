@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Thu Jun 29 19:12:40 2017 Romain HUET
+** Last update Fri Jun 30 16:43:06 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -155,6 +155,7 @@ typedef struct  s_player
 }               t_player;
 
 t_player	*init_players(t_player *players, t_args *args);
+void		dc_player(t_player *player);
 int		get_max_fd(t_server *server, t_player *players);
 void		fd_setting(fd_set *fd_s, t_player *players);
 void		check_readfds(fd_set *readfds, t_server *server, t_player *players);
