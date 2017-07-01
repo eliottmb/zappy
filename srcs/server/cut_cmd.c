@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Fri Jun 30 18:49:07 2017 Romain HUET
-** Last update Sat Jul  1 12:02:27 2017 Romain HUET
+** Last update Sat Jul  1 13:28:51 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -22,6 +22,19 @@ void	aff_tab(char **tab)
       i++;
     }
   printf("DANS AFFTAB\n");
+}
+
+void	free_tab(char **tab)
+{
+  int	i;
+
+  i = 0;
+  while (tab[i])
+    {
+      free(tab[i]);
+      i++;
+    }
+  free(tab);
 }
 
 char    *cut_first_word(char *str)
@@ -45,43 +58,4 @@ char    *cut_first_word(char *str)
     }
   to_ret[j] = '\0';
   return (to_ret);
-}
-
-char	**cut_cmd(char *s)
-{
-  char		**tab;
-  int		i;
-  int		j;
-  int		k;
-
-  i = 0;
-  k = 0;
-  if (count_words(s) == 1)
-    return (NULL);
-  if ((tab = calloc(11, sizeof(char *))) == NULL)
-    return (NULL);
-  while (i < 11)
-    {	  
-      if ((tab[i] = calloc(64, 1)) == NULL)
-	return (NULL);
-      i++;
-    }
-  tab[i] = NULL;
-  i = 0;
-  while (tab[i])
-    {
-      j = 0;
-      while (s[k] && s[k] != '\n')
-	{
-	  tab[i][j] = s[k];
-	  k++;
-	  j++;
-	}
-      k++;
-      if (s[k] == 0)
-	break ;
-      i++;
-    }
-  aff_tab(tab);
-  return (tab);
 }

@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Sat Jul  1 12:03:26 2017 Romain HUET
+** Last update Sat Jul  1 13:58:59 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -199,6 +199,10 @@ int	count_words(char *s);
 char	*get_nth_word(char *s, int n);
 char	**my_strtowordtab(char *s, char sep);
 void	aff_tab(char **tab);
+void	free_tab(char **tab);
+int	res_to_int(char *ress, t_player *player_src);
+int	run_cmd(char *curr_cmd, t_player *player, t_server *server, int id);
+int	check_cmd(char *s, t_player *player_src, t_server *server, t_player *players);
 
 int	is_team(char *s, t_server *server);
 void	affect_team(char *buf, t_player *player, t_server *server);

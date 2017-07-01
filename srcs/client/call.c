@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 17:34:27 2017 Albatard
-** Last update Sat Jul  1 11:49:36 2017 Romain HUET
+** Last update Sat Jul  1 12:50:36 2017 Romain HUET
 */
 
 #include "client.h"
@@ -93,5 +93,4 @@ void	call(int fd)
   broadcast_text(fd, "OKOK");
   forkk(fd);
   eject(fd);
-
 }

@@ -46,6 +46,7 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 			srcs/server/broadcast.c		\
 			srcs/server/team_manager.c	\
 			srcs/server/cut_cmd.c		\
+			srcs/server/cmds_manager.c	\
 			lib/my_strtowordtab.c
 
 
