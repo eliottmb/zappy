@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Sat Jul  1 15:54:15 2017 Romain HUET
+** Last update Sat Jul  1 16:07:16 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -46,12 +46,11 @@ void	check_help(int ac, char **av);
 void	check_args(t_args *args, char **av);
 void	help_server();
 int	init_args(t_args *args);
-int	get_args(t_args *args, char **av);
 void	aff_args(t_args *args);
 int	count_teams(char **av);
 int	check_doublons(char **names);
 void	free_args(t_args *args);
-
+int	get_args(t_args *args, char **av);
 void	get_p(t_args *args, char **av);
 void	get_x(t_args *args, char **av);
 void	get_y(t_args *args, char **av);
@@ -201,10 +200,8 @@ void	free_tab(char **tab);
 int	res_to_int(char *ress, t_player *player_src);
 int	run_cmd(char *curr_cmd, t_player *player, t_server *server, int id);
 int	check_cmd(char *s, t_player *player_src, t_server *server, t_player *players);
-
 int	is_team(char *s, t_server *server);
 void	affect_team(char *buf, t_player *player, t_server *server);
-
 void	player_forward(void *player, void *server, int no);
 void	player_turn_right(void *player, void *server, int no);
 void	player_turn_left(void *player, void *server, int no);
@@ -216,10 +213,6 @@ void	player_expell(void *player, void *server, int no);
 void	player_take_ress(void *player, void *server, int i);
 void	player_drop_ress(void *player, void *server, int i);
 int	player_broadcast(t_player *player, t_server *server, char *str, int no);
-
-// OK
-
-
 int	player_begin_incantation(void *player, void *server, int j);
 int	player_end_incantation(void *player, void *server, int r);
 int	player_tragically_dies(int fd, void *player);
