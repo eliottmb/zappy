@@ -11,7 +11,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS	=	 -W -Wextra -Wall -I./include/client/ -I./include/server/
+CFLAGS		= -W -Wextra -Wall -I./include/client/ -I./include/server/
 
 SERVER		= zappy_server
 
