@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:40 2017 Romain HUET
-** Last update Sat Jul  1 13:17:43 2017 eliott m-barali
+** Last update Sat Jul  1 13:57:03 2017 eliott m-barali
 */
 
 #ifndef AI_H
@@ -51,7 +51,7 @@ void	help_client();
 */
 
 void		ask_ress(t_ai *ai, int *ress);
-void		ask_more_players(t_ai *ai, char *str);
+void		ask_more_players(t_ai *ai, int *players);
 void		my_ress(t_ai *ai, int *ress);
 void		send_sharp(t_ai *ai);
 int		got_broadcast(t_ai *ai, char *str);
@@ -73,12 +73,13 @@ void		show_ress(int *t);
 void		show_struct(t_ai *ai);
 int		*my_add_tab(int *to_ret, int *t1, int *t2);
 int		*my_dif_tab(int *to_ret, int *t1, int *t2);
-
+int		*add_player(int *player, int num);
 /*
 ** INIT.C
 */
 
 int		*init_tab();
+int		*init_player_tab();
 int		init_ai(t_ai *ai, int x, int y, char *t);
 void		free_ai(t_ai *ai);
 

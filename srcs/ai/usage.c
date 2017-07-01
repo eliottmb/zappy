@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:41:39 2017 eliott m-barali
-** Last update Sat Jul  1 13:16:06 2017 eliott m-barali
+** Last update Sat Jul  1 13:53:29 2017 eliott m-barali
 */
 
 #include "../../include/ai/zappy_ai.h"
@@ -57,4 +57,21 @@ int		*my_dif_tab(int *to_ret, int *t1, int *t2)
       i = i + 1;
     }
   return (to_ret);
+}
+
+int		*add_player(int *player, int num)
+{
+  int		i;
+
+  i = 0;
+  while (i != 20)
+    {
+      if (player[i] == -1)
+	{
+	  player[i] = num;
+	  return (player);
+	}
+      i = i + 1;
+    }
+  return (NULL);
 }

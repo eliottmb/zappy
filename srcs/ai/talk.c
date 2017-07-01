@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Fri Jun 30 19:23:20 2017 eliott m-barali
-** Last update Sat Jul  1 13:15:41 2017 eliott m-barali
+** Last update Sat Jul  1 14:01:20 2017 eliott m-barali
 */
 
 #include "../../include/ai/zappy_ai.h"
@@ -26,9 +26,19 @@ void		ask_ress(t_ai *ai, int *ress)
   dprintf(ai->fd, "\n");
 }
 
-void		ask_more_players(t_ai *ai, char *str)
+void		ask_more_players(t_ai *ai, int *players)
 {
-  dprintf(ai->fd, "%s %d %d - %s\n", ai->team, ai->lvl, ai->num_player, str);
+  int		i;
+
+  i = 0;
+  dprintf(ai->fd, "%s %d %d -", ai->team, ai->lvl, ai->num_player);
+  while (i != 20)
+    {
+      if (players[i] > 0 && players[i] < 8)
+	dprintf(ai->fd, " %d", players[i]);
+      i = i + 1;
+    }
+  dprintf(ai->fd, "\n");
 }
 
 void		my_ress(t_ai *ai, int *ress)
