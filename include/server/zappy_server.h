@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Sat Jul  1 17:32:19 2017 Romain HUET
+** Last update Sat Jul  1 17:59:38 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -172,7 +172,7 @@ int		close_all(t_server *server, t_player *players);
 ** COMMANDS
 */
 
-# define NB_CMDS 10 //12
+# define NB_CMDS 10
 # define C_TIM1 1
 # define C_TIM7 7
 # define C_TIM42 42
