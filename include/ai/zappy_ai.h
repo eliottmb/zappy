@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:40 2017 Romain HUET
-** Last update Sat Jul  1 13:57:03 2017 eliott m-barali
+** Last update Sat Jul  1 16:16:25 2017 eliott m-barali
 */
 
 #ifndef AI_H
@@ -44,7 +44,7 @@ typedef struct	s_ai
 ** HELP_AI.C
 */
 
-void	help_client();
+void		help_client();
 
 /*
 ** TALK.C
@@ -74,6 +74,7 @@ void		show_struct(t_ai *ai);
 int		*my_add_tab(int *to_ret, int *t1, int *t2);
 int		*my_dif_tab(int *to_ret, int *t1, int *t2);
 int		*add_player(int *player, int num);
+
 /*
 ** INIT.C
 */
@@ -83,4 +84,10 @@ int		*init_player_tab();
 int		init_ai(t_ai *ai, int x, int y, char *t);
 void		free_ai(t_ai *ai);
 
+/*
+** TOOL.C
+*/
+
+char			*cut_word(char *str, int n);
+int	*sort_int_tab(char *str);
 #endif /* !AI_H */

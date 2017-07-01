@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:36:07 2017 eliott m-barali
-** Last update Sat Jul  1 13:15:26 2017 eliott m-barali
+** Last update Sat Jul  1 16:20:39 2017 eliott m-barali
 */
 
 #include "../../include/ai/zappy_ai.h"
@@ -18,7 +18,10 @@ int		receive_sharp(t_ai *ai)
 
 int		receive_ask_ress(char *str, t_ai *ai)
 {
-  printf("demande de ressource recue\n");
+  int		*tab;
+  
+  printf("%s\n", cut_word(str, 3));
+  tab = sort_int_tab(cut_word(str, 3));
   return (0);
 }
 
