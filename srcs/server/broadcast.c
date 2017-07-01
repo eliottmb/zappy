@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Thu Jun 29 16:39:11 2017 Médéric Unissart
-** Last update Thu Jun 29 19:33:50 2017 Médéric Unissart
+** Last update Sat Jul  1 16:22:25 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -57,6 +57,7 @@ int		player_broadcast(t_player *players,
   char		*bc_msg;
 
   i = 0;
+  msg = cut_first_word(msg);
   if (!(bc_msg = malloc(sizeof(*bc_msg) * 13 + strlen(msg))))
     return (-1);
   while (i < MAX_PLAYERS)

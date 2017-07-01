@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:15:09 2017 Médéric Unissart
-** Last update Fri Jun 30 18:00:51 2017 Romain HUET
+** Last update Sat Jul  1 16:11:41 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -18,7 +18,6 @@ void		player_turn_left(void *player, void *server, int no)
   no = no;
   p = (t_player *)player;
   serv = (t_server *)server;
-  printf("on est dans turn left\n");
   if (p->o == NORTH)
     p->o = WEST;
   else
@@ -34,7 +33,6 @@ void		player_turn_right(void *player, void *server, int no)
 
   no = no;
   p = (t_player *)player;
-  printf("on est dans turn right\n");
   serv = (t_server *)server;
   if (p->o == WEST)
     p->o = NORTH;
@@ -52,7 +50,6 @@ void		player_forward(void *player, void *server, int no)
   no = no;
   p = (t_player *)player;
   serv = (t_server *)server;
-  printf("on est dans forward\n");
   serv->map[p->y][p->x].nb_players--;
   if (p->o == NORTH || p->o == SOUTH)
     (p->o == NORTH) ? (p->y -= 1) : (p->y += 1);
@@ -64,6 +61,5 @@ void		player_forward(void *player, void *server, int no)
   (p->y > serv->map[0][0].y_max - 1) ? (p->y = 0) : (0);
   serv->map[p->y][p->x].nb_players++;
   player_position(serv->graph_cli_fd, player);
-  /* msg_timer(player->fd, (t_server *)server, ) */
   dprintf(p->fd, "ok\n");
 }

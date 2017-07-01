@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:47:26 2017 eliott m-barali
-** Last update Fri Jun 30 16:46:31 2017 Romain HUET
+** Last update Sat Jul  1 16:12:02 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -66,7 +66,6 @@ void	player_inventory(void *player, void *server, int no)
 {
   t_player	*p;
 
-  printf("dans player inventory\n");
   p = (t_player *)player;
   server = server;
   no = no;

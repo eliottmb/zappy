@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Wed Jun 28 12:40:32 2017 Romain HUET
-** Last update Sat Jul  1 15:38:57 2017 Romain HUET
+** Last update Sat Jul  1 16:15:44 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -15,8 +15,6 @@ void	check_writefds(fd_set *writefds, t_server *server, t_player *players)
   int	i;
 
   i = 0;
-  if (FD_ISSET(server->graph_cli_fd, writefds))
-    message_to_gclient(server);
   while (i < MAX_PLAYERS)
     {
       if (players[i].fd != -1 && FD_ISSET(players[i].fd, writefds))

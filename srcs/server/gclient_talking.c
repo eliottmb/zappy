@@ -5,16 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Wed Jun 28 12:41:43 2017 Romain HUET
-** Last update Sat Jul  1 15:38:33 2017 Romain HUET
+** Last update Sat Jul  1 16:15:14 2017 Romain HUET
 */
 
 #include "zappy_server.h"
-
-void	message_to_gclient(t_server *server)
-{
-  printf("dans msg_to_gclient\n");
-  server = server;
-}
 
 void    give_infos_to_gclient(t_server *server)
 {
