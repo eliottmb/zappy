@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:46:38 2017 eliott m-barali
-** Last update Sat Jul  1 13:54:07 2017 eliott m-barali
+** Last update Sat Jul  1 18:12:08 2017 Albatard
 */
 
 #include "../../include/ai/zappy_ai.h"
@@ -36,30 +36,12 @@ int		*init_tab()
   return (t);
 }
 
-int		*init_player_tab()
-{
-  int		i;
-  int		*tab;
-
-  if ((tab = malloc(sizeof(int) * 20)) == NULL)
-    return (NULL);
-  while (i != 20)
-    {
-      tab[i] = -1;
-      i = i + 1;
-    }
-  return (tab);
-}
-
-int		init_ai(t_ai *ai, int x, int y, char *t)
+int		init_ai(t_ai *ai, char *t)
 {
   ai->fd = 0;
-  ai->x_max = x;
   ai->lvl = 1;
-  ai->y_max = y;
   ai->got_thy = 0;
   ai->num_player = 0;
-  ai->view = NULL;
   if ((ai->team = strdup(t)) == NULL)
     return (-1);
   ai->incantating = 0;

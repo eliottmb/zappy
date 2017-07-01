@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:40 2017 Romain HUET
-** Last update Sat Jul  1 16:16:25 2017 eliott m-barali
+** Last update Sat Jul  1 19:36:31 2017 Albatard
 */
 
 #ifndef AI_H
@@ -14,8 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../server/zappy_server.h"
-
+#include <stdbool.h>
 /*
 ** STRUCT
 */
@@ -23,14 +22,12 @@
 typedef struct	s_ai
 {
   int		fd;
-  int		x_max;
-  int		y_max;
   int		*i;	// inventaire
   int		num_player;
   char		*team;
   int		lvl;
   int		f;
-  int		**view;
+  int		view[16][7];
   bool		incantating;
   bool		broadcasting;
   bool		got_thy;
@@ -73,7 +70,7 @@ void		show_ress(int *t);
 void		show_struct(t_ai *ai);
 int		*my_add_tab(int *to_ret, int *t1, int *t2);
 int		*my_dif_tab(int *to_ret, int *t1, int *t2);
-int		*add_player(int *player, int num);
+//int		*add_player(int *player, int num);
 
 /*
 ** INIT.C
@@ -81,7 +78,7 @@ int		*add_player(int *player, int num);
 
 int		*init_tab();
 int		*init_player_tab();
-int		init_ai(t_ai *ai, int x, int y, char *t);
+int		init_ai(t_ai *ai, char *t);
 void		free_ai(t_ai *ai);
 
 /*

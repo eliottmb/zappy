@@ -53,14 +53,18 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 AI_SRCS		= 	srcs/client/call.c			\
 			srcs/client/check.c			\
 			srcs/client/client.c			\
+			srcs/client/cmd.c			\
+			srcs/client/look.c			\
+			srcs/client/inventory.c			\
 			srcs/client/graphic/client_graph.c	\
 			srcs/client/graphic/client_graph2.c	\
 			srcs/client/graphic/list.c		\
 			srcs/client/graphic/my_getnbr.c		\
 			srcs/client/graphic/my_strcmp.c		\
 			srcs/client/graphic/my_strtowordtab.c	\
-			srcs/client/graphic/rect.c		
-
+			srcs/client/graphic/rect.c		\
+			srcs/ai/init.c				\
+			srcs/ai/begin_ia.c			
 SERVER_OBJS	= $(SERVER_SRCS:.c=.o)
 
 AI_OBJS		= $(AI_SRCS:.c=.o)
