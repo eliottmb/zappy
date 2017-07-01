@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:25:45 2017 Romain HUET
-** Last update Fri Jun 30 17:06:04 2017 Romain HUET
+** Last update Sat Jul  1 11:23:00 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -26,8 +26,11 @@ int		new_connection(t_server *server, t_player *players)
     {
       if ((incoming_fd = accept(server->fd, (struct sockaddr *)&s_in_client, &s_in_size)) == -1)
 	printf("error : accept failed\n");
-      dprintf(incoming_fd, "WELCOME\n");
-      players[i].fd = incoming_fd;
+      else
+	{
+	  dprintf(incoming_fd, "WELCOME\n");
+	  players[i].fd = incoming_fd;
+	}
     }
   return (0);
 }

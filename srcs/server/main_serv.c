@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Fri Jun 30 19:56:30 2017 Romain HUET
+** Last update Sat Jul  1 12:00:00 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -22,6 +22,7 @@ t_func	g_cmds[NB_CMDS] =
     {"Eject", &player_expell},
     {"Take", &player_take_ress},
     {"Set", &player_drop_ress},
+    /* {"Incantation", } */
   };
 
 int     res_to_int(char *ress)
@@ -41,13 +42,17 @@ int     res_to_int(char *ress)
   while (i < 7)
     {
       if (!strcmp(ress, res[i]))
-	return (i);
+	{
+	  printf("id = %d, res = %s\n", i, res[i]);
+	  return (i);
+	}
       i++;
     }
+  printf("restoint returned -1, id = %d\n", i);
   return (-1);
 }
 
-int	check_cmd(char *s, t_player *player_src, t_server *server)
+int	check_cmd(char *s, t_player *player_src, t_server *server, t_player *players)
 {
   char	*cmd;
   char	**cmds;
@@ -60,6 +65,7 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
   id = 0;
   ok = 0;
   cmd = NULL;
+  cmds = NULL;
   printf("dans check cmd : s = %s\n", s);
   if ((player_src->team == NULL && strcmp(s, "GRAPHIC\n")) ||
       (!strcmp(s, "GRAPHIC\n") && server->graph_cli_fd != -1
@@ -68,10 +74,7 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
       printf("on renvoie ko\n");
       dprintf(player_src->fd, "ko\n");
       return (0);
-    }
-
-  printf("%d mots dans la commande\n", count_words(s));
-  
+    }  
   if ((!strcmp(get_nth_word(s, 1), "Take") ||
        !strcmp(get_nth_word(s, 1), "Set")) && count_words(s) == 2)
     {
@@ -84,7 +87,7 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
 	}
     }
   
-  if ((cmds = cut_cmd(s)) == NULL)
+  if ((cmds = my_strtowordtab(s, '\n')/* cut_cmd(s) */) == NULL)
     {
       printf("cut_cmd renvoie NULL\n");
       cmd = strdup(get_nth_word(s, 1));
@@ -102,6 +105,7 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
     {
       int	j = 0;
       printf("cut_cmd a pas renvoyé NULL :)\n");
+      aff_tab(cmds);
       while (cmds[j])
 	{
 	  i = 0;
@@ -120,8 +124,11 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
 	  while (i < NB_CMDS)
 	    {
 	      printf("on boucle sur le tableau de sous commandes\n");
-	      if (!strcmp(cmds[j], g_cmds[i].name))
+	      if (!strcmp(get_nth_word(cmds[j], 1), "Broadcast"))
+		player_broadcast(players, server, cmds[j], player_src->n);
+	      if (!strcmp(get_nth_word(cmds[j], 1), g_cmds[i].name))
 		{
+		  printf("on appelle %s\n", g_cmds[i].name);
 		  g_cmds[i].ptrfunc(player_src, server, id);
 		  ok = 1;
 		}
@@ -137,36 +144,36 @@ int	check_cmd(char *s, t_player *player_src, t_server *server)
 
 void	dc_player(t_player *player, t_server *server)
 {
+  close(player->fd);
   player->fd = -1;
   server->map[player->y][player->x].nb_players--;
-  dprintf(server->graph_cli_fd, "pdi %d\n", player->n);
+  player_tragically_dies(server->graph_cli_fd, player);
 }
 
 void	read_data(t_player *players, int src, t_server *server)
 {
   char		*buf;
-  int		read_ret;
 
   if ((buf = calloc(512, 1)) == NULL)
     {
       dprintf(players[src].fd, "ko\n");
       return ;
     }
-  read_ret = read(players[src].fd, buf, 512);
-  if (read_ret <= 0)
+  if (read(players[src].fd, buf, 512) <= 0)
     {
-      free(buf);
       dc_player(&players[src], server);
       return ;
     }
-  printf("dans read data : %s\n", buf);
-  if (strcmp(buf, "GRAPHIC\n") == 0 && server->graph_cli_fd == -1 && players[src].team == NULL)
+  if (!strcmp(buf, "GRAPHIC\n") &&
+      server->graph_cli_fd == -1 && players[src].team == NULL)
     set_graph_cli(&players[src], server);
   else if (is_team(buf, server))
     affect_team(buf, &players[src], server);
   else
     {
-      if (!check_cmd(buf, &players[src], server))
+      if (!strcmp(buf, "GRAPHIC\n") && server->graph_cli_fd != -1)
+	dprintf(players[src].fd, "ko\n");
+      else if (!check_cmd(buf, &players[src], server, players))
 	dprintf(players[src].fd, "suc\n");
     }
   free(buf);

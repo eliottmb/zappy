@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Thu Jun 22 16:49:51 2017 eliott m-barali
-** Last update Thu Jun 29 19:13:49 2017 Romain HUET
+** Last update Sat Jul  1 12:04:59 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -22,14 +22,6 @@ void	player_expell(void *player, void *server, int no)
   dprintf(serv->graph_cli_fd, "pex #%d\n", tmp->n);
 }
 
-/* //PAS DANS LE TAB */
-/* int	player_broadcast(t_player *player, t_server *server, char *str, int no) */
-/* { */
-/*   // C MEDERIC QUI SEN OCCUPE LOL */
-/*   return (0); */
-/* } */
-
-/* //PAS DANS LE TAB */
 /* int	player_begin_incantation(void *player, void *server, int j) */
 /* { */
 /*   int		i; */
@@ -92,7 +84,7 @@ void	player_take_ress(void *player, void *server, int id)
       dprintf(serv->graph_cli_fd, "pgt #%d %d\n", tmp->n, id);
       player_build(tmp, serv);
       one_tile_content(serv->graph_cli_fd, &serv->map[tmp->x][tmp->y]);
-      dprintf(tmp->fd, "ok\n");
+      dprintf(tmp->fd, "take res ok\n");
     }
   else
     {
@@ -116,17 +108,17 @@ void	player_drop_ress(void *player, void *server, int id)
       dprintf(serv->graph_cli_fd, "pdr #%d %d\n", tmp->n, id);
       player_build(tmp, serv);
       one_tile_content(serv->graph_cli_fd, &serv->map[tmp->x][tmp->y]);
-      dprintf(tmp->fd, "ok\n");
+      dprintf(tmp->fd, "drop res ok\n");
     }
   else
     dprintf(tmp->fd, "ko\n");    
 }
 
-/* int	player_tragically_dies(int fd, void *player) */
-/* { */
-/*   t_player	*tmp; */
+int	player_tragically_dies(int fd, void *player)
+{
+  t_player	*tmp;
   
-/*   tmp = (t_player *)player; */
-/*   dprintf(fd, "pdi #%d\n", tmp->n); */
-/*   return (0); */
-/* } */
+  tmp = (t_player *)player;
+  dprintf(fd, "pdi #%d\n", tmp->n);
+  return (0);
+}

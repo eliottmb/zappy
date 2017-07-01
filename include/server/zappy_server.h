@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Fri Jun 30 19:27:45 2017 Romain HUET
+** Last update Sat Jul  1 12:03:26 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -176,7 +176,7 @@ int		close_all(t_server *server, t_args *args, t_player *players);
 ** COMMANDS
 */
 
-# define NB_CMDS 10
+# define NB_CMDS 10 //12
 # define C_TIM1 1
 # define C_TIM7 7
 # define C_TIM42 42
@@ -191,11 +191,14 @@ typedef struct	s_func
 /* extern t_func	*g_cmds; */
 
 char	**cut_cmd(char *s);
-int	check_cmd(char *s, t_player *player_src, t_server *server);
+char	*cut_first_word(char *str);
+int	check_cmd(char *s, t_player *player_src, t_server *server, t_player *players);
 char	**get_cmd_args(char *s);
 int	is_separator(char c);
 int	count_words(char *s);
 char	*get_nth_word(char *s, int n);
+char	**my_strtowordtab(char *s, char sep);
+void	aff_tab(char **tab);
 
 int	is_team(char *s, t_server *server);
 void	affect_team(char *buf, t_player *player, t_server *server);
@@ -210,13 +213,14 @@ void	player_look(void *player, void *server, int no);
 void	player_expell(void *player, void *server, int no);
 void	player_take_ress(void *player, void *server, int i);
 void	player_drop_ress(void *player, void *server, int i);
+int	player_broadcast(t_player *player, t_server *server, char *str, int no);
 
 // OK
 
-int	player_broadcast(t_player *player, t_server *server, char *str, int no);
+
 int	player_begin_incantation(void *player, void *server, int j);
 int	player_end_incantation(void *player, void *server, int r);
-int	player_tragically_dies(void *player, void *server, int no);
+int	player_tragically_dies(int fd, void *player);
 int     team_name(int fd, void *args);
 int     new_player_connection(int fd, void *player);
 int     player_position(int fd, void *player);

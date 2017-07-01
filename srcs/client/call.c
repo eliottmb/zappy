@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 17:34:27 2017 Albatard
-** Last update Fri Jun 30 19:48:33 2017 Albatard
+** Last update Sat Jul  1 11:49:36 2017 Romain HUET
 */
 
 #include "client.h"
@@ -47,12 +47,12 @@ void	eject(int fd)
 
 void	take_object(int fd)
 {
-  dprintf(fd, "Take 0\n");
+  dprintf(fd, "Take food\n");
 }
 
 void	set_object(int fd)
 {
-  dprintf(fd, "Set 0\n");
+  dprintf(fd, "Set food\n");
 }
 
 void	incantation(int fd)
@@ -79,16 +79,19 @@ void	turn_around(int fd)
 
 void	call(int fd)
 {
-  look(fd);
-  inventory(fd);
   forward(fd);
   right(fd);
   left(fd);
-  forkk(fd);
-  eject(fd);
-  take_object(fd);
   set_object(fd);
+  look(fd);
+  inventory(fd);
+  take_object(fd);
+  look(fd);
+  inventory(fd);
   incantation(fd);
   connect_nbr(fd);
   broadcast_text(fd, "OKOK");
+  forkk(fd);
+  eject(fd);
+
 }

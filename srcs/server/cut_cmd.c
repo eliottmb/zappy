@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Fri Jun 30 18:49:07 2017 Romain HUET
-** Last update Fri Jun 30 19:42:14 2017 Romain HUET
+** Last update Sat Jul  1 12:02:27 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -22,6 +22,29 @@ void	aff_tab(char **tab)
       i++;
     }
   printf("DANS AFFTAB\n");
+}
+
+char    *cut_first_word(char *str)
+{
+  int   i;
+  int   j;
+  char  *to_ret;
+
+  i = 0;
+  j = 0;
+  while (str[i] != ' ')
+    i = i + 1;
+  i = i + 1;
+  if ((to_ret = malloc(sizeof(char) * (strlen(str) - i ))) == NULL)
+    return (NULL);
+  while (str[i])
+    {
+      to_ret[j] = str[i];
+      i = i + 1;
+      j = j + 1;
+    }
+  to_ret[j] = '\0';
+  return (to_ret);
 }
 
 char	**cut_cmd(char *s)
