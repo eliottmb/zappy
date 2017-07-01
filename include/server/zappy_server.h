@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Sat Jul  1 16:07:16 2017 Romain HUET
+** Last update Sat Jul  1 17:32:19 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -148,9 +148,6 @@ typedef struct  s_player
   int           lvl;
   bool          incantating;
   bool          broadcasting;
-  
-  /* char		*read_buf; */
-  /* char		*write_buf; */
 }               t_player;
 
 t_player	*init_players(t_player *players, t_args *args);

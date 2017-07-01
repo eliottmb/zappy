@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Thu Jun 22 16:49:51 2017 eliott m-barali
-** Last update Sat Jul  1 13:53:51 2017 Romain HUET
+** Last update Sat Jul  1 17:50:49 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -46,7 +46,7 @@ void	player_take_ress(void *player, void *server, int id)
       dprintf(serv->graph_cli_fd, "pgt #%d %d\n", tmp->n, id);
       player_build(tmp, serv);
       one_tile_content(serv->graph_cli_fd, &serv->map[tmp->x][tmp->y]);
-      dprintf(tmp->fd, "take res ok\n");
+      dprintf(tmp->fd, "ok\n");
     }
   else
     dprintf(tmp->fd, "ko\n");
@@ -66,7 +66,7 @@ void	player_drop_ress(void *player, void *server, int id)
       dprintf(serv->graph_cli_fd, "pdr #%d %d\n", tmp->n, id);
       player_build(tmp, serv);
       one_tile_content(serv->graph_cli_fd, &serv->map[tmp->x][tmp->y]);
-      dprintf(tmp->fd, "drop res ok\n");
+      dprintf(tmp->fd, "ok\n");
     }
   else
     dprintf(tmp->fd, "ko\n");    
