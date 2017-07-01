@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Wed May 31 16:35:33 2017 Romain HUET
-** Last update Fri Jun 30 18:54:32 2017 Romain HUET
+** Last update Sat Jul  1 15:44:35 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -42,30 +42,27 @@ char    *get_nth_word(char *s, int n)
 {
   int   i;
   int   j;
-  int   nb_sep;
-  char  buf[64];
   char  *word;
 
   i = 0;
   j = 0;
-  nb_sep = 0;
-  if (!s)
+  word = calloc(64, 1);
+  if (!s || !word)
     return (NULL);
-  while (s[i] && nb_sep < n - 1)
+  while (s[i] && j < n - 1)
     {
       if (is_separator(s[i]))
-	nb_sep++;
+        j++;
       i++;
     }
   if (!s[i])
     return (NULL);
+  j = 0;
   while (s[i] && !is_separator(s[i]))
     {
-      buf[j] = s[i];
-      i++;
+      word[j] = s[i++];
       j++;
     }
-  buf[j] = 0;
-  word = strdup(buf);
+  word[j] = 0;
   return (word);
 }

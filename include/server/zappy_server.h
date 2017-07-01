@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Sat Jul  1 13:58:59 2017 Romain HUET
+** Last update Sat Jul  1 15:54:15 2017 Romain HUET
 */
 
 #ifndef SERV_H
@@ -170,7 +170,7 @@ void		set_graph_cli(t_player *players, t_server *server);
 void		welcome_graph_client(t_server *server);
 void		message_from_gclient(t_server *server);
 void		message_to_gclient(t_server *server);
-int		close_all(t_server *server, t_args *args, t_player *players);
+int		close_all(t_server *server, t_player *players);
 
 /*
 ** COMMANDS
@@ -187,8 +187,6 @@ typedef struct	s_func
   char		*name;
   void		(*ptrfunc)(void *player, void *server, int i);
 }		t_func;
-
-/* extern t_func	*g_cmds; */
 
 char	**cut_cmd(char *s);
 char	*cut_first_word(char *str);

@@ -5,32 +5,10 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 20:42:04 2017 Romain HUET
-** Last update Thu Jun 29 17:15:24 2017 Romain HUET
+** Last update Sat Jul  1 15:44:14 2017 Romain HUET
 */
 
 #include "zappy_server.h"
-
-void	aff_args(t_args *args)
-{
-  int	i;
-
-  i = 0;
-  printf("port = %d\n", args->port);
-  printf("map width = %d\n", args->width);
-  printf("map height = %d\n", args->height);
-  printf("there are %d teams\n", args->nb_of_teams);
-  printf("their names are :\n");
-  if (args->nb_of_teams != 0)
-    {
-      while (args->names[i])
-	{
-	  printf("%s\n", args->names[i]);
-	  i++;
-	}
-    }
-  printf("each teams has %d players\n", args->c_per_team);
-  printf("f = 1/%d seconds\n", args->f);
-}
 
 int	init_args(t_args *args)
 {

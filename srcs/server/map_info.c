@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:12:41 2017 eliott m-barali
-** Last update Thu Jun 29 19:38:55 2017 Romain HUET
+** Last update Sat Jul  1 15:51:45 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -24,7 +24,6 @@ int	one_tile_content(int fd, void *tile)
   t_tile	*tmp;
 
   tmp = (t_tile *)tile;
-  printf("dans one tile content\n");
   dprintf(fd, "bct %d %d %d %d %d %d %d %d %d\n", tmp->x, tmp->y, tmp->res[0], tmp->res[1], tmp->res[2], tmp->res[3], tmp->res[4], tmp->res[5], tmp->res[6]);
   return (0);
 }

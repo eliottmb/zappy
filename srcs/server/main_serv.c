@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Sat Jul  1 13:59:37 2017 Romain HUET
+** Last update Sat Jul  1 15:55:17 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -21,8 +21,7 @@ t_func	g_cmds[NB_CMDS] =
     {"Fork", &player_spawn_egg},
     {"Eject", &player_expell},
     {"Take", &player_take_ress},
-    {"Set", &player_drop_ress},
-    /* {"Incantation", } */
+    {"Set", &player_drop_ress}
   };
 
 int	run_cmd(char *curr_cmd, t_player *player_src, t_server *server, int id)
@@ -63,7 +62,6 @@ void	read_data(t_player *players, int src, t_server *server)
     }
   if (read(players[src].fd, buf, 512) < 0)
     {
-      printf("on déco le joueur\n");
       dc_player(&players[src], server);
       return ;
     }
@@ -95,17 +93,13 @@ int	main(int ac, char **av)
   check_args(&args, av);
   players = init_players(players, &args);
   if (init_server(&server, &args) == -1)
-    {
-      printf("[ERROR] : init_server : failed\n");
       return (-1);
-    }
-  
   if (server_loop(&server, players) == -1)
     {
       free_args(&args);
       return (-1);
     }
   free_args(&args);
-  close_all(&server, &args, players);
+  close_all(&server, players);
   return (0);
 }
