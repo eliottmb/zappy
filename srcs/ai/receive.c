@@ -5,10 +5,10 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:36:07 2017 eliott m-barali
-** Last update Fri Jun 30 20:11:15 2017 eliott m-barali
+** Last update Sat Jul  1 13:15:26 2017 eliott m-barali
 */
 
-#include "zappy_ai.h"
+#include "../../include/ai/zappy_ai.h"
 
 int		receive_sharp(t_ai *ai)
 {

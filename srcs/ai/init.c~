@@ -5,11 +5,11 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 28 19:46:38 2017 eliott m-barali
-** Last update Fri Jun 30 20:21:43 2017 eliott m-barali
+** Last update Sat Jul  1 13:14:37 2017 eliott m-barali
 */
 
-#include "zappy_ai.h"
-#include "incant_macro.h"
+#include "../../include/ai/zappy_ai.h"
+#include "../../include/ai/incant_macro.h"
 
 const int	ONE[] = {0, 1, 0, 0, 0, 0, 0, 1};
 const int	TWO[] = {0, 1, 1, 1, 0, 0, 0, 2};

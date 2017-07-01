@@ -5,16 +5,25 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Fri Jun 30 19:23:20 2017 eliott m-barali
-** Last update Fri Jun 30 20:10:59 2017 eliott m-barali
+** Last update Sat Jul  1 13:15:41 2017 eliott m-barali
 */
 
-#include "zappy_ai.h"
+#include "../../include/ai/zappy_ai.h"
 
 char    *get_nth_word(char *s, int n);
 
 void		ask_ress(t_ai *ai, int *ress)
 {
-  dprintf(ai->fd, "%s %d %d ! %d %d %d %d %d %d %d\n", ai->team, ai->lvl, ai->num_player, ress[0], ress[1], ress[2], ress[3], ress[4], ress[5], ress[6]);
+  int		i;
+
+  i = 0;
+  dprintf(ai->fd, "%s %d %d !", ai->team, ai->lvl, ai->num_player);
+  while (i != 7)
+    {
+      dprintf(ai->fd, " %d", ress[i]);
+      i = i + 1;
+    }
+  dprintf(ai->fd, "\n");
 }
 
 void		ask_more_players(t_ai *ai, char *str)
@@ -24,7 +33,16 @@ void		ask_more_players(t_ai *ai, char *str)
 
 void		my_ress(t_ai *ai, int *ress)
 {
-  dprintf(ai->fd, "%s %d %d * %d %d %d %d %d %d %d\n", ai->team, ai->lvl, ai->num_player, ress[0], ress[1], ress[2], ress[3], ress[4], ress[5], ress[6]);
+  int		i;
+
+  i = 0;
+  dprintf(ai->fd, "%s %d %d *", ai->team, ai->lvl, ai->num_player);
+  while (i != 7)
+    {
+      dprintf(ai->fd, " %d", ress[i]);
+      i = i + 1;
+    }
+  dprintf(ai->fd, "\n");
 }
 
 void		send_sharp(t_ai *ai)
