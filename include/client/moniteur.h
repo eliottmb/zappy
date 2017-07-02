@@ -90,7 +90,7 @@ t_user		*create_node(int x, int y, int number, char *team);
 int		list_add_elem_at_back(t_list *front_ptr, char**);
 void		add_pos(t_bmp *, char **buffer);
 void		add_player(t_bmp *, char **buffer);
-void		list_del_elem(t_list*, int);
+int		list_del_elem(t_list*, int);
 void		add_rss_to_player(t_bmp *struc, char **buffer);
 void		drawEmptyRect2(SDL_Surface * surf,int posX, int posY, int width, int length);
 void		fullRect(int a, int i, SDL_Surface *ecran, int tx, int ty);

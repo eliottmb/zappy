@@ -54,3 +54,21 @@ int    receive(t_bmp *stru, int     fd)
     }
 return(0);
 }
+
+void	display_back(t_bmp  *struc)
+{
+SDL_Surface     *trantor;
+SDL_Surface     *bouftou;
+SDL_Rect	position;
+
+trantor = SDL_LoadBMP("srcs/client/graphic/imgs/canvas.bmp");
+bouftou = SDL_LoadBMP("srcs/client/graphic/imgs/bouftou.bmp");
+SDL_SetColorKey(trantor, SDL_SRCCOLORKEY, SDL_MapRGB(trantor->format, 0, 0, 0));
+SDL_SetColorKey(bouftou, SDL_SRCCOLORKEY, SDL_MapRGB(bouftou->format, 0, 0, 0));
+position.x = 13;
+position.y = 10;
+SDL_BlitSurface(bouftou, NULL, struc->ecran, &position);
+position.x = 1400;
+position.y = 10;
+SDL_BlitSurface(trantor, NULL, struc->ecran, &position);
+}

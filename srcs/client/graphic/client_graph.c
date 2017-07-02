@@ -57,8 +57,8 @@ void	check(t_bmp   *pic, char **buffer)
 	g_cmd[i].ptrfunc(pic, buffer);
       i++;
     }
-  if(my_strcmp(buffer[0], "pdi", '\0') == 0)
-    list_del_elem(&pic->inf.us, atoi(buffer[1]));
+   if(my_strcmp(buffer[0], "pdi", '\0') == 0)
+    	list_del_elem(&pic->inf.us, atoi(buffer[1]));
 }
 
 int graph(int fd)
@@ -84,7 +84,6 @@ int graph(int fd)
 	}
       show_char(pic.x, pic.y, &pic);
       show_rss(pic.x,pic.y, &pic);
-//      displayxy(&pic);
       SDL_Flip(pic.ecran);
     }
   SDL_Quit();

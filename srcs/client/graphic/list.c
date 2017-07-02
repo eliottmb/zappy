@@ -54,14 +54,14 @@ int		list_add_elem_at_back(t_list *front_ptr, char **buffer)
   return (0);
 }
 
-void		list_del_elem(t_list *front_ptr, int fd)
+int		list_del_elem(t_list *front_ptr, int fd)
 {
   t_list	cpy;
   t_list	previous;
   
   previous = *front_ptr;
   if (previous->number == fd)
-	list_del_elem_at_front(front_ptr);
+	return(list_del_elem_at_front(front_ptr));
   cpy = previous->next;
   while (cpy)
     {
@@ -71,17 +71,21 @@ void		list_del_elem(t_list *front_ptr, int fd)
 	  if (cpy->next != NULL)
 	    {
 	      previous->next = cpy->next;
-	      free(cpy->name);
-	      free(cpy);
+	      free(cpy->name);	  
+cpy->x = 40;
+cpy->y = 40;	     
+ return(0);
 	    }
 	  else
 	    {
-	      free(cpy);
+	 //     free(cpy);
+	      return(0);	    
 	    }
 	}
       previous = cpy;
       cpy = cpy->next;
     }
+return(-1);
 }
 
 int          list_del_elem_at_front(t_list *front_ptr)
