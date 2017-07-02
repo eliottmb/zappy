@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Sat Jul  1 13:55:19 2017 Albatard
-** Last update Sun Jul  2 18:25:18 2017 Albatard
+** Last update Sun Jul  2 21:20:50 2017 Albatard
 */
 
 #include "client.h"
@@ -65,11 +65,13 @@ void                     check_cmd(int fd, client_info *info)
 		  inventory = fill(inventory);
 		  begin(fd, info, joueur, inventory);
 		  //		  call(fd);
-		  ia(joueur, inventory);
+		  //		  ia(joueur, inventory);
 		  break;
 		}
 	    }
 	}
+      else
+	break;
     }
   free(buffer);
 }

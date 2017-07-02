@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 30 19:25:50 2017 Albatard
-** Last update Sun Jul  2 19:14:16 2017 Albatard
+** Last update Sun Jul  2 21:07:43 2017 Albatard
 */
 
 #include <stdio.h>
@@ -87,20 +87,22 @@ void	lvl1(int fd, t_ai *joueur, t_inv *inv)
       look(joueur->fd);
       printf("%d\n", joueur->lvl);
     }
+  printf("LVL2\n");
   free(str);
 }
 
 void	begin(int fd, client_info *info, t_ai *joueur, t_inv *inv)
 {
   dprintf(fd, "Broadcast %s %d Hello\n", info->name, joueur->lvl);
-  if (read_broadcast("Hello I'm your Chief", joueur->fd) == 1)
+  /*  if (read_broadcast("Hello I'm your Chief", joueur->fd) == 1)
     ;//IA
-  else
+
+    else*/
     lvl1(fd, joueur, inv);
   dprintf(fd, "Broadcast %s %d Hello\n", info->name, joueur->lvl);
-  if (read_broadcast("Hello I'm your Chief", joueur->fd) == 1)
+  /*  if (read_broadcast("Hello I'm your Chief", joueur->fd) == 1)
     ;//IA
   else
-    ;//CHEFDEGROUPE
+  ;//CHEFDEGROUPE*/
   dprintf(fd, "Broadcast %s %d %d\n", info->name, joueur->lvl, inv[0].i);
 }
