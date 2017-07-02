@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Thu Jun 29 16:39:11 2017 Médéric Unissart
-** Last update Sun Jul  2 21:03:48 2017 Médéric Unissart
+** Last update Sun Jul  2 22:45:48 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -47,6 +47,14 @@ static int	get_k_each_player(t_player *rec, t_player *em)
   return ((k[y * 3 + x] + 2 * rec->o) % 8);
 }
 
+int		leave_broadcast(t_server *server,
+				t_player *player,
+				int id)
+{
+  init_msg_timer(server, &player[id], 6, -1);
+  return (1);
+}
+
 int		player_broadcast(t_player *players,
 				 t_server *server,
 				 char *msg,
@@ -58,6 +66,8 @@ int		player_broadcast(t_player *players,
 
   i = 0;
   server = server;
+  if (strlen(msg) < 10 && leave_broadcast(server, players, id) == 1)
+    return (0);
   msg = cut_first_word(msg);
   if (!(bc_msg = malloc(sizeof(*bc_msg) * 13 + strlen(msg))))
     return (-1);
