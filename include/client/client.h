@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:01:57 2017 Albatard
-** Last update Sat Jul  1 23:58:23 2017 Albatard
+** Last update Sun Jul  2 18:21:46 2017 Albatard
 */
 
 #ifndef CLIENT_H_
@@ -42,6 +42,7 @@ typedef struct	s_client
  *
  */
 
+void	ia(t_ai *, t_inv*);
 void	look(int);
 void	inventory(int);
 void	forward(int);

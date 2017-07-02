@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Sat Jul  1 13:55:19 2017 Albatard
-** Last update Sun Jul  2 01:27:06 2017 Albatard
+** Last update Sun Jul  2 18:25:18 2017 Albatard
 */
 
 #include "client.h"
@@ -26,10 +26,10 @@ int                     read_broadcast(char *str, int fd)
 
 char                    *read_cmd(int fd)
 {
-  char                  buffer[1024];
+  char                  buffer[10480];
   char			*str;
 
-  if (read(fd, buffer, 1024) > 0)
+  if (read(fd, buffer, 10480) > 0)
     {
       str = strdup(buffer);
       return (str);
@@ -45,6 +45,7 @@ void                     check_cmd(int fd, client_info *info)
   t_ai                  *joueur;
 
   a = 0;
+  inventory = malloc(sizeof(t_inv));
   joueur = malloc(sizeof(t_ai));
   while (42)
     {
@@ -64,11 +65,11 @@ void                     check_cmd(int fd, client_info *info)
 		  inventory = fill(inventory);
 		  begin(fd, info, joueur, inventory);
 		  //		  call(fd);
+		  ia(joueur, inventory);
+		  break;
 		}
 	    }
 	}
-      else
-	break;
     }
   free(buffer);
 }

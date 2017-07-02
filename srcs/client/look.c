@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 23 15:28:08 2017 Albatard
-** Last update Sun Jul  2 01:32:27 2017 Albatard
+** Last update Sun Jul  2 17:58:32 2017 Albatard
 */
 
 #include "client.h"
@@ -45,16 +45,16 @@ t_inv	*fill(t_inv *inv)
 
 void	check_l(t_ai *joueur, int i)
 {
-  printf("%d\n", i);
   if (i == 1)
     turn_left(joueur->fd);
   else if (i == 2)
     forward(joueur->fd);
   else if (i == 2)
     turn_right(joueur->fd);
-  joueur->lvl++;
-  look(joueur->fd);
   incantation(joueur->fd);
+  joueur->lvl++;
+  take_object(joueur->fd, "linemate");
+  inventory(joueur->fd);
 }
 
 int	nut(char *str, t_ai *joueur, t_inv *inv, int j)
@@ -66,11 +66,21 @@ int	nut(char *str, t_ai *joueur, t_inv *inv, int j)
   tab = my_strtowordtab(str, ' ');
   while (tab[i])
     {
-      if (strcmp(tab[i], "linemate") == 0 && joueur->lvl == 1)
+      if (strcmp(tab[i], "linemate") == 0 && joueur->lvl == 1 && j == 0)
 	{
+	  printf("LINEMATE HERE GREAT\n");
+	  incantation(joueur->fd);
+	  joueur->lvl++;
+	  return 1;
+	}
+      else if (strcmp(tab[i], "linemate") == 0 && joueur->lvl == 1)
+	{
+	  printf("LINEMATE BUT NOT THERE\n");
 	  check_l(joueur, i);
 	  return 1;
 	}
+      else
+	turn_around(joueur->fd);
       parse(tab[i], joueur, inv, j);
       i++;
     }
@@ -85,19 +95,11 @@ void	parse_look(char *str, t_ai *joueur, t_inv *inv, int fd)
 
   i = 0;
   tab = my_strtowordtab(str, ',');
-  if (strcmp(tab[0], "linemate") == 0 && joueur->lvl == 1)
+  while (tab[i] != '\0')
     {
-      incantation(fd);
-      joueur->lvl++;
-    }
-  else
-    {
-      while (tab[i] != '\0')
-	{
-	  if (nut(tab[i], joueur, inv, i) == 1)
-	    break;
-	  i++;
-	}
+      if (nut(tab[i], joueur, inv, i) == 1)
+	break;
+      i++;
     }
 }
 

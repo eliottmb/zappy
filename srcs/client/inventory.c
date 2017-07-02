@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 30 20:13:00 2017 Albatard
-** Last update Sat Jul  1 17:47:06 2017 Albatard
+** Last update Sun Jul  2 18:01:27 2017 Albatard
 */
 
 #include "client.h"
@@ -16,7 +16,6 @@ void	in(char *str, t_inv **inv)
   int	i;
 
   tmp = my_strtowordtab(str, ' ');
-  printf("%s-%s\n", tmp[0], tmp[1]);
   while (inv[i])
     {
       if (strcmp(inv[i]->ndr, tmp[1]) == 0)
