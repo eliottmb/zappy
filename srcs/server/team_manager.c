@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 29 18:19:44 2017 Romain HUET
-** Last update Fri Jun 30 17:08:21 2017 Romain HUET
+** Last update Sun Jul  2 18:29:56 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -22,6 +22,7 @@ int	is_team(char *s, t_server *server)
       buf[i] = s[i];
       i++;
     }
+  buf[i] = '\0';
   i = 0;
   while (i < server->nb_of_teams)
     {
