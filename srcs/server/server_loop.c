@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:26:44 2017 Romain HUET
-** Last update Sun Jul  2 18:25:35 2017 Médéric Unissart
+** Last update Sun Jul  2 21:39:24 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -29,6 +29,7 @@ int		server_loop(t_server *server, t_player *players)
       fd_setting(&writefds, players);
       FD_SET(server->fd, &readfds);
       max_fd = get_max_fd(server, players);
+      cycle_set_time(server, players);
       if (select(max_fd + 1, &readfds, &writefds, NULL, NULL) == -1)
 	return (-1);
       check_readfds(&readfds, server, players);

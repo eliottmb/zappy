@@ -50,7 +50,8 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 			lib/my_strtowordtab.c		\
 			srcs/server/timed_cmd_move.c	\
 			srcs/server/timed_cmd_special.c	\
-			srcs/server/timed_cmd_res.c
+			srcs/server/timed_cmd_res.c	\
+			srcs/server/cycle_time.c
 
 AI_SRCS		= 	srcs/client/call.c			\
 			srcs/client/check.c			\
