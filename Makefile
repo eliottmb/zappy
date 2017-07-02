@@ -11,7 +11,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS		= -W -Wextra -Wall -I./include/client/ -I./include/server/
+CFLAGS		= -W -Wextra -Wall -I./include/client/ -I./include/server/ -g
 
 SERVER		= zappy_server
 
@@ -51,7 +51,6 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 			srcs/server/timed_cmd_move.c	\
 			srcs/server/timed_cmd_special.c	\
 			srcs/server/timed_cmd_res.c
-
 
 AI_SRCS		= 	srcs/client/call.c			\
 			srcs/client/check.c			\

@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Sun Jul  2 17:06:12 2017 Médéric Unissart
+** Last update Sun Jul  2 19:47:37 2017 Médéric Unissart
 */
 
 #ifndef SERV_H
@@ -125,7 +125,7 @@ int	listen_serv(t_server *server);
 
 # define STARTING_FOOD 10
 # define INVENTORY_SIZE 7
-# define STARTING_LIFE 1260
+# define STARTING_LIFE 0
 
 typedef enum	s_dir
   {
@@ -237,6 +237,7 @@ typedef struct	s_serv_msg
   void		(*go_to_cmd)(t_server *, t_player *, int);
 }		t_serv_msg;
 
+bool		cycle_set_time(t_server *server, t_player *players);
 void		sigusr_handling(int signum, siginfo_t *info, void *context);
 void		sigusr_handler(int signum, siginfo_t *info, void *context);
 bool		init_sigact();

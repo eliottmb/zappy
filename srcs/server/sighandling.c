@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 28 17:10:24 2017 Médéric Unissart
-** Last update Sun Jul  2 17:00:14 2017 Médéric Unissart
+** Last update Sun Jul  2 20:41:55 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -19,32 +19,19 @@ void		sigusr_handling(int signum, siginfo_t *info, void *context)
   context = context;
   msg = info->si_value.sival_ptr;
   msg->go_to_cmd(msg->server, msg->player, msg->res);
-  free(msg);
-}
-
-void		sigusr_handler(int signum, siginfo_t *info, void *context)
-{
-  t_serv_msg	*msg;
-
-  if (signum != SIGUSR2)
-    return ;
-  context = context;
-  msg = info->si_value.sival_ptr;
-  free(msg);
+  if (msg->res != -8)
+    free(msg);
 }
 
 bool			init_sigact()
 {
   struct sigaction	act;
-  struct sigaction	affordable_care_act;
 
   act.sa_sigaction = &sigusr_handling;
   act.sa_flags = SA_SIGINFO;
+  sigemptyset(&act.sa_mask);
+  sigaddset(&act.sa_mask, SIGUSR1);
   if (sigaction(SIGUSR1, &act, NULL) == -1)
-    return (false);
-  affordable_care_act.sa_sigaction = &sigusr_handler;
-  affordable_care_act.sa_flags = SA_SIGINFO;
-  if (sigaction(SIGUSR2, &affordable_care_act, NULL) == -1)
     return (false);
   return (true);
 }
@@ -78,7 +65,7 @@ bool			init_msg_timer(t_server *server,
 				       int res)
 {
   t_serv_msg		*msg;
-  void			(*go_to_cmd[9])(t_server *, t_player *, int);
+  void			(*go_to_cmd[10])(t_server *, t_player *, int);
   int			time;
 
   (cmd == 8) ? (time = C_TIM300) : (time = C_TIM7);
@@ -93,6 +80,7 @@ bool			init_msg_timer(t_server *server,
   go_to_cmd[6] = &timed_take;
   go_to_cmd[7] = &timed_set;
   go_to_cmd[8] = &timed_incantation;
+  go_to_cmd[9] = &timed_broadcast;
   if (!(msg = malloc(sizeof(*msg))))
     return (false);
   msg->server = server;

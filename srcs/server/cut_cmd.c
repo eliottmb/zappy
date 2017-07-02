@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Fri Jun 30 18:49:07 2017 Romain HUET
-** Last update Sat Jul  1 13:28:51 2017 Romain HUET
+** Last update Sun Jul  2 20:51:03 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -48,7 +48,7 @@ char    *cut_first_word(char *str)
   while (str[i] != ' ')
     i = i + 1;
   i = i + 1;
-  if ((to_ret = malloc(sizeof(char) * (strlen(str) - i ))) == NULL)
+  if ((to_ret = malloc(sizeof(char) * (strlen(str) - i + 1))) == NULL)
     return (NULL);
   while (str[i])
     {

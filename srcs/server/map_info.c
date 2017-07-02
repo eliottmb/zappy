@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:12:41 2017 eliott m-barali
-** Last update Sat Jul  1 15:51:45 2017 Romain HUET
+** Last update Sun Jul  2 19:44:03 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -15,7 +15,7 @@ int	map_size(int fd, void **map)
   t_tile	**tmp;
 
   tmp = (t_tile **)map;
-  dprintf(fd, "msz %d %d\n", tmp[0][0].x_max, tmp[0][0].y_max);
+  dprintf(fd, "msz %d %d\n", tmp[0][0].y_max, tmp[0][0].x_max);
   return (0);
 }
 
@@ -24,7 +24,10 @@ int	one_tile_content(int fd, void *tile)
   t_tile	*tmp;
 
   tmp = (t_tile *)tile;
-  dprintf(fd, "bct %d %d %d %d %d %d %d %d %d\n", tmp->x, tmp->y, tmp->res[0], tmp->res[1], tmp->res[2], tmp->res[3], tmp->res[4], tmp->res[5], tmp->res[6]);
+  dprintf(fd, "bct %d %d %d %d %d %d %d %d %d\n",
+	  tmp->y, tmp->x, tmp->res[0], tmp->res[1],
+	  tmp->res[2], tmp->res[3], tmp->res[4],
+	  tmp->res[5], tmp->res[6]);
   return (0);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Sun Jul  2 14:05:11 2017 Médéric Unissart
-** Last update Sun Jul  2 15:58:42 2017 Médéric Unissart
+** Last update Sun Jul  2 21:01:32 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -32,7 +32,12 @@ void			timed_broadcast(t_server *server,
 					t_player *player,
 					int res)
 {
-  server = server;
-  player = player;
-  res = res;
+  if (player->n == res)
+    {
+      dprintf(player->fd, "ok\n");
+      dprintf(server->graph_cli_fd, "pbc %d %s\n", player->n, player->look);
+      free(player->look);
+    }
+  else
+    dprintf(player->fd, "%s", player->look);
 }
