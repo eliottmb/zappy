@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 14:32:59 2017 Romain HUET
-** Last update Sat Jul  1 15:55:17 2017 Romain HUET
+** Last update Sun Jul  2 20:03:38 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -68,11 +68,12 @@ void	read_data(t_player *players, int src, t_server *server)
   if (!strcmp(buf, "GRAPHIC\n") &&
       server->graph_cli_fd == -1 && players[src].team == NULL)
     set_graph_cli(&players[src], server);
-  else if (is_team(buf, server))
+  else if (is_team(buf, server) && !players[src].team)
     affect_team(buf, &players[src], server);
   else
     {
-      if (!strcmp(buf, "GRAPHIC\n") && server->graph_cli_fd != -1)
+      if ((!strcmp(buf, "GRAPHIC\n") && server->graph_cli_fd != -1)
+	  || (!players[src].team && !is_team(buf, server)))
 	dprintf(players[src].fd, "ko\n");
       else if (!check_cmd(buf, &players[src], server, players))
 	dprintf(players[src].fd, "suc\n");

@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Thu Jun 22 17:25:45 2017 Romain HUET
-** Last update Sat Jul  1 15:53:35 2017 Romain HUET
+** Last update Sun Jul  2 19:48:12 2017 Romain HUET
 */
 
 #include "zappy_server.h"
@@ -19,6 +19,8 @@ int		new_connection(t_server *server, t_player *players)
 
   i = 0;
   incoming_fd = 0;
+  s_in_client = server->s_in_client;
+  s_in_size = server->s_in_size;
   while (i < MAX_PLAYERS && players[i].fd != -1)
     i++;
   if (i < MAX_PLAYERS)
