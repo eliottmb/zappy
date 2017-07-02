@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 23 15:28:08 2017 Albatard
-** Last update Sun Jul  2 22:08:44 2017 Albatard
+** Last update Sun Jul  2 22:48:21 2017 Albatard
 */
 
 #include "client.h"
@@ -67,21 +67,6 @@ int	nut(char *str, t_ai *joueur, t_inv *inv, int j)
   tab = my_strtowordtab(str, ' ');
   while (tab[i])
     {
-      if (strcmp(tab[i], "linemate") == 0 && joueur->lvl == 1 && j == 0)
-	{
-	  printf("LINEMATE HERE GREAT\n");
-	  incantation(joueur->fd);
-	  joueur->lvl++;
-	  return 1;
-	}
-      else if (strcmp(tab[i], "linemate") == 0 && joueur->lvl == 1)
-	{
-	  printf("LINEMATE BUT NOT THERE\n");
-	  check_l(joueur, i);
-	  return 1;
-	}
-      else
-	turn_around(joueur->fd);
       parse(tab[i], joueur, inv, j);
       i++;
     }

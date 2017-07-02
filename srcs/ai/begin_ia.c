@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 30 19:25:50 2017 Albatard
-** Last update Sun Jul  2 22:16:50 2017 Albatard
+** Last update Sun Jul  2 22:40:52 2017 Albatard
 */
 
 #include <stdio.h>
@@ -34,7 +34,6 @@ void	lvl1(t_ai *joueur, t_inv *inv)
 {
   char	*str;
 
-  printf("LVL1");
   str = malloc(1048);
   while (joueur->lvl != 2)
     {
@@ -52,7 +51,6 @@ void	lvl1(t_ai *joueur, t_inv *inv)
       turn_around(joueur->fd);
       printf("%d\n", joueur->lvl);
     }
-  printf("LVL2\n");
   free(str);
 }
 
