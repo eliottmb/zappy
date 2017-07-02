@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 23 15:28:08 2017 Albatard
-** Last update Sun Jul  2 17:58:32 2017 Albatard
+** Last update Sun Jul  2 22:08:44 2017 Albatard
 */
 
 #include "client.h"
@@ -62,6 +62,7 @@ int	nut(char *str, t_ai *joueur, t_inv *inv, int j)
   int	i;
   char	**tab;
 
+  printf("NUT\n");
   i = 0;
   tab = my_strtowordtab(str, ' ');
   while (tab[i])
@@ -88,11 +89,12 @@ int	nut(char *str, t_ai *joueur, t_inv *inv, int j)
   return 0;
 }
 
-void	parse_look(char *str, t_ai *joueur, t_inv *inv, int fd)
+void	parse_look(char *str, t_ai *joueur, t_inv *inv)
 {
   int	i;
   char	**tab;
 
+  printf("LOOK\n");
   i = 0;
   tab = my_strtowordtab(str, ',');
   while (tab[i] != '\0')
@@ -101,5 +103,6 @@ void	parse_look(char *str, t_ai *joueur, t_inv *inv, int fd)
 	break;
       i++;
     }
+  free(tab);
 }
 

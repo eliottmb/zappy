@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:01:57 2017 Albatard
-** Last update Sun Jul  2 18:21:46 2017 Albatard
+** Last update Sun Jul  2 22:06:36 2017 Albatard
 */
 
 #ifndef CLIENT_H_
@@ -92,8 +92,8 @@ void	call(int fd);
 
 void	parse(char *str, t_ai *joueur, t_inv *inv, int j);
 int	nut(char *str, t_ai *joueur, t_inv *inv, int j);
-void    parse_look(char *str, t_ai *joueur, t_inv *inv, int fd);
+void    parse_look(char *str, t_ai *joueur, t_inv *inv);
 void    parse_inventory(char *str, t_inv *inv);
-void    in(char *str, t_inv **inv);
+void    in(char *str, t_inv *inv);
 
 #endif /* !CLIENT_H_ */

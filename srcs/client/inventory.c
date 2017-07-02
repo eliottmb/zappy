@@ -5,21 +5,21 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Fri Jun 30 20:13:00 2017 Albatard
-** Last update Sun Jul  2 18:01:27 2017 Albatard
+** Last update Sun Jul  2 21:51:20 2017 Albatard
 */
 
 #include "client.h"
 
-void	in(char *str, t_inv **inv)
+void	in(char *str, t_inv *inv)
 {
   char	**tmp;
   int	i;
 
   tmp = my_strtowordtab(str, ' ');
-  while (inv[i])
+  while (i <= 6)
     {
-      if (strcmp(inv[i]->ndr, tmp[1]) == 0)
-	inv[i]->i = atoi(tmp[2]);
+      if (strcmp(inv[i].ndr, tmp[1]) == 0)
+	inv[i].i = atoi(tmp[2]);
       i++;
     }
   free(tmp);
@@ -34,7 +34,8 @@ void	parse_inventory(char *str, t_inv *inv)
   tab = my_strtowordtab(str, ',');
   while (tab[i] != '\0')
     {
-      in(tab[i], &inv);
+      in(tab[i], inv);
       i++;
     }
+  free(tab);
 }

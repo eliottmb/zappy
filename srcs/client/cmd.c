@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Sat Jul  1 13:55:19 2017 Albatard
-** Last update Sun Jul  2 21:20:50 2017 Albatard
+** Last update Sun Jul  2 22:23:31 2017 Albatard
 */
 
 #include "client.h"
@@ -41,32 +41,31 @@ void                     check_cmd(int fd, client_info *info)
 {
   char                  *buffer;
   int                   a;
-  t_inv                 *inventory;
-  t_ai                  *joueur;
+  //  t_inv                 *inventory;
+  //  t_ai                  *joueur;
 
   a = 0;
-  inventory = malloc(sizeof(t_inv));
-  joueur = malloc(sizeof(t_ai));
+  // inventory = malloc(sizeof(t_inv));
+  // joueur = malloc(sizeof(t_ai));
   while (42)
     {
       buffer = calloc(1024, 1);
       a = read(fd, buffer, 1024);
-      printf("%s", buffer);
       if (a > 0)
 	{
+	  printf("%s", buffer);
 	  if (strcmp(buffer, "WELCOME\n") == 0)
 	    {
 	      if (graph(fd) == 1)
 		{
 		  printf("IA\n");
 		  dprintf(fd, "%s\n", info->name);
-		  init_ai(joueur, info->name);
-		  joueur->fd = fd;
-		  inventory = fill(inventory);
-		  begin(fd, info, joueur, inventory);
+		  //init_ai(joueur, info->name);
+		  //joueur->fd = fd;
+		  //inventory = fill(inventory);
+		  //		  begin(fd, info, joueur, inventory);
 		  //		  call(fd);
 		  //		  ia(joueur, inventory);
-		  break;
 		}
 	    }
 	}
