@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Mon Jun 19 18:01:57 2017 Albatard
-** Last update Sun Jul  2 22:06:36 2017 Albatard
+** Last update Sun Jul  2 22:41:36 2017 eliott m-barali
 */
 
 #ifndef CLIENT_H_
@@ -31,9 +31,9 @@ typedef struct	s_inv
 
 typedef struct	s_client
 {
-  int	port;
-  char	*ip;
-  char	*name;
+  int		port;
+  char		*ip;
+  char		*name;
 }		client_info;
 
 /*
@@ -42,46 +42,46 @@ typedef struct	s_client
  *
  */
 
-void	ia(t_ai *, t_inv*);
-void	look(int);
-void	inventory(int);
-void	forward(int);
-void	right(int);
-void	left(int);
-void	forkk(int);
-void	eject(int);
-void	take_object(int, char*);
-void	set_object(int, char*);
-void	incantation(int);
-void	connect_nbr(int);
-void	broadcast_text(int, char*);
-void	turn_around(int);
-void	turn_right(int);
-void	turn_left(int);
+void		ia(t_ai *, t_inv*);
+void		look(int);
+void		inventory(int);
+void		forward(int);
+void		right(int);
+void		left(int);
+void		forkk(int);
+void		eject(int);
+void		take_object(int, char*);
+void		set_object(int, char*);
+void		incantation(int);
+void		connect_nbr(int);
+void		broadcast_text(int, char*);
+void		turn_around(int);
+void		turn_right(int);
      
-
 /*
  *
  *CMD
  *
  */
-int	read_broadcast(char *str, int fd);
-char	*read_cmd(int fd);
-void	check_cmd(int fd, client_info *info);
-t_inv	*fill(t_inv *);
-void    begin(int fd, client_info *info, t_ai *, t_inv *);
+
+int		read_broadcast(char *str, int fd);
+char		*read_cmd(int fd);
+void		check_cmd(int fd, client_info *info);
+t_inv		*fill(t_inv *);
+void		begin(int fd, client_info *info, t_ai *, t_inv *);
+
 /*
  *
  *CHECK
  *
  */
 
-int	check_number(char *str);
-int	usage(int ac, char **av);
-int	check_args(char **av);
-int	my_error(int ac, char **av);
-void	client_fd(int fd);
-void	call(int fd);
+int		check_number(char *str);
+int		usage(int ac, char **av);
+int		check_args(char **av);
+int		my_error(int ac, char **av);
+void		client_fd(int fd);
+void		call(int fd);
 
 /*
  *
@@ -90,10 +90,10 @@ void	call(int fd);
  */
 
 
-void	parse(char *str, t_ai *joueur, t_inv *inv, int j);
-int	nut(char *str, t_ai *joueur, t_inv *inv, int j);
-void    parse_look(char *str, t_ai *joueur, t_inv *inv);
-void    parse_inventory(char *str, t_inv *inv);
-void    in(char *str, t_inv *inv);
+void		parse(char *str, t_ai *joueur, t_inv *inv, int j);
+int		nut(char *str, t_ai *joueur, t_inv *inv, int j);
+void		parse_look(char *str, t_ai *joueur, t_inv *inv);
+void		parse_inventory(char *str, t_inv *inv);
+void		in(char *str, t_inv *inv);
 
 #endif /* !CLIENT_H_ */

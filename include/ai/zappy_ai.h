@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:40 2017 Romain HUET
-** Last update Sat Jul  1 19:36:31 2017 Albatard
+** Last update Sun Jul  2 22:56:04 2017 eliott m-barali
 */
 
 #ifndef AI_H
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+
 /*
 ** STRUCT
 */
@@ -22,7 +23,7 @@
 typedef struct	s_ai
 {
   int		fd;
-  int		*i;	// inventaire
+  int		*i;
   int		num_player;
   char		*team;
   int		lvl;
@@ -85,6 +86,7 @@ void		free_ai(t_ai *ai);
 ** TOOL.C
 */
 
-char			*cut_word(char *str, int n);
-int	*sort_int_tab(char *str);
+char		*cut_word(char *str, int n);
+int		*sort_int_tab(char *str);
+
 #endif /* !AI_H */
