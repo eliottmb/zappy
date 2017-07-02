@@ -5,6 +5,7 @@
 #include <SDL/SDL.h>
 #include <sys/types.h>
 #include <string.h>
+#include <time.h>
 #include <sys/socket.h>
 
 t_func  g_cmd[5] =
@@ -40,13 +41,14 @@ void	check(t_bmp   *pic, char **buffer)
 int	i;
 
 i = 0;
+//printf("KKKKK %d %d\n", pic->inf.X, pic->inf.Y);
 while(i != 5)
-{
- 
+{ 
 if (my_strcmp(buffer[0], g_cmd[i].name, '\0') == 0)
 g_cmd[i].ptrfunc(pic, buffer);
 i++;
 }
+//printf("KKKKK %d %d\n", pic->inf.X, pic->inf.Y);
 if(my_strcmp(buffer[0], "pdi", '\0') == 0)
 list_del_elem(&pic->inf.us, atoi(buffer[1]));
 }
@@ -57,14 +59,11 @@ t_bmp	pic;
 
 dprintf(fd, "GRAPHIC\n");
 pic.inf.us = NULL;
-
+srand(time(NULL));
 if(receive(&pic, fd) == 1)
-{
 return(1);
-} 
  init_sdl(&pic);
-pic.name_team[0][0] = '\0';
-//init_music(&pic); 
+init_music(&pic); 
   while(42)   {
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 240, 166, 166));
 fullRect(980, 980, pic.ecran, 10, 10);
@@ -75,9 +74,9 @@ SDL_Quit();
 return(1);
 }
  show_char(pic.x, pic.y, &pic);
-     show_rss(pic.x,pic.y, &pic);
-      SDL_Flip(pic.ecran);
+ show_rss(pic.x,pic.y, &pic);
+ SDL_Flip(pic.ecran);
     }
-   SDL_Quit();
+  SDL_Quit();
   return EXIT_SUCCESS;
 }

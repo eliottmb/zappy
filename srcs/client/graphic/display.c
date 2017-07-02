@@ -1,4 +1,5 @@
 #include "moniteur.h"
+#include <stdlib.h>
 
 void    show_char(int  x, int y, t_bmp *pic)
 {
@@ -9,11 +10,11 @@ cpy = pic->inf.us;
       //if (pic->inf.us->x > x - 1 && pic->inf.us->x < x + 10)
       if (cpy->x > 0 + x - 1 && cpy->x < x + 10 && cpy->y > 0 + y - 1 && cpy->y < y + 10)
 {
-      pic->postoad[pic->inf.us->num].x = 197 + (cpy->x - 1 - x) * 98 + 150;
-      pic->postoad[pic->inf.us->num].y = 30 + (cpy->y - y) * 98 + 33;
-      cpy = cpy->next;
-      SDL_BlitSurface(pic->toad[pic->inf.us->num], NULL, pic->ecran, &pic->postoad[pic->inf.us->num]);
-} 
+      pic->postoad[cpy->num].x = 197 + (cpy->x - 1 - x) * 98 + 150;
+      pic->postoad[cpy->num].y = 30 + (cpy->y - y) * 98 + 33;
+      SDL_BlitSurface(pic->toad[cpy->num], NULL, pic->ecran, &pic->postoad[cpy->num]);
+}
+cpy = cpy->next; 
    }
 
 }
@@ -61,4 +62,30 @@ if(event.key.keysym.sym == SDLK_RIGHT && stru->x < stru->inf.X - 10)
 stru->x++;
 if(event.key.keysym.sym == SDLK_LEFT && stru->x > 0)
 stru->x--;
+//printf("%d %d\n", stru->inf.X, stru->inf.Y);
+}
+
+void	free_all(t_bmp *stru)
+{
+t_user	*ptr;
+
+while (stru->inf.us != NULL)
+{
+free(stru->inf.us->name);
+ptr = stru->inf.us->next;
+free(stru->inf.us);
+stru->inf.us = ptr;
+}
+exit(0);
+}
+
+void    pop(t_bmp *struc)
+{
+//if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1)
+  // {
+    //  printf("%s", Mix_GetError());
+   //}
+   Mix_Chunk *musique;
+   musique = Mix_LoadWAV("srcs/client/graphic/imgs/pop.mp3");
+   Mix_PlayChannel(1, musique, 0);
 }

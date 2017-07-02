@@ -86,6 +86,8 @@ void     fullRect(int a, int i, SDL_Surface *ecran, int tx, int ty);
 void    display_rss(int  x, int y, int n, t_bmp *pic);
 void    init_gemme(t_bmp *pic);
 void    event(t_bmp *stru);
+void	free_all(t_bmp *stru);
 int     receive2(t_bmp  *stru, int fd, char buffer[100]);
 int     receive(t_bmp  *stru, int fd);
+void    pop(t_bmp *struc);
 #endif
