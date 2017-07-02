@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Sun Jul  2 14:05:11 2017 Médéric Unissart
-** Last update Sun Jul  2 21:01:32 2017 Médéric Unissart
+** Last update Sun Jul  2 22:38:14 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -23,9 +23,7 @@ void			timed_incantation(t_server *server,
 					  t_player *player,
 					  int res)
 {
-  server = server;
-  player = player;
-  res = res;
+  
 }
 
 void			timed_broadcast(t_server *server,
