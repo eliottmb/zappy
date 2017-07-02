@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Sat Jul  1 13:56:15 2017 Romain HUET
-** Last update Sat Jul  1 18:38:55 2017 Romain HUET
+** Last update Sun Jul  2 16:31:06 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -33,7 +33,10 @@ int     res_to_int(char *ress, t_player *player_src)
   return (-1);
 }
 
-void	check_for_incantation(char *cmd, t_server *server, t_player *players, t_player *player_src)
+void	check_for_incantation(char *cmd,
+			      t_server *server,
+			      t_player *players,
+			      t_player *player_src)
 {
   char	*msg;
   char	*plist;
@@ -62,7 +65,10 @@ void	check_for_incantation(char *cmd, t_server *server, t_player *players, t_pla
   printf("%s", msg);
 }
 
-int	check_cmd(char *s, t_player *player_src, t_server *server, t_player *players)
+int	check_cmd(char *s,
+		  t_player *player_src,
+		  t_server *server,
+		  t_player *players)
 {
   char	**cmds;
   int	j;

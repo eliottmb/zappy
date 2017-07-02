@@ -1,3 +1,4 @@
+
 /*
 ** player_interaction.c for zappy in /home/mederic.unissart/rendu/PSU_2016_zappy
 ** 
@@ -5,7 +6,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 17:15:09 2017 Médéric Unissart
-** Last update Sat Jul  1 16:11:41 2017 Romain HUET
+** Last update Sun Jul  2 16:01:55 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -22,8 +23,7 @@ void		player_turn_left(void *player, void *server, int no)
     p->o = WEST;
   else
     p->o -= 1;
-  player_position(serv->graph_cli_fd, player);
-  dprintf(p->fd, "ok\n");
+  init_msg_timer(serv, player, 2, -1);
 }
 
 void		player_turn_right(void *player, void *server, int no)
@@ -38,8 +38,7 @@ void		player_turn_right(void *player, void *server, int no)
     p->o = NORTH;
   else
     p->o += 1;
-  player_position(serv->graph_cli_fd, player);
-  dprintf(p->fd, "ok\n");
+  init_msg_timer(serv, player, 1, -1);
 }
 
 void		player_forward(void *player, void *server, int no)
@@ -60,6 +59,5 @@ void		player_forward(void *player, void *server, int no)
   (p->y < 0) ? (p->y = serv->map[0][0].y_max - 1) : (0);
   (p->y > serv->map[0][0].y_max - 1) ? (p->y = 0) : (0);
   serv->map[p->y][p->x].nb_players++;
-  player_position(serv->graph_cli_fd, player);
-  dprintf(p->fd, "ok\n");
+  init_msg_timer(server, player, 0, -1);
 }

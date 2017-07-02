@@ -47,7 +47,10 @@ SERVER_SRCS	=	srcs/server/main_serv.c		\
 			srcs/server/team_manager.c	\
 			srcs/server/cut_cmd.c		\
 			srcs/server/cmds_manager.c	\
-			lib/my_strtowordtab.c
+			lib/my_strtowordtab.c		\
+			srcs/server/timed_cmd_move.c	\
+			srcs/server/timed_cmd_special.c	\
+			srcs/server/timed_cmd_res.c
 
 
 AI_SRCS		= 	srcs/client/call.c			\

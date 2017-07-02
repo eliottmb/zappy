@@ -5,7 +5,7 @@
 ** Login   <m-bara_e@epitech.net>
 ** 
 ** Started on  Thu Jun 22 16:49:51 2017 eliott m-barali
-** Last update Sat Jul  1 17:50:49 2017 Romain HUET
+** Last update Sun Jul  2 16:15:53 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -18,7 +18,7 @@ void	player_expell(void *player, void *server, int no)
   no = no;
   tmp = (t_player *)player;
   serv = (t_server *)server;
-  dprintf(serv->graph_cli_fd, "pex #%d\n", tmp->n);
+  dprintf(serv->graph_cli_fd, "pex %d\n", tmp->n);
 }
 
 void	player_spawn_egg(void *player, void *server, int no)
@@ -29,7 +29,7 @@ void	player_spawn_egg(void *player, void *server, int no)
   tmp = (t_player *)player;
   serv = (t_server *)server;
   no = no;
-  dprintf(serv->graph_cli_fd, "pfk #%d\n", tmp->n);
+  dprintf(serv->graph_cli_fd, "pfk %d\n", tmp->n);
 }
 
 void	player_take_ress(void *player, void *server, int id)
@@ -39,17 +39,14 @@ void	player_take_ress(void *player, void *server, int id)
   
   tmp = (t_player *)player;
   serv = (t_server *)server;
-  if (serv->map[tmp->x][tmp->y].res[id] > 0)
+  if (serv->map[tmp->y][tmp->x].res[id] > 0)
     {
       tmp->i[id]++;
-      serv->map[tmp->x][tmp->y].res[id]--;
-      dprintf(serv->graph_cli_fd, "pgt #%d %d\n", tmp->n, id);
-      player_build(tmp, serv);
-      one_tile_content(serv->graph_cli_fd, &serv->map[tmp->x][tmp->y]);
-      dprintf(tmp->fd, "ok\n");
+      serv->map[tmp->y][tmp->x].res[id]--;
     }
   else
-    dprintf(tmp->fd, "ko\n");
+    id = -1;
+  init_msg_timer(server, player, 6, id);
 }
 
 void	player_drop_ress(void *player, void *server, int id)
@@ -62,14 +59,11 @@ void	player_drop_ress(void *player, void *server, int id)
   if (tmp->i[id] > 0)
     {
       tmp->i[id]--;
-      serv->map[tmp->x][tmp->y].res[id]++;
-      dprintf(serv->graph_cli_fd, "pdr #%d %d\n", tmp->n, id);
-      player_build(tmp, serv);
-      one_tile_content(serv->graph_cli_fd, &serv->map[tmp->x][tmp->y]);
-      dprintf(tmp->fd, "ok\n");
+      serv->map[tmp->y][tmp->x].res[id]++;
     }
   else
-    dprintf(tmp->fd, "ko\n");    
+    id = -1;
+  init_msg_timer(server, player, 7, id);
 }
 
 int	player_tragically_dies(int fd, void *player)
@@ -77,6 +71,6 @@ int	player_tragically_dies(int fd, void *player)
   t_player	*tmp;
   
   tmp = (t_player *)player;
-  dprintf(fd, "pdi #%d\n", tmp->n);
+  dprintf(fd, "pdi %d\n", tmp->n);
   return (0);
 }

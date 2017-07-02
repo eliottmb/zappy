@@ -5,7 +5,7 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 21 19:20:35 2017 Médéric Unissart
-** Last update Fri Jun 30 17:04:43 2017 Romain HUET
+** Last update Sun Jul  2 16:25:44 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -94,7 +94,10 @@ static void	look_a_tile(char *look, t_tile **map, int *pos, int *ilook)
     }
 }
 
-static void	fill_look_buffer(t_player *player, t_tile **map, int tiles)
+static void	fill_look_buffer(t_player *player,
+				 t_tile **map,
+				 int tiles,
+				 t_server *server)
 {
   char		look[tiles * 81 + 2];
   int		pos[2];
@@ -114,7 +117,8 @@ static void	fill_look_buffer(t_player *player, t_tile **map, int tiles)
   look[ilook++] = ']';
   look[ilook++] = '\n';
   look[ilook++] = '\0';
-  dprintf(player->fd, "%s", look);
+  player->look = strdup(look);
+  init_msg_timer(server, player, 3, -1);
 }
 
 void		player_look(void *player, void *server, int undefined)
@@ -131,5 +135,5 @@ void		player_look(void *player, void *server, int undefined)
   undefined = undefined;
   while (i <= p->lvl)
     tiles += i++ * 2 + 1;
-  fill_look_buffer(p, serv->map, tiles);
+  fill_look_buffer(p, serv->map, tiles, server);
 }

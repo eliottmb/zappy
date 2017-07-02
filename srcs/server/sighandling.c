@@ -5,51 +5,61 @@
 ** Login   <mederic.unissart@epitech.net>
 ** 
 ** Started on  Wed Jun 28 17:10:24 2017 Médéric Unissart
-** Last update Fri Jun 30 16:56:43 2017 Médéric Unissart
+** Last update Sun Jul  2 17:00:14 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
 
 void		sigusr_handling(int signum, siginfo_t *info, void *context)
 {
-  t_serv_msg	*serv_msg;
+  t_serv_msg	*msg;
 
   if (signum != SIGUSR1)
     return ;
   context = context;
-  serv_msg = info->si_value.sival_ptr;
-  dprintf(serv_msg->player_fd, "%s\n", serv_msg->msg);
-  free(serv_msg);
+  msg = info->si_value.sival_ptr;
+  msg->go_to_cmd(msg->server, msg->player, msg->res);
+  free(msg);
+}
+
+void		sigusr_handler(int signum, siginfo_t *info, void *context)
+{
+  t_serv_msg	*msg;
+
+  if (signum != SIGUSR2)
+    return ;
+  context = context;
+  msg = info->si_value.sival_ptr;
+  free(msg);
 }
 
 bool			init_sigact()
 {
   struct sigaction	act;
+  struct sigaction	affordable_care_act;
 
   act.sa_sigaction = &sigusr_handling;
   act.sa_flags = SA_SIGINFO;
   if (sigaction(SIGUSR1, &act, NULL) == -1)
     return (false);
+  affordable_care_act.sa_sigaction = &sigusr_handler;
+  affordable_care_act.sa_flags = SA_SIGINFO;
+  if (sigaction(SIGUSR2, &affordable_care_act, NULL) == -1)
+    return (false);
   return (true);
 }
 
-bool			msg_timer(int player_fd,
+bool			msg_timer(t_serv_msg *msg,
 				  int frequence,
-				  int cmd_cycle,
-				  char *msg)
+				  int cmd_cycle)
 {
   timer_t		timerid;
   struct sigevent	sevp;
   struct itimerspec	its;
-  t_serv_msg		*serv_msg;
 
-  if (!(serv_msg = malloc(sizeof(*serv_msg))))
-    return (false);
-  serv_msg->msg = msg;
-  serv_msg->player_fd = player_fd;
   sevp.sigev_notify = SIGEV_SIGNAL;
   sevp.sigev_signo = SIGUSR1;
-  sevp.sigev_value.sival_ptr = serv_msg;
+  sevp.sigev_value.sival_ptr = msg;
   if (timer_create(CLOCK_REALTIME, &sevp, &timerid) == -1)
     return (false);
   its.it_value.tv_sec = cmd_cycle / frequence;
@@ -60,4 +70,34 @@ bool			msg_timer(int player_fd,
   if (timer_settime(timerid, 0, &its, NULL) == -1)
     return (false);
   return (true);
+}
+
+bool			init_msg_timer(t_server *server,
+				       t_player *player,
+				       int cmd,
+				       int res)
+{
+  t_serv_msg		*msg;
+  void			(*go_to_cmd[9])(t_server *, t_player *, int);
+  int			time;
+
+  (cmd == 8) ? (time = C_TIM300) : (time = C_TIM7);
+  (cmd == 5) ? (time = C_TIM42) : (time = C_TIM7);
+  (cmd == 4) ? (time = C_TIM1) : (time = C_TIM7);
+  go_to_cmd[0] = &timed_forward;
+  go_to_cmd[1] = &timed_right;
+  go_to_cmd[2] = &timed_left;
+  go_to_cmd[3] = &timed_look;
+  go_to_cmd[4] = &timed_inventory;
+  go_to_cmd[5] = &timed_fork;
+  go_to_cmd[6] = &timed_take;
+  go_to_cmd[7] = &timed_set;
+  go_to_cmd[8] = &timed_incantation;
+  if (!(msg = malloc(sizeof(*msg))))
+    return (false);
+  msg->server = server;
+  msg->player = player;
+  msg->go_to_cmd = go_to_cmd[cmd];
+  msg->res = res;
+  return (msg_timer(msg, server->f, time));
 }

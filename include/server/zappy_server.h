@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Mon Jun 19 11:58:03 2017 Romain HUET
-** Last update Sat Jul  1 17:59:38 2017 Romain HUET
+** Last update Sun Jul  2 17:06:12 2017 Médéric Unissart
 */
 
 #ifndef SERV_H
@@ -148,6 +148,7 @@ typedef struct  s_player
   int           lvl;
   bool          incantating;
   bool          broadcasting;
+  char		*look;
 }               t_player;
 
 t_player	*init_players(t_player *players, t_args *args);
@@ -230,16 +231,26 @@ int     server_bad_param(int fd, void *str);
 
 typedef struct	s_serv_msg
 {
-  int		player_fd;
-  char		*msg;
-  t_server	*serv;
+  t_server	*server;
+  t_player	*player;
+  int		res;
+  void		(*go_to_cmd)(t_server *, t_player *, int);
 }		t_serv_msg;
 
-void	sigusr_handling(int signum, siginfo_t *info, void *context);
-bool	init_sigact();
-bool	msg_timer(int player_fd,
-		  int frequence,
-		  int cmd_cycle,
-		  char *msg);
+void		sigusr_handling(int signum, siginfo_t *info, void *context);
+void		sigusr_handler(int signum, siginfo_t *info, void *context);
+bool		init_sigact();
+bool		msg_timer(t_serv_msg *, int, int);
+bool		init_msg_timer(t_server *, t_player *, int, int);
+void		timed_forward(t_server *, t_player *, int);
+void		timed_right(t_server *, t_player *, int);
+void		timed_left(t_server *, t_player *, int);
+void		timed_look(t_server *, t_player *, int);
+void		timed_inventory(t_server *, t_player *, int);
+void		timed_broadcast(t_server *, t_player *, int);
+void		timed_fork(t_server *, t_player *, int);
+void		timed_take(t_server *, t_player *, int);
+void		timed_set(t_server *, t_player *, int);
+void		timed_incantation(t_server *, t_player *, int);
 
 #endif /* !SERV_H */
