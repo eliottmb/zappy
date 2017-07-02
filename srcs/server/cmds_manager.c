@@ -5,7 +5,7 @@
 ** Login   <romain.huet@epitech.net>
 ** 
 ** Started on  Sat Jul  1 13:56:15 2017 Romain HUET
-** Last update Sun Jul  2 22:39:26 2017 Médéric Unissart
+** Last update Sun Jul  2 23:02:04 2017 Médéric Unissart
 */
 
 #include "zappy_server.h"
@@ -44,8 +44,7 @@ void	check_for_incantation(char *cmd,
 
   i = 0;
   if (strcmp(get_nth_word(cmd, 1), "Incantation")
-      || (msg = calloc(128, 1)) == NULL
-      || (plist = calloc(128, 1)) == NULL)
+      || (msg = calloc(128, 1)) == NULL || !(plist = calloc(128, 1)))
     return ;
   sprintf(msg, "pic %d %d %d", player_src->x, player_src->y, player_src->n);
   while (i < MAX_PLAYERS)
@@ -54,6 +53,8 @@ void	check_for_incantation(char *cmd,
 	  players[i].x == player_src->x &&
 	  players[i].y == player_src->y)
 	{
+	  init_msg_timer(server, &players[i], 8, player_src->x +
+			 player_src->y * server->map[0][0].x_max);
 	  sprintf(plist, " %d", players[i].n);
 	  strcat(msg, plist);
 	}
@@ -62,7 +63,6 @@ void	check_for_incantation(char *cmd,
   strcat(msg, "\n\0");
   dprintf(server->graph_cli_fd, "%s", msg);
   dprintf(player_src->fd, "ok\n");
-  printf("%s", msg);
 }
 
 int	check_cmd(char *s,
