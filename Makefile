@@ -63,8 +63,12 @@ AI_SRCS		= 	srcs/client/call.c			\
 			srcs/client/graphic/my_strcmp.c		\
 			srcs/client/graphic/my_strtowordtab.c	\
 			srcs/client/graphic/rect.c		\
+			srcs/client/graphic/init.c		\
+			srcs/client/graphic/display.c		\
+			srcs/client/graphic/receive.c		\
 			srcs/ai/init.c				\
 			srcs/ai/begin_ia.c			
+
 SERVER_OBJS	= $(SERVER_SRCS:.c=.o)
 
 AI_OBJS		= $(AI_SRCS:.c=.o)

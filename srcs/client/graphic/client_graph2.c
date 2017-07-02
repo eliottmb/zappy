@@ -1,60 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <SDL/SDL.h>
-#include <SDL/SDL_mixer.h>
 #include "../../../include/client/moniteur.h"
 
-
-
-void	init_case(t_bmp	*struc, char **buffer)
-{
-struc->inf.X = atoi(buffer[1]);
-struc->inf.Y = atoi(buffer[2]);
-printf("%d %d\n", struc->inf.X, struc->inf.Y);
-}
-
-
-void	init_music(t_bmp *struc)
-{
-if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1) //Initialisation de l'API Mixer
-
-   {
-
-      printf("%s", Mix_GetError());
-
-   }
-
-   Mix_Music *musique; //Création du pointeur de type Mix_Music
-
-   musique = Mix_LoadMUS("srcs/client/graphic/imgs/zelda.mp3"); //Chargement de la musique
-
-   Mix_PlayMusic(musique, -1); //Jouer infiniment la musique
-
-}
-void    init_map(t_bmp *struc, char **buffer)
-{
-int	x;
-int	y;
-int	i;
-//int	rss[7];
-
-i = 0;
-x = my_getnbr(buffer[1]);
-y = my_getnbr(buffer[2]);
-while(i != 7)
-{
-struc->maprss[x][y].rss[i] = my_getnbr(buffer[i + 3]);
-i++;
-}
-}
 
 void	add_rss_to_player(t_bmp *struc, char **buffer)
 {
 t_list	cpy;
 
 cpy = struc->inf.us;
-
 while(cpy)
 {
 if(cpy->number == atoi(buffer[1]))
@@ -72,7 +26,6 @@ cpy->rss[6] = atoi(buffer[10]);
 }
 cpy = cpy->next;
 }
-
 }
 
 void    add_pos(t_bmp *struc, char **buffer)
@@ -98,4 +51,39 @@ if(struc->inf.us == NULL)
 struc->inf.us = create_node(my_getnbr(buffer[2]), my_getnbr(buffer[3]), my_getnbr(buffer[1]), buffer[4]);
 else
 list_add_elem_at_back(&struc->inf.us, buffer);
+}
+
+void    add_rss(int     rss[7], int x, int y, t_bmp *pic)
+{
+int     i;
+
+i = 0;
+while (i != 7)
+{
+pic->maprss[x][y].rss[i] = rss[i];
+i++;
+}
+}
+
+void    display_rss(int  x, int y, int n, t_bmp *pic)
+{
+if (n == 0 || n == 1 || n == 2)
+{
+pic->gemmeR[n].x = 197 + x * 98 + 33 * n;
+pic->gemmeR[n].y = 30 + y * 98;
+
+}
+
+if (n == 3 || n == 4)
+{
+pic->gemmeR[n].x = 197 + x * 98 + 33 * (n - 3);
+pic->gemmeR[n].y = 30 + y * 98 + 33;
+
+}
+
+if(n == 5 || n == 6)
+{
+pic->gemmeR[n].x = 197 + x * 98 + 33 * (n - 5);
+pic->gemmeR[n].y = 30 + y * 98 + 66;
+}
 }
