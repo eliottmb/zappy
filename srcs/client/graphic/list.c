@@ -146,27 +146,6 @@ int	list_del_elem_at_back(t_list *front_ptr)
   return (0);
 }
 
-int		list_is_empty(t_user *list)
-{
-  if (list)
-    return (1);
-  else
-    return (0);
-
-}
-
-unsigned int	list_get_size(t_user *list)
-{
-  unsigned int	size = 0;
-  
-  while (list)
-    {
-      size++;
-      list = list->next;
-    }
-  return (size);
-}
-
 int		list_get_elem_at_position(t_user *list, unsigned int position)
 {
   if (!list)

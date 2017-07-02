@@ -4,6 +4,7 @@ void    init_case(t_bmp *struc, char **buffer)
 {
 struc->inf.X = atoi(buffer[1]);
 struc->inf.Y = atoi(buffer[2]);
+printf(" d sddssdssd %d %d\n", struc->inf.X, struc->inf.Y);
 }
 
 
@@ -51,8 +52,6 @@ void    init_sdl(t_bmp *pic)
 {
 pic->x = 0;
 pic->y = 0;
-pic->inf.X = 0;
-pic->inf.Y = 0;
 pic->positionFond.x = 0;
 pic->positionFond.y = 0;
 SDL_Init(SDL_INIT_VIDEO);

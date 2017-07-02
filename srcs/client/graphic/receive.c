@@ -16,18 +16,17 @@ break;
 i++;
    }
 buffer[i] = '\0';
-printf("%s\n", buffer);
+printf("BUFFER :: %s\n", buffer);
 if (my_strcmp(buffer, "ko", '\0') == 0)
 return(1);
 check(stru, my_strtowordtab(buffer, ' '));
 return(0);
 }
 
-
 int    receive(t_bmp *stru, int     fd)
 {
   char    buffer[100];
-char    buff[1]; 
+  char    buff[1]; 
   int nb;
 
   nb = 0;
@@ -37,9 +36,10 @@ event(stru);
       buffer[nb] = '\0';
       nb++;
     }
-if ((nb = recv(fd, buff, 1, MSG_DONTWAIT)) >= 0)    {
+if ((nb = recv(fd, buff, 1, MSG_DONTWAIT)) >= 0)
+{
 if (nb == 0)
-exit(0);
+free_all(stru);
 buffer[0] = buff[0];
 return(receive2(stru, fd, buffer));
 }
