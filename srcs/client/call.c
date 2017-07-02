@@ -5,7 +5,7 @@
 ** Login   <nicolas.albanel@epitech.eu>
 ** 
 ** Started on  Wed Jun 21 17:34:27 2017 Albatard
-** Last update Sun Jul  2 22:59:21 2017 Albatard
+** Last update Sun Jul  2 23:14:45 2017 Albatard
 */
 
 #include "client.h"
@@ -39,10 +39,10 @@ void	call(int fd)
   forward(fd);
   right(fd);
   left(fd);
-  look(fd);
+  //  look(fd);
   inventory(fd);
   take_object(fd, "food");
-  look(fd);
+  //  look(fd);
   inventory(fd);
   incantation(fd);
   connect_nbr(fd);
