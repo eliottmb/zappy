@@ -6,11 +6,9 @@ int	receive2(t_bmp	*stru, int fd, char buffer[100])
 int	i;
 char	buff[1];
 
-
 i = 1;
 while(i != 100)
 {
-//printf("salut\n");
 if (recv(fd, buff, 1, MSG_DONTWAIT) >= 0)
 buffer[i] = buff[0];
 if(buff[0] == '\n')
@@ -39,8 +37,7 @@ event(stru);
       buffer[nb] = '\0';
       nb++;
     }
-if ((nb = recv(fd, buff, 1, MSG_DONTWAIT)) >= 0)
-    {
+if ((nb = recv(fd, buff, 1, MSG_DONTWAIT)) >= 0)    {
 if (nb == 0)
 exit(0);
 buffer[0] = buff[0];

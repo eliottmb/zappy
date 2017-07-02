@@ -29,6 +29,7 @@ user->rss[6] = 0;
 user->name = strdup(team);
   user->name = NULL;  
   user->next = NULL;
+user->num = rand() % 7;
   return (user);
 }
 

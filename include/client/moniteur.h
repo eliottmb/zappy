@@ -21,6 +21,7 @@ int		fd;
 char		*name;
 int		rss[7];
 struct s_user	*next;
+int		num;
 }		t_user;
 
 typedef t_user  *t_list;
@@ -37,10 +38,10 @@ typedef struct  s_bmp
 {
 SDL_Surface	*ecran;
 SDL_Surface	*trantor;
-SDL_Surface	*toad;
+SDL_Surface	*toad[8];
 SDL_Surface	*imageDeFond;
 SDL_Surface	*gemme[7];
-SDL_Rect	postoad;
+SDL_Rect	postoad[8];
 SDL_Rect	positionFond;
 SDL_Rect	postrantor;
 SDL_Rect	posgemme;
@@ -49,6 +50,7 @@ int		x;
 int		y;
 t_maprss        maprss[30][30];
 t_info		inf;
+char		name_team[8][10];
 }		t_bmp;
 
 typedef struct  s_func
@@ -71,6 +73,7 @@ void     splitRect(int a, int i, SDL_Surface *ecran, int tx, int ty);
 void drawEmptyRect(SDL_Surface * surf,int posX, int posY, int width, int length);
 void    init_maprss(t_bmp *pic);
 void    init_sdl(t_bmp *pic);
+void    init_toad(t_bmp *pic);
 int		graph(int);
 t_user          *create_node(int x, int y, int number, char *team);
 int		list_add_elem_at_back(t_list *front_ptr, char**);

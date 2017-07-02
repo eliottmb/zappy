@@ -63,7 +63,8 @@ if(receive(&pic, fd) == 1)
 return(1);
 } 
  init_sdl(&pic);
-init_music(&pic); 
+pic.name_team[0][0] = '\0';
+//init_music(&pic); 
   while(42)   {
 SDL_FillRect(pic.ecran, NULL, SDL_MapRGB(pic.ecran->format, 240, 166, 166));
 fullRect(980, 980, pic.ecran, 10, 10);

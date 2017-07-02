@@ -9,10 +9,10 @@ cpy = pic->inf.us;
       //if (pic->inf.us->x > x - 1 && pic->inf.us->x < x + 10)
       if (cpy->x > 0 + x - 1 && cpy->x < x + 10 && cpy->y > 0 + y - 1 && cpy->y < y + 10)
 {
-      pic->postoad.x = 197 + (cpy->x - 1 - x) * 98 + 150;
-      pic->postoad.y = 30 + (cpy->y - y) * 98 + 33;
+      pic->postoad[pic->inf.us->num].x = 197 + (cpy->x - 1 - x) * 98 + 150;
+      pic->postoad[pic->inf.us->num].y = 30 + (cpy->y - y) * 98 + 33;
       cpy = cpy->next;
-      SDL_BlitSurface(pic->toad, NULL, pic->ecran, &pic->postoad);
+      SDL_BlitSurface(pic->toad[pic->inf.us->num], NULL, pic->ecran, &pic->postoad[pic->inf.us->num]);
 } 
    }
 

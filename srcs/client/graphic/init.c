@@ -4,7 +4,6 @@ void    init_case(t_bmp *struc, char **buffer)
 {
 struc->inf.X = atoi(buffer[1]);
 struc->inf.Y = atoi(buffer[2]);
-printf("%d %d\n", struc->inf.X, struc->inf.Y);
 }
 
 
@@ -59,8 +58,10 @@ pic->positionFond.y = 0;
 SDL_Init(SDL_INIT_VIDEO);
  pic->ecran = SDL_SetVideoMode(2000, 2000, 32, SDL_HWSURFACE);
 pic->imageDeFond = SDL_LoadBMP("srcs/client/graphic/imgs/grass.bmp");
-pic->toad = SDL_LoadBMP("srcs/client/graphic/imgs/toad.bmp");
-SDL_SetColorKey(pic->toad, SDL_SRCCOLORKEY, SDL_MapRGB(pic->toad->format, 0, 0, 0));
+init_toad(pic);
+//pic->toad = SDL_LoadBMP("srcs/client/graphic/imgs/toad.bmp");
+//SDL_SetColorKey(pic->toad, SDL_SRCCOLORKEY, SDL_MapRGB(pic->toad->format, 0, 0, 0));
+
 pic->trantor = SDL_LoadBMP("srcs/client/graphic/imgs/canvas.bmp");
 pic->postrantor.x = 1640;
 pic->postrantor.y = 0;
