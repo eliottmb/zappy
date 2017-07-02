@@ -1,8 +1,19 @@
+/*
+** init.c for y in /home/goepfe_a/graphic
+** 
+** Made by alexandre goepfert
+** Login   <goepfe_a@epitech.net>
+** 
+** Started on  Sun Jul  2 19:02:51 2017 alexandre goepfert
+** Last update Sun Jul  2 21:54:35 2017 alexandre goepfert
+*/
+
 #ifndef MONITEUR_H
 # define MONITEUR_H
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
 
 typedef struct  s_maprss
 {
@@ -59,30 +70,30 @@ typedef struct  s_func
   void          (*ptrfunc)(t_bmp *, char **buffer);
 }               t_func;
 
-char		**my_strtowordtab(char *, char);
+char	**my_strtowordtab(char *, char);
 void    check(t_bmp   *pic, char **buffer);
-void		init_case(t_bmp *, char **buffer);
-int		my_strcmp(char *, char *, char);
-int		my_getnbr(char *);
-void		init_map(t_bmp *struc, char **buffer);
-int		list_del_elem_at_front(t_list *front_ptr);
+void	init_case(t_bmp *, char **buffer);
+int	my_strcmp(char *, char *, char);
+int	my_getnbr(char *);
+void	init_map(t_bmp *struc, char **buffer);
+int	list_del_elem_at_front(t_list *front_ptr);
 void    init_music(t_bmp *struc);
 void    show_char(int  x, int y, t_bmp *pic);
 void    show_rss(int  x, int y, t_bmp *pic);
-void     splitRect(int a, int i, SDL_Surface *ecran, int tx, int ty);
-void drawEmptyRect(SDL_Surface * surf,int posX, int posY, int width, int length);
+void    splitRect(int a, int i, SDL_Surface *ecran, int tx, int ty);
+void	drawEmptyRect(SDL_Surface * surf,int posX, int posY, int width, int length);
 void    init_maprss(t_bmp *pic);
 void    init_sdl(t_bmp *pic);
 void    init_toad(t_bmp *pic);
-int		graph(int);
-t_user          *create_node(int x, int y, int number, char *team);
-int		list_add_elem_at_back(t_list *front_ptr, char**);
-void		add_pos(t_bmp *, char **buffer);
-void	        add_player(t_bmp *, char **buffer);
-int		list_del_elem(t_list*, int);
+int	graph(int);
+t_user	*create_node(int x, int y, int number, char *team);
+int	list_add_elem_at_back(t_list *front_ptr, char**);
+void	add_pos(t_bmp *, char **buffer);
+void	add_player(t_bmp *, char **buffer);
+void	list_del_elem(t_list*, int);
 void    add_rss_to_player(t_bmp *struc, char **buffer);
-void drawEmptyRect2(SDL_Surface * surf,int posX, int posY, int width, int length);
-void     fullRect(int a, int i, SDL_Surface *ecran, int tx, int ty);
+void	drawEmptyRect2(SDL_Surface * surf,int posX, int posY, int width, int length);
+void    fullRect(int a, int i, SDL_Surface *ecran, int tx, int ty);
 void    display_rss(int  x, int y, int n, t_bmp *pic);
 void    init_gemme(t_bmp *pic);
 void    event(t_bmp *stru);
@@ -90,4 +101,5 @@ void	free_all(t_bmp *stru);
 int     receive2(t_bmp  *stru, int fd, char buffer[100]);
 int     receive(t_bmp  *stru, int fd);
 void    pop(t_bmp *struc);
+void	displayxy(t_bmp *struc);
 #endif

@@ -1,11 +1,11 @@
 /*
-** list.c for Project-Master in /home/albatard/rendu/SystemeUnix/Reseaux/PSU_2016_myirc
+** list.c for y in /home/goepfe_a/graphic
 ** 
-** Made by Albatard
-** Login   <nicolas.albanel@epitech.eu>
+** Made by alexandre goepfert
+** Login   <goepfe_a@epitech.net>
 ** 
-** Started on  Wed May 31 16:34:23 2017 Albatard
-** Last update Wed Jun 28 16:04:45 2017 Romain HUET
+** Started on  Sun Jul  2 19:05:58 2017 alexandre goepfert
+** Last update Sun Jul  2 19:10:03 2017 alexandre goepfert
 */
 
 #include <stdio.h>
@@ -16,20 +16,20 @@ t_user		*create_node(int x, int y, int number, char *team)
 {
   t_user	*user = malloc(sizeof(t_user));
   
-user->x = x;
-user->y = y;
-user->number = number;
-user->rss[0] = 0;
-user->rss[1] = 0;
-user->rss[2] = 0;
-user->rss[3] = 0;
-user->rss[4] = 0;
-user->rss[5] = 0;
-user->rss[6] = 0;
-user->name = strdup(team);
+  user->x = x;
+  user->y = y;
+  user->number = number;
+  user->rss[0] = 0;
+  user->rss[1] = 0;
+  user->rss[2] = 0;
+  user->rss[3] = 0;
+  user->rss[4] = 0;
+  user->rss[5] = 0;
+  user->rss[6] = 0;
+  user->name = strdup(team);
   user->name = NULL;  
   user->next = NULL;
-user->num = rand() % 7;
+  user->num = rand() % 7;
   return (user);
 }
 
@@ -37,8 +37,8 @@ int		list_add_elem_at_back(t_list *front_ptr, char **buffer)
 {
   t_user	*new_user;
   t_list	list;
-
-  new_user = create_node(my_getnbr(buffer[2]), my_getnbr(buffer[3]), my_getnbr(buffer[1]), buffer[4]);
+  
+  new_user = create_node(atoi(buffer[2]), atoi(buffer[3]), atoi(buffer[1]), buffer[4]);
   list = *front_ptr;
   if (!new_user)
     return (1);
@@ -54,36 +54,34 @@ int		list_add_elem_at_back(t_list *front_ptr, char **buffer)
   return (0);
 }
 
-int		list_del_elem(t_list *front_ptr, int fd)
+void		list_del_elem(t_list *front_ptr, int fd)
 {
   t_list	cpy;
   t_list	previous;
-
+  
   previous = *front_ptr;
   if (previous->number == fd)
-    return list_del_elem_at_front(front_ptr);
+	list_del_elem_at_front(front_ptr);
   cpy = previous->next;
   while (cpy)
     {
       if (cpy->number == fd)
 	{
-free(cpy->name);
+	  free(cpy->name);
 	  if (cpy->next != NULL)
 	    {
 	      previous->next = cpy->next;
+	      free(cpy->name);
 	      free(cpy);
-	      return (0);
 	    }
 	  else
 	    {
 	      free(cpy);
-	      return (0);
 	    }
 	}
       previous = cpy;
       cpy = cpy->next;
     }
-  return (-1);
 }
 
 int          list_del_elem_at_front(t_list *front_ptr)
@@ -95,77 +93,4 @@ int          list_del_elem_at_front(t_list *front_ptr)
   *front_ptr = list->next;
   free(list);
   return (0);
-}
-
-int	list_del_elem_at_position(t_list *front_ptr, unsigned int position)
-{
-  t_list	previous;
-  t_list	list;
-
-  if (position == 0)
-    {
-      printf("front\n");
-      return list_del_elem_at_front(front_ptr);
-    }
-  previous = *front_ptr;
-  list = previous->next;
-  if (!*front_ptr)
-    return (1);
-  while (--position)
-    {
-      if (!list)
-	return (1);
-      previous = list;
-      list = list->next;
-    }
-  if (list)
-    previous->next = list->next;
-  free(list);
-  return (0);
-}
-
-int	list_del_elem_at_back(t_list *front_ptr)
-{
-  t_list	list;
-  t_list	previous;
-
-  list = *front_ptr;
-  previous = NULL;
-  if (!list)
-    return(1);
-  while (list->next)
-    {
-      previous = list;
-      list = list->next;
-    }
-  if (previous)
-    previous->next = NULL;
-  else
-    *front_ptr = NULL;
-  free(list);
-  return (0);
-}
-
-int		list_get_elem_at_position(t_user *list, unsigned int position)
-{
-  if (!list)
-    return (0);
-  while (position--)
-    {
-      list = list->next;
-      if (!list)
-	return (0);
-    }
-  return (list->fd);
-}
-
-t_user		*list_get_first_node_with_value(t_user *list, char *name)
-{
-  while (list)
-    {
-      if (list->name == name)
-	return (list);
-      list = list->next;
-    }
-  return (NULL);
 }

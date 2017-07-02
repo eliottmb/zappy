@@ -62,9 +62,8 @@ AI_SRCS		= 	srcs/client/call.c			\
 			srcs/client/graphic/client_graph.c	\
 			srcs/client/graphic/client_graph2.c	\
 			srcs/client/graphic/list.c		\
-			srcs/client/graphic/my_getnbr.c		\
+			srcs/client/graphic/my_strtowordtab.c		\
 			srcs/client/graphic/my_strcmp.c		\
-			srcs/client/graphic/my_strtowordtab.c	\
 			srcs/client/graphic/rect.c		\
 			srcs/client/graphic/init.c		\
 			srcs/client/graphic/display.c		\
